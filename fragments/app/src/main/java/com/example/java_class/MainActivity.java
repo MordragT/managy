@@ -1,11 +1,10 @@
-package com.example.fragments;
+package com.example.java_class;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -31,7 +30,14 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.navigation_home:
                             selectedFragment =new startseite();break;
                         case R.id.navigation_kalender:
-                            selectedFragment =new fragment2();break;
+                            selectedFragment =new kalender();break;
+                        case R.id.navigation_to_do:
+                            selectedFragment =new to_do();break;
+                        case R.id.navigation_abgabe:
+                            selectedFragment =new fristen();break;
+                        case R.id.navigation_literatur:
+                            selectedFragment = new literatur();break;
+
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,selectedFragment).commit();
                     return true;

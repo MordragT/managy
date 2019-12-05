@@ -1,4 +1,4 @@
-package com.example.fragments;
+package com.example.java_class;
 
 import android.content.Context;
 

@@ -1,7 +1,6 @@
-package com.example.fragments;
+package com.example.java_class;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import java.io.*;
 

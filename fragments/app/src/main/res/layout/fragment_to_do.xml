@@ -3,15 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".startseite"
-    android:background="@color/ColorTest"
-    >
+    android:background="#009688"
+    tools:context=".to_do">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/frag_startseite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+
+    android:text="todo seite " />
 
 </FrameLayout>
