@@ -1,21 +1,13 @@
 package com.example.java_class;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import java.io.*;
 
-
-
-
-
-/*
-*
-* ALTE VERSION
-* =====================================================================
-* */
-
-
-public class schnitstelle {
+public class schnitstelle implements Serializable{
+    //bei anlegen einlesen ausführen ??
+    //inizialisiren schreiben
 
     //Alle methoden
     void DELETE_ALL_FILES(){
@@ -116,22 +108,22 @@ public class schnitstelle {
     ArrayList<literatur_eintrag>literatur_liste	= new ArrayList<>();
 
     //Einträge als clss
-    class abgaben_eintrag {
+    class abgaben_eintrag implements Serializable  {
         String name = "NAME_LEER";
         Boolean erinnern = false ;
         my_date termin = new my_date();
         my_date erinnerungs_termin = new my_date();
     }
-    class termine_eintrag {
+    class termine_eintrag implements Serializable {
         String name = "NAME_LEER";
         my_date von = new my_date();
         my_date bis = new my_date();
     }
-    class to_do_eintrag {
+    class to_do_eintrag implements Serializable {
         String name = "NAME_LEER";
         boolean erledigt = false;
     }
-    class literatur_eintrag {
+    class literatur_eintrag implements Serializable {
         String name = "NAME_LEER";
         String autor = "NAME_LEER";
         boolean gelesen = false;
@@ -139,13 +131,13 @@ public class schnitstelle {
 
     //Hier -1 stat null ?
     //Wird von allen klassen mit zeiten benutzt
-    class my_date
+    class my_date implements Serializable
     {
-        int stunden = (Integer) null	;
-        int minuten = (Integer) null	;
-        int tag		= (Integer) null ;
-        int monat	= (Integer) null ;
-        int jahr	= (Integer) null ;
+        int stunden = -1	;
+        int minuten = -1	;
+        int tag		= -1 ;
+        int monat	= -1 ;
+        int jahr	= -1 ;
 
         //Konstrucktoren
         my_date(){}
