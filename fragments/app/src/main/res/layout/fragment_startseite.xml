@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".startseite"
-    android:background="@color/ColorTest"
+    android:background="#bebebe"
     >
 
     <!-- TODO: Update blank fragment layout -->
@@ -13,5 +13,75 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/hello_blank_fragment" />
+
+    <TextView
+        android:id="ÜberschriftStart"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:text="Start"
+        android:textSize="50dp"
+        android:gravity="center_horizontal"
+        android:textColor="#000000"
+        android:background="#696969"
+        android:typeface="serif"
+        />
+
+    <TextView
+        android:id="StartseiteFristen"
+        android:layout_width="350dp"
+        android:layout_height="125dp"
+        android:background="#696969"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="100dp"
+        android:text="nächste Frist:"
+        />
+
+    <TextView
+        android:id="StartseiteTermine"
+        android:layout_width="350dp"
+        android:layout_height="125dp"
+        android:background="#696969"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="250dp"
+        android:text="nächster Termin:"
+        />
+
+    <TextView
+        android:id="StartseiteTo-Do"
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginRight="20dp"
+        android:background="#696969"
+        android:gravity="center_horizontal"
+        android:text="To-Do:"
+        />
+
+    <TextView
+        android:id="StartseiteLiteratur"
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginRight="20dp"
+        android:background="#696969"
+        android:gravity="center_horizontal"
+        android:text="Literatur:"
+        />
+
+    <TextView
+        android:id="StartseiteTipps"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:background="#696969"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="530dp"
+        android:text="Tipps:"
+        />
+
 
 </FrameLayout>
