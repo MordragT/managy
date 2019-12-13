@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <CheckBox
+        android:onClick="testee"
+        android:id="@+id/to_do_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/todo_titel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00A84444"
+        android:text="Test"
+        android:textSize="30sp" />
+
+
+
+
+</LinearLayout>

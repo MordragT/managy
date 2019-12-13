@@ -6,11 +6,10 @@
     android:background="#009688"
     tools:context=".to_do">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/todo_items_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-    android:text="todo seite " />
+        android:layout_height="wrap_content"
+        />
 
 </FrameLayout>
