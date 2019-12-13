@@ -10,24 +10,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDialogFragment;
 import java.util.ArrayList;
 
 
-public class to_do extends Fragment {
+public  class to_do extends Fragment {
 
-    private ListView todo_items_list ;
-    ArrayList<Test> todo_items = new ArrayList<>();
+    static ListView todo_items_list ;
+    static ArrayList<Test> todo_items = new ArrayList<>();
 
 
-    public void testee(View v){                                             //checkbox klick event
+    static public void to_to_onclick_checkbox(View vv , int position){                                             //checkbox klick event
         //bekomme raus welche box geklickt wurde
-        ListView lv = getView().findViewById(R.id.todo_items_list);
-
-
-        int position = lv.getPositionForView(v);
+        //ListView lv = vv.findViewById(R.id.todo_items_list);
+        //int position = lv.getPositionForView(vv);
 
 
         //change checbox status in den satein
@@ -35,8 +34,8 @@ public class to_do extends Fragment {
         tmp.setB(!tmp.getB());
         todo_items.set(position,tmp );
 
-        //seite neu laden
-        to_do_adapter adapter = new to_do_adapter(this.getContext() , R.layout.fragment_to_do_adapter, todo_items);
+        //seite neu laden                           this,getContext()
+        to_do_adapter adapter = new to_do_adapter(vv.getContext() , R.layout.fragment_to_do_adapter, todo_items);
         todo_items_list.setAdapter(adapter);
         //to_do_adapter fragment_to_do_adapter = new to_do_adapter(this , R.layout.fragment_to_do_adapter , todo_items);
 
@@ -58,7 +57,6 @@ public class to_do extends Fragment {
         View v = inflater.inflate(R.layout.fragment_to_do, container, false);
 
         todo_items_list = v.findViewById(R.id.todo_items_list);
-
 
         todo_items.add(new Test(true,"todo1"));
         todo_items.add(new Test(false,"todo2"));
@@ -92,15 +90,6 @@ public class to_do extends Fragment {
         to_do_adapter adapter = new to_do_adapter(this.getContext() , R.layout.fragment_to_do_adapter, todo_items);
 
         todo_items_list.setAdapter(adapter);
-
-
-
-
-
-
-
-
-
 
 
         return v;

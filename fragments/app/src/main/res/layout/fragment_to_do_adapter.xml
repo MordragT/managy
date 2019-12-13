@@ -3,10 +3,14 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.java_class.to_do">
+
+
+
 
     <CheckBox
-        android:onClick="testee"
+
         android:id="@+id/to_do_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,3 +28,5 @@
 
 
 </LinearLayout>
+
+<!-- android:onClick="to_to_onclick_checkbox" -->
