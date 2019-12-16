@@ -8,6 +8,15 @@
     <string name="TerminStart">Termin</string>
     <string name="ToDoStart">ToDo</string>
     <string name="LiteraturStart">Literatur</string>
-    <string name="TippStart">Tipp</string>
+    <string name="TippStart">@</string>
+
+    <!-- Tipps -->
+    <string-array name="TippsArray">
+        <item>Tipp 1</item>
+        <item>Tipp 2</item>
+        <item>Tipp 3</item>
+        <item>Tipp 4</item>
+        <item>Tipp 5</item>
+    </string-array>
 
 </resources>
