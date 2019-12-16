@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">fragments</string>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Strings der Startseite -->
+    <string name="FristStart">Frist</string>
+    <string name="TerminStart">Termin</string>
+    <string name="ToDoStart">ToDo</string>
+    <string name="LiteraturStart">Literatur</string>
+    <string name="TippStart">Tipp</string>
+
 </resources>

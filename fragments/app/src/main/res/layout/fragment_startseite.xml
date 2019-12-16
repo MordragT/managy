@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".startseite"
     android:background="#bebebe"
+    android:orientation="horizontal"
     >
 
     <!-- TODO: Update blank fragment layout -->
@@ -12,76 +13,110 @@
         android:id="@+id/frag_startseite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-    <TextView
-
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:text="Start"
-        android:textSize="50dp"
-        android:gravity="center_horizontal"
-        android:textColor="#000000"
-        android:background="#696969"
-        android:typeface="serif"
         />
 
+    <!-- Frist -->
     <TextView
-
-        android:layout_width="350dp"
-        android:layout_height="125dp"
-        android:background="#696969"
-        android:gravity="center_horizontal"
+        android:layout_width="325dp"
+        android:layout_height="25dp"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="100dp"
-        android:text="nächste Frist:"
-        />
-
-    <TextView
-
-        android:layout_width="350dp"
-        android:layout_height="125dp"
         android:background="#696969"
+        android:layout_marginTop="25dp"
+        android:text="Nächste Frist:"
         android:gravity="center_horizontal"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="250dp"
-        android:text="nächster Termin:"
         />
 
     <TextView
 
-        android:layout_width="160dp"
+        android:layout_width="325dp"
         android:layout_height="100dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginRight="20dp"
+        android:background="#708090"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="@string/FristStart"
+        />
+
+    <!-- Termin -->
+    <TextView
+        android:layout_width="325dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center_horizontal"
         android:background="#696969"
+        android:layout_marginTop="175dp"
+        android:text="Nächster Termin:"
         android:gravity="center_horizontal"
+        />
+
+    <TextView
+        android:layout_width="325dp"
+        android:layout_height="100dp"
+        android:background="#708090"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="200dp"
+        android:text="@string/TerminStart"
+        />
+
+    <!-- To-Do -->
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#696969"
+        android:layout_marginTop="325dp"
         android:text="To-Do:"
+        android:gravity="center_horizontal"
+        android:layout_marginRight="88dp"
         />
 
     <TextView
-
-        android:layout_width="160dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="220dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginRight="20dp"
-        android:background="#696969"
-        android:gravity="center_horizontal"
-        android:text="Literatur:"
-        />
-
-    <TextView
-
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:background="#696969"
-        android:gravity="center_horizontal"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:background="#708090"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="530dp"
-        android:text="Tipps:"
+        android:layout_marginTop="350dp"
+        android:layout_marginRight="88dp"
+        android:text="@string/ToDoStart"
         />
 
+    <!-- Literatur -->
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#696969"
+        android:layout_marginTop="325dp"
+        android:text="Literatur:"
+        android:gravity="center_horizontal"
+        android:layout_marginLeft="88dp"
+        />
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:background="#708090"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="350dp"
+        android:layout_marginLeft="88dp"
+        android:text="@string/LiteraturStart"
+        />
+    <!-- Tipp -->
+    <TextView
+        android:layout_width="325dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#696969"
+        android:layout_marginTop="450dp"
+        android:text="Tipp:"
+        android:gravity="center_horizontal"
+        />
+
+    <TextView
+        android:layout_width="325dp"
+        android:layout_height="75dp"
+        android:background="#708090"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="475dp"
+        android:text="@string/TippStart"
+        />
 
 </FrameLayout>
