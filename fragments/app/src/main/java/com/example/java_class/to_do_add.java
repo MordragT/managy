@@ -1,7 +1,5 @@
 package com.example.java_class;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,7 +15,7 @@ public class to_do_add extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment_to_do_add, container, false);
+        return inflater.inflate(R.layout.fragment_to_do_add, container, false);
     }
 
 }

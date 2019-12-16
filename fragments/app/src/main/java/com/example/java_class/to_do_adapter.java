@@ -21,6 +21,7 @@ public class to_do_adapter extends ArrayAdapter<Test> { //<_____________________
     private static final String TAG = "to_do_adapter";
     private Context mContext;
     int mRecorce;
+    static int aufgerufen = -1;//kann beim aufruf der bearbeiten seite dkeinen intwert übergeben darum hier als static speichern und darauf zugreifen
 
 
 
