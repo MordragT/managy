@@ -9,11 +9,11 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton_to_do"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="1mm"
-        android:layout_marginRight="1mm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="1mm"
+        android:layout_marginBottom="1mm"
         android:clickable="true"
         android:src="@android:drawable/ic_input_add"
         android:visibility="visible"

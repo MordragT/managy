@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".to_do_add">
 
     <LinearLayout
@@ -34,13 +35,14 @@
         android:orientation="horizontal"
 
         >
+
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/to_do_add_abbrechen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
             android:layout_weight="1"
-            android:text="Abbrechen"
-            android:layout_gravity="bottom|end"/>
+            android:text="Abbrechen" />
 
         <Button
             android:id="@+id/button3"
