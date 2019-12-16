@@ -94,6 +94,15 @@ public class to_do_adapter extends ArrayAdapter<Test> { //<_____________________
                 to_do.to_to_onclick_checkbox(v , position);
             }
         });
+        //Aktion listener für view
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //to_do.to_to_onclick_titel(v , position);
+                Log.d("Onklick","View");
+            }
+        });
+
 
 
         return convertView;
