@@ -100,6 +100,7 @@ public class to_do_adapter extends ArrayAdapter<Test> { //<_____________________
             @Override
             public void onClick(View v) {
                 //to_do.to_to_onclick_titel(v , position);
+                aufgerufen = position;
                 Log.d("Onklick","View");
             }
         });
