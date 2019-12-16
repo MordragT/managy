@@ -25,7 +25,11 @@ public  class to_do extends Fragment {
     static ListView todo_items_list ;
     static ArrayList<Test> todo_items = new ArrayList<>();
 
-
+     public void overid_layout_for_adapter(){
+        FragmentTransaction fr = getFragmentManager().beginTransaction();
+        fr.replace(R.id.nav_host_fragment,new to_do());
+        fr.commit();
+    }
     static public void to_to_onclick_checkbox(View vv , int position){                                             //checkbox klick event
         //bekomme raus welche box geklickt wurde
         //ListView lv = vv.findViewById(R.id.todo_items_list);

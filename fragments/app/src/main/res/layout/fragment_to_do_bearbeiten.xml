@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".to_do_add">
+    tools:context=".to_do_bearbeiten">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,12 +22,12 @@
             android:layout_marginRight="1mm"/>
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editText_todo_bearbeiten"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Was gibt es zu tun"/>
+            android:text=""
+            android:inputType="textPersonName"/>
     </LinearLayout>
 
     <LinearLayout
@@ -37,15 +38,15 @@
         >
 
         <Button
-            android:id="@+id/to_do_add_abbrechen"
+            android:id="@+id/to_do_bearbeiten_loechen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_weight="1"
-            android:text="Abbrechen" />
+            android:text="Löschen" />
 
         <Button
-            android:id="@+id/to_do_add_speichern"
+            android:id="@+id/to_do_bearbeiten_Speichern"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

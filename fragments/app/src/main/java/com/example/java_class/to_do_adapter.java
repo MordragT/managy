@@ -1,5 +1,6 @@
 package com.example.java_class;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
@@ -68,7 +70,7 @@ public class to_do_adapter extends ArrayAdapter<Test> { //<_____________________
 
     @NonNull
     @Override
-    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull final ViewGroup parent) {
         String Titel = getItem(position).getTitel();                                    //Ändern für jedes dokument
         boolean boool = getItem(position).getB();
 
@@ -102,6 +104,9 @@ public class to_do_adapter extends ArrayAdapter<Test> { //<_____________________
                 //to_do.to_to_onclick_titel(v , position);
                 aufgerufen = position;
                 Log.d("Onklick","View");
+
+                ((MainActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,new to_do_bearbeiten()).commit();
+
             }
         });
 
