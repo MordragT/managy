@@ -6,13 +6,13 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ListView;
+
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +20,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav_bar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+        //einlesen der datein
+        //schnitstelle.load(this);
+        schnitstelle.load_todo(this);
+        Log.d("einlesen",String.valueOf(schnitstelle.to_do_liste.size()));
+
 
     }
 

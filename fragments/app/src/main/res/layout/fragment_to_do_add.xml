@@ -21,7 +21,7 @@
             android:layout_marginRight="1mm"/>
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/to_do_add_EditText"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"

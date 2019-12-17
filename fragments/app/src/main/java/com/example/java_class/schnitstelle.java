@@ -1,11 +1,15 @@
 package com.example.java_class;
 
+import android.content.Context;
+import android.os.Environment;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import java.io.*;
 
-public class schnitstelle implements Serializable{
+ public class schnitstelle implements Serializable{
     //bei anlegen einlesen ausführen ??
     //inizialisiren schreiben
 
@@ -23,9 +27,35 @@ public class schnitstelle implements Serializable{
     /**
      * laed alle listen aus den dokumenten
      */
-    void load() {
+    static void load_todo(Context c) {
+try {
+    File file = new File(Environment.getExternalStoragePublicDirectory(
+            Environment.DIRECTORY_MOVIES), "/" + "to_do.tmp");
+    FileInputStream fis = new FileInputStream(file);
+    ObjectInputStream ois = new ObjectInputStream(fis);
+    to_do_liste = (ArrayList<to_do_eintrag>) ois.readObject();
+    ois.close();
+    //InputStream is = c.openFileInput("to_do.txt");
+    //ObjectInputStream isto_do = new ObjectInputStream(is);
+    //to_do_liste = (ArrayList<to_do_eintrag>) isto_do.readObject();
+    //isto_do.close();
+    //is.close();
+    Log.d("einlesen","erfolgreich");
+
+}catch(ClassNotFoundException e) {
+    Log.d("einlesen",e.toString());
+    e.printStackTrace();
+    }catch(IOException e) {
+    Log.d("einlesen",e.toString());
+     e.printStackTrace();
+}
+    }
+
+
+    static void load(Context c) {
         try {
-            FileInputStream fs_abgaben = new FileInputStream("abgaben.s");
+            FileInputStream fs_sabgaben = new  FileInputStream("abgaben.s");
+            FileInputStream fs_abgaben = new  FileInputStream("abgaben.s");
             ObjectInputStream is_abgaben = new ObjectInputStream(fs_abgaben);
             abgaben_list = (ArrayList<abgaben_eintrag>) is_abgaben.readObject();
             is_abgaben.close();
@@ -35,11 +65,16 @@ public class schnitstelle implements Serializable{
             termine_liste = (ArrayList<termine_eintrag>) is_termine.readObject();
             is_termine.close();
             fs_termine.close();
-            FileInputStream fsto_do = new FileInputStream("to_do.s");
-            ObjectInputStream isto_do = new ObjectInputStream(fsto_do);
+
+            FileInputStream inputStream = c.openFileInput("to_do.txt");
+            ObjectInputStream isto_do = new ObjectInputStream(inputStream);
+            //FileInputStream fsto_do = new FileInputStream(Environment.getExternalStorageDirectory().getAbsolutePath()+"/to_do.txt");
+            //ObjectInputStream isto_do = new ObjectInputStream(fsto_do);
             to_do_liste = (ArrayList<to_do_eintrag>) isto_do.readObject();
             isto_do.close();
-            fsto_do.close();
+            inputStream.close();
+            //fsto_do.close();
+
             FileInputStream fs_literatur = new FileInputStream("literatur.s");
             ObjectInputStream is_literatur = new ObjectInputStream(fs_literatur);
             literatur_liste = (ArrayList<literatur_eintrag>) is_literatur.readObject();
@@ -48,11 +83,12 @@ public class schnitstelle implements Serializable{
         }catch(ClassNotFoundException e) {
             e.printStackTrace();
         }catch(IOException e) {
+            Log.d("einlesen","fehler");
             e.printStackTrace();
         }
 
     }
-    void save_abgaben() {
+     static void save_abgaben() {
         try {
             FileOutputStream fs_abgaben = new FileOutputStream("abgaben.s");
             ObjectOutputStream is_abgaben = new ObjectOutputStream(fs_abgaben);
@@ -64,7 +100,7 @@ public class schnitstelle implements Serializable{
             e.printStackTrace();
         }
     }
-    void save_termine() {
+     static void save_termine() {
         try {
             FileOutputStream fs_termine = new FileOutputStream("abgaben.s");
             ObjectOutputStream is_termine = new ObjectOutputStream(fs_termine);
@@ -76,19 +112,30 @@ public class schnitstelle implements Serializable{
             e.printStackTrace();
         }
     }
-    void save_to_do() {
+     static void save_to_do(Context c) {
         try {
-            FileOutputStream fs_to_do = new FileOutputStream("abgaben.s");
-            ObjectOutputStream is_to_do = new ObjectOutputStream(fs_to_do);
-            is_to_do.writeObject(abgaben_list);
-            is_to_do.close();
-            fs_to_do.close();
+
+
+            File file = new File(Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_MOVIES), "/" + "to_do.tmp");
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(to_do_liste);
+            oos.close();
+
+            //OutputStream oStream = c.openFileOutput("to_do.txt",Context.MODE_PRIVATE);
+            //ObjectOutputStream is_to_do = new ObjectOutputStream(oStream);
+            //is_to_do.writeObject(abgaben_list);
+            //is_to_do.close();
+            Log.d("write_my","Erfogreich");
+
         }
         catch(IOException e) {
+            Log.d("write_my",e.toString());
             e.printStackTrace();
         }
     }
-    void save_literatur() {
+     static void save_literatur() {
         try {
             FileOutputStream fs_literatur = new FileOutputStream("abgaben.s");
             ObjectOutputStream is_literatur = new ObjectOutputStream(fs_literatur);
@@ -102,28 +149,28 @@ public class schnitstelle implements Serializable{
     }
 
     //Alle einträge als array
-    ArrayList<abgaben_eintrag>	abgaben_list	= new ArrayList<>();
-    ArrayList<termine_eintrag>	termine_liste	= new ArrayList<>();
-    ArrayList<to_do_eintrag>	to_do_liste		= new ArrayList<>();
-    ArrayList<literatur_eintrag>literatur_liste	= new ArrayList<>();
+    static ArrayList<abgaben_eintrag>	abgaben_list	= new ArrayList<>();
+     static ArrayList<termine_eintrag>	termine_liste	= new ArrayList<>();
+     static ArrayList<to_do_eintrag>	to_do_liste		= new ArrayList<>();
+     static ArrayList<literatur_eintrag>literatur_liste	= new ArrayList<>();
 
     //Einträge als clss
-    class abgaben_eintrag implements Serializable  {
+     class abgaben_eintrag implements Serializable  {
         String name = "NAME_LEER";
         Boolean erinnern = false ;
         my_date termin = new my_date();
         my_date erinnerungs_termin = new my_date();
     }
-    class termine_eintrag implements Serializable {
+     class termine_eintrag implements Serializable {
         String name = "NAME_LEER";
         my_date von = new my_date();
         my_date bis = new my_date();
     }
-    class to_do_eintrag implements Serializable {
+     class to_do_eintrag implements Serializable {
         String name = "NAME_LEER";
         boolean erledigt = false;
     }
-    class literatur_eintrag implements Serializable {
+     class literatur_eintrag implements Serializable {
         String name = "NAME_LEER";
         String autor = "NAME_LEER";
         boolean gelesen = false;
@@ -131,7 +178,7 @@ public class schnitstelle implements Serializable{
 
     //Hier -1 stat null ?
     //Wird von allen klassen mit zeiten benutzt
-    class my_date implements Serializable
+     class my_date implements Serializable
     {
         int stunden = -1	;
         int minuten = -1	;

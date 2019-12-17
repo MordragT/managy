@@ -42,7 +42,7 @@ public  class to_do extends Fragment {
         todo_items.set(position,tmp );
 
         //seite neu laden                           this,getContext()
-        to_do_adapter adapter = new to_do_adapter(vv.getContext() , R.layout.fragment_to_do_adapter, todo_items);
+        to_do_adapter adapter = new to_do_adapter(vv.getContext() , R.layout.fragment_to_do_adapter, schnitstelle.to_do_liste);
         todo_items_list.setAdapter(adapter);
         //to_do_adapter fragment_to_do_adapter = new to_do_adapter(this , R.layout.fragment_to_do_adapter , todo_items);
 
@@ -110,7 +110,7 @@ public  class to_do extends Fragment {
         todo_items.add(new Test(true,"todo3"));
 
 
-        to_do_adapter adapter = new to_do_adapter(this.getContext() , R.layout.fragment_to_do_adapter, todo_items);
+        to_do_adapter adapter = new to_do_adapter(this.getContext() , R.layout.fragment_to_do_adapter, schnitstelle.to_do_liste);
 
         todo_items_list.setAdapter(adapter);
 

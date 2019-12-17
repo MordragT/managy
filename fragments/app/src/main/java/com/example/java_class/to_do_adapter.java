@@ -18,7 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
-public class to_do_adapter extends ArrayAdapter<Test> { //<____________________________________________________________________________________________________________________
+public class to_do_adapter extends ArrayAdapter<schnitstelle.to_do_eintrag> { //<____________________________________________________________________________________________________________________
 
     private static final String TAG = "to_do_adapter";
     private Context mContext;
@@ -41,7 +41,7 @@ public class to_do_adapter extends ArrayAdapter<Test> { //<_____________________
         to_do.todo_items.set(position,tmp );
 
         //seite neu laden                           vv <-> this
-        to_do_adapter adapter = new to_do_adapter(vv.getContext() , R.layout.fragment_to_do_adapter, to_do.todo_items);
+        to_do_adapter adapter = new to_do_adapter(vv.getContext() , R.layout.fragment_to_do_adapter, schnitstelle.to_do_liste);
         to_do.todo_items_list.setAdapter(adapter);
         //to_do_adapter fragment_to_do_adapter = new to_do_adapter(this , R.layout.fragment_to_do_adapter , todo_items);
 
@@ -60,10 +60,8 @@ public class to_do_adapter extends ArrayAdapter<Test> { //<_____________________
 
 
 
-    public to_do_adapter(@NonNull Context context, int resource, ArrayList<Test> objects) { // Ändern für jedes dokument
+    public to_do_adapter(@NonNull Context context, int resource, ArrayList<schnitstelle.to_do_eintrag> objects) { // Ändern für jedes dokument
         super(context , resource , objects);
-
-
         this.mContext = context;
         this.mRecorce = resource;
     }
@@ -71,8 +69,8 @@ public class to_do_adapter extends ArrayAdapter<Test> { //<_____________________
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull final ViewGroup parent) {
-        String Titel = getItem(position).getTitel();                                    //Ändern für jedes dokument
-        boolean boool = getItem(position).getB();
+        String Titel = getItem(position).name;                                    //Ändern für jedes dokument
+        boolean boool = getItem(position).erledigt;
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mRecorce , parent , false);
