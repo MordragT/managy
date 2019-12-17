@@ -15,7 +15,8 @@
         android:layout_marginRight="1mm"
         android:layout_marginBottom="1mm"
         android:clickable="true"
-        android:src="@android:drawable/ic_input_add"
+
+        android:src="@drawable/pluss"
         android:visibility="visible"
         app:backgroundTint="@color/colorAccent" />
 

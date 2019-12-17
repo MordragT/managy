@@ -58,8 +58,9 @@ public class to_do_bearbeiten extends Fragment {
 
                 //neuen eintrag schreiben
                 String s2 = et.getText().toString();
+                if(s2.length() >0){
                 schnitstelle.to_do_liste.get(to_do_adapter.aufgerufen).name = s2 ;
-                schnitstelle.save_to_do();
+
 
                 //speichere änderungen
                 schnitstelle.save_to_do();
@@ -68,6 +69,13 @@ public class to_do_bearbeiten extends Fragment {
                 FragmentTransaction fr = getFragmentManager().beginTransaction();
                 fr.replace(R.id.nav_host_fragment,new to_do());
                 fr.commit();
+            }
+                else
+            {
+                int error = getResources().getColor(R.color.Error);
+                et.setBackgroundColor(error);
+                et.setHint("darf nicht leer sein");
+            }
             }
         });
 

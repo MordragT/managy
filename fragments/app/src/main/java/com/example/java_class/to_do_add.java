@@ -1,5 +1,6 @@
 package com.example.java_class;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -44,7 +45,7 @@ public class to_do_add extends Fragment {
 
                 //eingestelte werte auslesen
                 String s = titel.getText().toString();
-
+                if(s.length()> 0 ){
                 //neuen eintrag schreiben
                 schnitstelle.to_do_eintrag e = new  schnitstelle().new to_do_eintrag();
                 e.name = s;
@@ -57,6 +58,13 @@ public class to_do_add extends Fragment {
                 FragmentTransaction fr = getFragmentManager().beginTransaction();
                 fr.replace(R.id.nav_host_fragment,new to_do());
                 fr.commit();
+                }
+                else
+                {
+                    int error = getResources().getColor(R.color.Error);
+                    titel.setBackgroundColor(error);
+                    titel.setHint("darf nicht leer sein");
+                }
             }
         });
 
