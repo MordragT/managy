@@ -36,16 +36,8 @@ public class to_do_bearbeiten extends Fragment {
         loechen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //schen
-                schnitstelle.to_do_liste.remove(to_do_adapter.aufgerufen);
-
-                //speichere änderungen
-                schnitstelle.save_to_do();
-
-                //neue seite laden
-                FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.nav_host_fragment,new to_do());
-                fr.commit();
+                sicherheitsabfrage_to_do n = new sicherheitsabfrage_to_do();
+                n.show(getFragmentManager(),"sicherheitsabfrage");
             }
         });
 
