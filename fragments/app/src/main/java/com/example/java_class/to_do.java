@@ -35,23 +35,17 @@ public  class to_do extends Fragment {
         //ListView lv = vv.findViewById(R.id.todo_items_list);
         //int position = lv.getPositionForView(vv);
 
-
         //change checbox status in den satein
-        Test tmp = todo_items.get(position);
-        tmp.setB(!tmp.getB());
-        todo_items.set(position,tmp );
+        schnitstelle.to_do_liste.get(position).erledigt = !schnitstelle.to_do_liste.get(position).erledigt ;
+
+        //speichere änderungen
+        schnitstelle.save_to_do();
 
         //seite neu laden                           this,getContext()
         to_do_adapter adapter = new to_do_adapter(vv.getContext() , R.layout.fragment_to_do_adapter, schnitstelle.to_do_liste);
         todo_items_list.setAdapter(adapter);
         //to_do_adapter fragment_to_do_adapter = new to_do_adapter(this , R.layout.fragment_to_do_adapter , todo_items);
 
-        //test konsolenausgabe
-        String t  =  String.valueOf(position);
-        Log.d("checkbox",t);
-        //test ausgabe 2
-        String t2 = String.valueOf(todo_items.get(position).getB());
-        Log.d("checkbox",t2);
     }
 
 

@@ -62,31 +62,52 @@ try {
         File file_literarur = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_MOVIES), "/" + "literatur.tmp");
 
-
         try {
-
-            FileInputStream fs_abgaben = new  FileInputStream(file_abgaben);
-            ObjectInputStream is_abgaben = new ObjectInputStream(fs_abgaben);
-            abgaben_list = (ArrayList<abgaben_eintrag>) is_abgaben.readObject();
-            is_abgaben.close();
-            fs_abgaben.close();
-            FileInputStream fs_termine = new FileInputStream(file_termine);
-            ObjectInputStream is_termine = new ObjectInputStream(fs_termine);
-            termine_liste = (ArrayList<termine_eintrag>) is_termine.readObject();
-            is_termine.close();
-            fs_termine.close();
-            FileInputStream fs_to_do = new FileInputStream(file_to_do);
-            ObjectInputStream is_to_do = new ObjectInputStream(fs_to_do);
-            to_do_liste = (ArrayList<to_do_eintrag>) is_to_do.readObject();
-            fs_to_do.close();
-            is_to_do.close();
-
 
             FileInputStream fs_literatur = new FileInputStream(file_literarur);
             ObjectInputStream is_literatur = new ObjectInputStream(fs_literatur);
             literatur_liste = (ArrayList<literatur_eintrag>) is_literatur.readObject();
             is_literatur.close();
             fs_literatur.close();
+        }catch(ClassNotFoundException e) {
+            e.printStackTrace();
+        }catch(IOException e) {
+            Log.d("einlesen","fehler");
+            e.printStackTrace();
+        }
+        try {
+
+            FileInputStream fs_to_do = new FileInputStream(file_to_do);
+            ObjectInputStream is_to_do = new ObjectInputStream(fs_to_do);
+            to_do_liste = (ArrayList<to_do_eintrag>) is_to_do.readObject();
+            fs_to_do.close();
+            is_to_do.close();
+
+        }catch(ClassNotFoundException e) {
+            e.printStackTrace();
+        }catch(IOException e) {
+            Log.d("einlesen","fehler");
+            e.printStackTrace();
+        }
+        try {
+
+            FileInputStream fs_termine = new FileInputStream(file_termine);
+            ObjectInputStream is_termine = new ObjectInputStream(fs_termine);
+            termine_liste = (ArrayList<termine_eintrag>) is_termine.readObject();
+            is_termine.close();
+            fs_termine.close();
+        }catch(ClassNotFoundException e) {
+            e.printStackTrace();
+        }catch(IOException e) {
+            Log.d("einlesen","fehler");
+            e.printStackTrace();
+        }
+        try {
+            FileInputStream fs_abgaben = new  FileInputStream(file_abgaben);
+            ObjectInputStream is_abgaben = new ObjectInputStream(fs_abgaben);
+            abgaben_list = (ArrayList<abgaben_eintrag>) is_abgaben.readObject();
+            is_abgaben.close();
+            fs_abgaben.close();
         }catch(ClassNotFoundException e) {
             e.printStackTrace();
         }catch(IOException e) {
@@ -123,7 +144,7 @@ try {
             e.printStackTrace();
         }
     }
-     static void save_to_do( ) {
+     static void save_to_do() {
         try {
             File file = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_MOVIES), "/" + "to_do.tmp");

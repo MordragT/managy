@@ -50,7 +50,7 @@ public class to_do_add extends Fragment {
                 e.name = s;
                 schnitstelle.to_do_liste.add(e);
 
-                schnitstelle.save_to_do(getActivity());
+                schnitstelle.save_to_do();
 
                 //seite neu laden
                 FragmentTransaction fr = getFragmentManager().beginTransaction();
