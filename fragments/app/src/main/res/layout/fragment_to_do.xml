@@ -17,7 +17,7 @@
         android:clickable="true"
         android:src="@android:drawable/ic_input_add"
         android:visibility="visible"
-        app:backgroundTint="#5DD67F" />
+        app:backgroundTint="@color/colorAccent" />
 
     <ListView
         android:id="@+id/todo_items_list"
