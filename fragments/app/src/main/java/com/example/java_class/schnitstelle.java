@@ -52,30 +52,37 @@ try {
     }
 
 
-    static void load(Context c) {
+    static void load() {
+        File file_termine = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_MOVIES), "/" + "termine.tmp");
+        File file_to_do = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_MOVIES), "/" + "to_do.tmp");
+        File file_abgaben = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_MOVIES), "/" + "abgaben.tmp");
+        File file_literarur = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_MOVIES), "/" + "literatur.tmp");
+
+
         try {
-            FileInputStream fs_sabgaben = new  FileInputStream("abgaben.s");
-            FileInputStream fs_abgaben = new  FileInputStream("abgaben.s");
+
+            FileInputStream fs_abgaben = new  FileInputStream(file_abgaben);
             ObjectInputStream is_abgaben = new ObjectInputStream(fs_abgaben);
             abgaben_list = (ArrayList<abgaben_eintrag>) is_abgaben.readObject();
             is_abgaben.close();
             fs_abgaben.close();
-            FileInputStream fs_termine = new FileInputStream("termine.s");
+            FileInputStream fs_termine = new FileInputStream(file_termine);
             ObjectInputStream is_termine = new ObjectInputStream(fs_termine);
             termine_liste = (ArrayList<termine_eintrag>) is_termine.readObject();
             is_termine.close();
             fs_termine.close();
+            FileInputStream fs_to_do = new FileInputStream(file_to_do);
+            ObjectInputStream is_to_do = new ObjectInputStream(fs_to_do);
+            to_do_liste = (ArrayList<to_do_eintrag>) is_to_do.readObject();
+            fs_to_do.close();
+            is_to_do.close();
 
-            FileInputStream inputStream = c.openFileInput("to_do.txt");
-            ObjectInputStream isto_do = new ObjectInputStream(inputStream);
-            //FileInputStream fsto_do = new FileInputStream(Environment.getExternalStorageDirectory().getAbsolutePath()+"/to_do.txt");
-            //ObjectInputStream isto_do = new ObjectInputStream(fsto_do);
-            to_do_liste = (ArrayList<to_do_eintrag>) isto_do.readObject();
-            isto_do.close();
-            inputStream.close();
-            //fsto_do.close();
 
-            FileInputStream fs_literatur = new FileInputStream("literatur.s");
+            FileInputStream fs_literatur = new FileInputStream(file_literarur);
             ObjectInputStream is_literatur = new ObjectInputStream(fs_literatur);
             literatur_liste = (ArrayList<literatur_eintrag>) is_literatur.readObject();
             is_literatur.close();
@@ -90,7 +97,9 @@ try {
     }
      static void save_abgaben() {
         try {
-            FileOutputStream fs_abgaben = new FileOutputStream("abgaben.s");
+            File file = new File(Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_MOVIES), "/" + "abgaben.tmp");
+            FileOutputStream fs_abgaben = new FileOutputStream(file);
             ObjectOutputStream is_abgaben = new ObjectOutputStream(fs_abgaben);
             is_abgaben.writeObject(abgaben_list);
             is_abgaben.close();
@@ -102,7 +111,9 @@ try {
     }
      static void save_termine() {
         try {
-            FileOutputStream fs_termine = new FileOutputStream("abgaben.s");
+            File file = new File(Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_MOVIES), "/" + "termine.tmp");
+            FileOutputStream fs_termine = new FileOutputStream(file);
             ObjectOutputStream is_termine = new ObjectOutputStream(fs_termine);
             is_termine.writeObject(abgaben_list);
             is_termine.close();
@@ -112,23 +123,15 @@ try {
             e.printStackTrace();
         }
     }
-     static void save_to_do(Context c) {
+     static void save_to_do( ) {
         try {
-
-
             File file = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_MOVIES), "/" + "to_do.tmp");
             FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(to_do_liste);
             oos.close();
-
-            //OutputStream oStream = c.openFileOutput("to_do.txt",Context.MODE_PRIVATE);
-            //ObjectOutputStream is_to_do = new ObjectOutputStream(oStream);
-            //is_to_do.writeObject(abgaben_list);
-            //is_to_do.close();
             Log.d("write_my","Erfogreich");
-
         }
         catch(IOException e) {
             Log.d("write_my",e.toString());
@@ -137,7 +140,9 @@ try {
     }
      static void save_literatur() {
         try {
-            FileOutputStream fs_literatur = new FileOutputStream("abgaben.s");
+            File file = new File(Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_MOVIES), "/" + "literatur.tmp");
+            FileOutputStream fs_literatur = new FileOutputStream(file);
             ObjectOutputStream is_literatur = new ObjectOutputStream(fs_literatur);
             is_literatur.writeObject(abgaben_list);
             is_literatur.close();

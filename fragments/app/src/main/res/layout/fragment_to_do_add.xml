@@ -48,9 +48,9 @@
             android:id="@+id/to_do_add_speichern"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
             android:layout_weight="1"
-            android:text="Seichern"
-            android:layout_gravity="bottom|end"/>
+            android:text="Speichern" />
     </LinearLayout>
 
 </FrameLayout>

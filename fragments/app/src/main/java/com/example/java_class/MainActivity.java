@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         //einlesen der datein
         //schnitstelle.load(this);
-        schnitstelle.load_todo(this);
+        schnitstelle.load();
         Log.d("einlesen",String.valueOf(schnitstelle.to_do_liste.size()));
 
 
