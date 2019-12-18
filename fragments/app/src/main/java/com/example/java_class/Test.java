@@ -1,7 +1,8 @@
 package com.example.java_class;
 
 public class Test {
-    Test(){}
+    Test() { }
+
     Test(Boolean b, String titel) {
         this.b = b;
         this.titel = titel;
