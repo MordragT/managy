@@ -212,7 +212,7 @@ try {
         int monat	= -1 ;
         int jahr	= -1 ;
 
-        //Konstrucktoren
+        //Konstruktoren
         my_date(){}
         my_date(int tag , int monat , int jahr)
         {
