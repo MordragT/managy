@@ -165,7 +165,7 @@ try {
                     Environment.DIRECTORY_MOVIES), "/" + "literatur.tmp");
             FileOutputStream fs_literatur = new FileOutputStream(file);
             ObjectOutputStream is_literatur = new ObjectOutputStream(fs_literatur);
-            is_literatur.writeObject(abgaben_list);
+            is_literatur.writeObject(literatur_liste);
             is_literatur.close();
             fs_literatur.close();
         }
@@ -199,6 +199,8 @@ try {
      class literatur_eintrag implements Serializable {
         String name = "NAME_LEER";
         String autor = "NAME_LEER";
+        String url="NAME_LEER";
+        String notizen="NAME_LEER";
         boolean gelesen = false;
     }
 
