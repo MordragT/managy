@@ -16,7 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-public class literatur_bearbeiten extends Fragment {
+public class LiteraturBearbeiten extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,10 +29,10 @@ public class literatur_bearbeiten extends Fragment {
         final EditText url=(EditText) v.findViewById(R.id.literatur_bearbeiten_EditURL);
         final EditText notizen=(EditText) v.findViewById(R.id.literatur_bearbeiten_EditNotizen);
 
-        String s1 = schnitstelle.literatur_liste.get(literatur_adapter.aufgerufen).name;
-        String s2 = schnitstelle.literatur_liste.get(literatur_adapter.aufgerufen).autor;
-        String s3 = schnitstelle.literatur_liste.get(literatur_adapter.aufgerufen).url;
-        String s4 = schnitstelle.literatur_liste.get(literatur_adapter.aufgerufen).notizen;
+        String s1 = Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).name;
+        String s2 = Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).autor;
+        String s3 = Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).url;
+        String s4 = Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).notizen;
        Log.d("aufgerufen",s1);
        // Log.d("aufgerufen",s2);
         //Log.d("aufgerufen",s3);
@@ -48,7 +48,7 @@ public class literatur_bearbeiten extends Fragment {
         loeschen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sicherheitsabfrage_literatur n = new sicherheitsabfrage_literatur();
+                LiteraturSicherheitsabfrage n = new LiteraturSicherheitsabfrage();
                 n.show(getFragmentManager(),"sicherheitsabfrage");
             }
         });
@@ -72,18 +72,18 @@ public class literatur_bearbeiten extends Fragment {
 
 
                 if(s1.length() >0 && s2.length()>0){
-                    schnitstelle.literatur_liste.get(literatur_adapter.aufgerufen).name = s1 ;
-                    schnitstelle.literatur_liste.get(literatur_adapter.aufgerufen).autor = s2 ;
-                    schnitstelle.literatur_liste.get(literatur_adapter.aufgerufen).url = s3 ;
-                    schnitstelle.literatur_liste.get(literatur_adapter.aufgerufen).notizen = s4 ;
+                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).name = s1 ;
+                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).autor = s2 ;
+                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).url = s3 ;
+                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).notizen = s4 ;
 
 
                     //speichere änderungen
-                    schnitstelle.save_literatur();
+                    Schnittstelle.saveLiteratur();
 
                     //seite neu laden
                     FragmentTransaction fr = getFragmentManager().beginTransaction();
-                    fr.replace(R.id.nav_host_fragment,new literatur());
+                    fr.replace(R.id.nav_host_fragment,new Literatur());
                     fr.commit();
                 }
                 else

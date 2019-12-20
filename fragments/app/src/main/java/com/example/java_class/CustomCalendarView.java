@@ -34,7 +34,7 @@ public class CustomCalendarView extends LinearLayout {
     SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.GERMAN);
     SimpleDateFormat eventDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.GERMAN);
 
-    Kalender_Grid_Adapter kalenderGridAdapter;
+    KalenderGridAdapter kalenderGridAdapter;
 
 
     public CustomCalendarView (Context context) {
@@ -111,7 +111,7 @@ public class CustomCalendarView extends LinearLayout {
             monthCalendar.add(Calendar.DAY_OF_MONTH,1);
         }
 
-        kalenderGridAdapter = new Kalender_Grid_Adapter(context, dates, calendar);
+        kalenderGridAdapter = new KalenderGridAdapter(context, dates, calendar);
         gridView.setAdapter(kalenderGridAdapter);
     }
 

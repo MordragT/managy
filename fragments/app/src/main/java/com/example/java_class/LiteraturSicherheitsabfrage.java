@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.appcompat.widget.AlertDialogLayout;
 import androidx.fragment.app.FragmentTransaction;
 
-public class sicherheitsabfrage_literatur extends AppCompatDialogFragment {
+public class LiteraturSicherheitsabfrage extends AppCompatDialogFragment {
 
     @Override
     public Dialog onCreateDialog( Bundle savedInstanceState) {
@@ -28,14 +28,15 @@ public class sicherheitsabfrage_literatur extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //Loeschen
-                        schnitstelle.literatur_liste.remove(literatur_adapter.aufgerufen);
+                        Schnittstelle.literaturListe.remove(LiteraturAdapter.aufgerufen);
 
                         //speichere änderungen
-                        schnitstelle.save_literatur();
+                        Schnittstelle.saveLiteratur();
+
 
                         //neue seite laden
                         FragmentTransaction fr = getActivity().getSupportFragmentManager().beginTransaction();//getFragmentManager().beginTransaction();
-                        fr.replace(R.id.nav_host_fragment,new literatur());
+                        fr.replace(R.id.nav_host_fragment,new Literatur());
                         fr.commit();
                     }
                 });

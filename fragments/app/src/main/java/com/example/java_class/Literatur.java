@@ -14,15 +14,14 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-
-public class literatur extends Fragment {
+public class Literatur extends Fragment {
 
     static ListView literatur_items_list;
     static ArrayList<Test> literatur_items = new ArrayList<>();
 
     public void overid_layout_for_adapter(){
         FragmentTransaction fr = getFragmentManager().beginTransaction();
-        fr.replace(R.id.nav_host_fragment,new literatur());
+        fr.replace(R.id.nav_host_fragment,new Literatur());
         fr.commit();
     }
     static public void literatur_onclick_checkbox(View vv , int position){                                             //checkbox klick event
@@ -31,13 +30,13 @@ public class literatur extends Fragment {
         //int position = lv.getPositionForView(vv);
 
         //change checkbox status in den satein
-        schnitstelle.literatur_liste.get(position).gelesen = !schnitstelle.literatur_liste.get(position).gelesen ;
+        Schnittstelle.literaturListe.get(position).gelesen = !Schnittstelle.literaturListe.get(position).gelesen ;
 
         //speichere änderungen
-        schnitstelle.save_literatur();
+        Schnittstelle.saveLiteratur();
 
         //seite neu laden                           this,getContext()
-        literatur_adapter adapter = new literatur_adapter(vv.getContext() , R.layout.fragment_literatur_adapter, schnitstelle.literatur_liste);
+        LiteraturAdapter adapter = new LiteraturAdapter(vv.getContext() , R.layout.fragment_literatur_adapter, Schnittstelle.literaturListe);
        literatur_items_list.setAdapter(adapter);
         //to_do_adapter fragment_to_do_adapter = new to_do_adapter(this , R.layout.fragment_to_do_adapter , todo_items);
 
@@ -58,7 +57,7 @@ public class literatur extends Fragment {
             public void onClick(View v) {
                 //to_do.to_to_onclick_titel(v , position);
                 FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.nav_host_fragment,new literatur_add());
+                fr.replace(R.id.nav_host_fragment,new LiteraturAdd());
                 fr.commit();
             }
         });
@@ -74,7 +73,7 @@ public class literatur extends Fragment {
 
 
 
-        literatur_adapter adapter = new literatur_adapter(this.getContext() , R.layout.fragment_literatur_adapter, schnitstelle.literatur_liste);
+        LiteraturAdapter adapter = new LiteraturAdapter(this.getContext() , R.layout.fragment_literatur_adapter, Schnittstelle.literaturListe);
 
         literatur_items_list.setAdapter(adapter);
 

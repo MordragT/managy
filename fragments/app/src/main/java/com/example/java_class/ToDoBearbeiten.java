@@ -16,7 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-public class to_do_bearbeiten extends Fragment {
+public class ToDoBearbeiten extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -25,7 +25,7 @@ public class to_do_bearbeiten extends Fragment {
 
         //setzt den text ins fenster (titel)
         final EditText et = (EditText) v.findViewById(R.id.editText_todo_bearbeiten);
-        String s = schnitstelle.to_do_liste.get(to_do_adapter.aufgerufen).name;
+        String s = Schnittstelle.toDoListe.get(ToDoAdapter.aufgerufen).name;
         Log.d("aufgerufen",s);
         et.setText(s);
 
@@ -36,7 +36,7 @@ public class to_do_bearbeiten extends Fragment {
         loechen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sicherheitsabfrage_to_do n = new sicherheitsabfrage_to_do();
+                ToDoSicherheitsabfrage n = new ToDoSicherheitsabfrage();
                 n.show(getFragmentManager(),"sicherheitsabfrage");
             }
         });
@@ -51,15 +51,15 @@ public class to_do_bearbeiten extends Fragment {
                 //neuen eintrag schreiben
                 String s2 = et.getText().toString();
                 if(s2.length() >0){
-                schnitstelle.to_do_liste.get(to_do_adapter.aufgerufen).name = s2 ;
+                Schnittstelle.toDoListe.get(ToDoAdapter.aufgerufen).name = s2 ;
 
 
                 //speichere änderungen
-                schnitstelle.save_to_do();
+                Schnittstelle.saveToDo();
 
                 //seite neu laden
                 FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.nav_host_fragment,new to_do());
+                fr.replace(R.id.nav_host_fragment,new ToDo());
                 fr.commit();
             }
                 else

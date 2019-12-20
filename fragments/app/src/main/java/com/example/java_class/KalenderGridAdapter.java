@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class Kalender_Grid_Adapter extends ArrayAdapter {
+public class KalenderGridAdapter extends ArrayAdapter {
     List<Date> dates;
     Calendar currentDate;
     LayoutInflater inflater;
@@ -151,7 +151,7 @@ public class Kalender_Grid_Adapter extends ArrayAdapter {
     }
 
 
-    public Kalender_Grid_Adapter(@NonNull Context context, List<Date> dates, Calendar currentDate) {
+    public KalenderGridAdapter(@NonNull Context context, List<Date> dates, Calendar currentDate) {
         super(context, R.layout.fragment_single_cell_layout);
 
         this.dates=dates;

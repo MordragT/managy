@@ -7,14 +7,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import java.util.Random;
 import java.lang.String;
+
 import android.view.View;
 import android.widget.TextView;
 
 
-
-public class startseite extends Fragment {
+public class Startseite extends Fragment {
 
 
     @Override
@@ -35,6 +36,4 @@ public class startseite extends Fragment {
     //String[] myArrayOfStrings = {"one", "two", "three" };
     //Random r = new Random();
     //String myRandString = r.nextInt(myArrayOfStrings.length);
-
-
 }

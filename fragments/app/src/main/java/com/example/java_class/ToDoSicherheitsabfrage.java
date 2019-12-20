@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.appcompat.widget.AlertDialogLayout;
 import androidx.fragment.app.FragmentTransaction;
 
-public class sicherheitsabfrage_to_do extends AppCompatDialogFragment {
+public class ToDoSicherheitsabfrage extends AppCompatDialogFragment {
 
     @Override
     public Dialog onCreateDialog( Bundle savedInstanceState) {
@@ -28,14 +28,14 @@ public class sicherheitsabfrage_to_do extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //schen
-                        schnitstelle.to_do_liste.remove(to_do_adapter.aufgerufen);
+                        Schnittstelle.toDoListe.remove(ToDoAdapter.aufgerufen);
 
                         //speichere änderungen
-                        schnitstelle.save_to_do();
+                        Schnittstelle.saveToDo();
 
                         //neue seite laden
                         FragmentTransaction fr = getActivity().getSupportFragmentManager().beginTransaction();//getFragmentManager().beginTransaction();
-                        fr.replace(R.id.nav_host_fragment,new to_do());
+                        fr.replace(R.id.nav_host_fragment,new ToDo());
                         fr.commit();
                     }
                 });

@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 
-public class literatur_add extends Fragment {
+public class LiteraturAdd extends Fragment {
 
 
     @Override
@@ -31,7 +31,7 @@ public class literatur_add extends Fragment {
             public void onClick(View v) {
                 //to_do.to_to_onclick_titel(v , position);
                 FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.nav_host_fragment,new to_do());
+                fr.replace(R.id.nav_host_fragment,new ToDo());
                 fr.commit();
             }
         });
@@ -56,19 +56,19 @@ public class literatur_add extends Fragment {
 
                 if(s1.length()> 0 && s2.length()>0 ){
                     //neuen eintrag schreiben
-                    schnitstelle.literatur_eintrag e = new  schnitstelle().new literatur_eintrag();
+                    Schnittstelle.LiteraturEintrag e = new  Schnittstelle().new LiteraturEintrag();
                     e.name = s1;
                     e.autor=s2;
                     e.url=s3;
                     e.notizen=s4;
-                    schnitstelle.literatur_liste.add(e);
+                    Schnittstelle.literaturListe.add(e);
 
                     //speichere änderungen
-                    schnitstelle.save_literatur();
+                    Schnittstelle.saveLiteratur();
 
                     //seite neu laden
                     FragmentTransaction fr = getFragmentManager().beginTransaction();
-                    fr.replace(R.id.nav_host_fragment,new literatur());
+                    fr.replace(R.id.nav_host_fragment,new Literatur());
                     fr.commit();
                 }
                 else
