@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new Startseite();
                             break;
                         case R.id.navigation_kalender:
-                            selectedFragment = new KalenderAdd();
+                            selectedFragment = new Kalender();
                             break;
                         case R.id.navigation_to_do:
                             selectedFragment = new ToDo();

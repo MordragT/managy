@@ -5,18 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Kalender"
-    android:background="#591731"
+    android:background="@android:color/white"
     >
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/fragment2"
+    <com.example.java_class.CustomCalendarView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/custom_calendar_view" />
+    <!-- TODO: Update blank fragment layout -->
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="1mm"
+        android:layout_marginBottom="1mm"
+        android:clickable="true"
+
+        android:src="@drawable/pluss"
+        android:visibility="visible"
+        app:backgroundTint="@color/colorAccent" />
+    <!---
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <Button
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout> -->
 </FrameLayout>

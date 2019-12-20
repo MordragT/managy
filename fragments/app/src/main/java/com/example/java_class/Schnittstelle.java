@@ -214,6 +214,8 @@ public class Schnittstelle implements Serializable {
     class LiteraturEintrag implements Serializable {
         String name = "NAME_LEER";
         String autor = "NAME_LEER";
+        String url = "NAME_LEER";
+        String notizen = "NAME_LEER";
         boolean gelesen = false;
     }
 }
