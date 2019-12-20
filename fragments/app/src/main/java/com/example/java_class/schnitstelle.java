@@ -136,7 +136,7 @@ try {
                     Environment.DIRECTORY_MOVIES), "/" + "termine.tmp");
             FileOutputStream fs_termine = new FileOutputStream(file);
             ObjectOutputStream is_termine = new ObjectOutputStream(fs_termine);
-            is_termine.writeObject(abgaben_list);
+            is_termine.writeObject(termine_liste);
             is_termine.close();
             fs_termine.close();
         }
