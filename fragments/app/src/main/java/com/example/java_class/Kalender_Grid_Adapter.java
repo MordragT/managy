@@ -92,11 +92,35 @@ public class Kalender_Grid_Adapter extends ArrayAdapter {
             Day_Number.setTextColor(getContext().getResources().getColor(R.color.Gray));
         }
 
+        schnitstelle loadTermine = new schnitstelle();
+        loadTermine.load();
+        schnitstelle.termine_eintrag e1 = new schnitstelle().new termine_eintrag();
+        e1.name = "Test1";
+        e1.von = new schnitstelle().new my_date(20, 12, 2019);
+        e1.bis = new schnitstelle().new my_date(21, 12, 2019);
+        schnitstelle.termine_eintrag e2 = new schnitstelle().new termine_eintrag();
+        e2.name = "Test2";
+        e2.von = new schnitstelle().new my_date(12, 12, 2019);
+        e2.bis = new schnitstelle().new my_date(12, 12, 2019);
+        loadTermine.termine_liste.add(e1);
+        loadTermine.termine_liste.add(e2);
+        int c = 0;
+        for(int i = 0; i<loadTermine.termine_liste.size() && c < 1; i++){
+            if(loadTermine.termine_liste.get(i).von.jahr <= displayYear
+                && loadTermine.termine_liste.get(i).von.monat <= displayMonth
+                && loadTermine.termine_liste.get(i).von.tag <= DayNo
+                && loadTermine.termine_liste.get(i).bis.jahr >= displayYear
+                && loadTermine.termine_liste.get(i).bis.monat >= displayMonth
+                && loadTermine.termine_liste.get(i).bis.tag >= DayNo){
+                EventOne.setText(loadTermine.termine_liste.get(i).name);
+            }
+        }
+
 
         Day_Number.setText(String.valueOf(DayNo));
         //EventOne.setText(notConvertedDate);
 
-        EventOne.setText(String.valueOf(monthDate));
+        //EventOne.setText(String.valueOf(monthDate));
         //Day_Number.setText(notConvertedDate);
 
 
