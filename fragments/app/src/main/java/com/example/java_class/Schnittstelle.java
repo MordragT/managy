@@ -151,7 +151,7 @@ public class Schnittstelle implements Serializable {
                     Environment.DIRECTORY_MOVIES), "/" + "termine.tmp");
             FileOutputStream fsTermine = new FileOutputStream(file);
             ObjectOutputStream isTermine = new ObjectOutputStream(fsTermine);
-            isTermine.writeObject(abgabenListe);
+            isTermine.writeObject(terminListe);
             isTermine.close();
             fsTermine.close();
         } catch (IOException e) {
