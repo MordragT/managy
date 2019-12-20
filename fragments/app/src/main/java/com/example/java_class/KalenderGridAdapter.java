@@ -92,27 +92,35 @@ public class KalenderGridAdapter extends ArrayAdapter {
             Day_Number.setTextColor(getContext().getResources().getColor(R.color.Gray));
         }
 
-        schnitstelle loadTermine = new schnitstelle();
+        Schnittstelle loadTermine = new Schnittstelle();
         loadTermine.load();
-        schnitstelle.termine_eintrag e1 = new schnitstelle().new termine_eintrag();
+
+        Schnittstelle.TerminEintrag e1 = new Schnittstelle().new TerminEintrag();
         e1.name = "Test1";
-        e1.von = new schnitstelle().new my_date(20, 12, 2019);
-        e1.bis = new schnitstelle().new my_date(21, 12, 2019);
-        schnitstelle.termine_eintrag e2 = new schnitstelle().new termine_eintrag();
+        Datum start = new Datum(20, 12, 2019);
+        Datum ende = new Datum(21, 12, 2019);
+        e1.beginn = start;
+        e1.ende = ende;
+        Schnittstelle.TerminEintrag e2 = new Schnittstelle().new TerminEintrag();
         e2.name = "Test2";
-        e2.von = new schnitstelle().new my_date(12, 12, 2019);
-        e2.bis = new schnitstelle().new my_date(12, 12, 2019);
-        loadTermine.termine_liste.add(e1);
-        loadTermine.termine_liste.add(e2);
+        Datum start2 = new Datum(12, 12, 2019);
+        Datum ende2 = new Datum(12, 12, 2019);
+        e2.beginn = start2;
+        e2.ende = ende2;
+        loadTermine.terminListe.add(e1);
+        loadTermine.terminListe.add(e2);
         int c = 0;
-        for(int i = 0; i<loadTermine.termine_liste.size() && c < 1; i++){
-            if(loadTermine.termine_liste.get(i).von.jahr <= displayYear
-                && loadTermine.termine_liste.get(i).von.monat <= displayMonth
-                && loadTermine.termine_liste.get(i).von.tag <= DayNo
-                && loadTermine.termine_liste.get(i).bis.jahr >= displayYear
-                && loadTermine.termine_liste.get(i).bis.monat >= displayMonth
-                && loadTermine.termine_liste.get(i).bis.tag >= DayNo){
-                EventOne.setText(loadTermine.termine_liste.get(i).name);
+        for(int i = 0; i<loadTermine.terminListe.size() && c < 1; i++){
+            if(loadTermine.terminListe.get(i).beginn.jahr <= displayYear
+                && loadTermine.terminListe.get(i).beginn.monat <= displayMonth
+                && loadTermine.terminListe.get(i).beginn.tag <= DayNo
+                && loadTermine.terminListe.get(i).ende.jahr >= displayYear
+                && loadTermine.terminListe.get(i).ende.monat >= displayMonth
+                && loadTermine.terminListe.get(i).ende.tag >= DayNo){
+
+                EventOne.setBackgroundColor(getContext().getResources().getColor(R.color.blue));
+                EventOne.setText(loadTermine.terminListe.get(i).name);
+
             }
         }
 
