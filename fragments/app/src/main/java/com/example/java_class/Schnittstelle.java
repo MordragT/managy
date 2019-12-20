@@ -180,7 +180,7 @@ public class Schnittstelle implements Serializable {
                     Environment.DIRECTORY_MOVIES), "/" + "literatur.tmp");
             FileOutputStream fsLiteratur = new FileOutputStream(file);
             ObjectOutputStream isLiteratur = new ObjectOutputStream(fsLiteratur);
-            isLiteratur.writeObject(abgabenListe);
+            isLiteratur.writeObject(literaturListe);
             isLiteratur.close();
             fsLiteratur.close();
         } catch (IOException e) {
