@@ -67,7 +67,8 @@ public class LiteraturAdapter extends ArrayAdapter<Schnittstelle.LiteraturEintra
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull final ViewGroup parent) {
-        String Titel = getItem(position).name;                                    //Ändern für jedes dokument
+        String Titel = getItem(position).name;
+        String Autor = getItem(position).autor;
         boolean boool = getItem(position).gelesen;
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
@@ -75,18 +76,22 @@ public class LiteraturAdapter extends ArrayAdapter<Schnittstelle.LiteraturEintra
 
         //Autor muss noch hinzugefuegt werden
         TextView tyName = (TextView) convertView.findViewById(R.id.literatur_titel);
+        TextView tyAutor = (TextView) convertView.findViewById(R.id.literatur_autor);
         CheckBox tyDone = (CheckBox) convertView.findViewById(R.id.literatur_checkbox);
 
         tyName.setText(Titel);
+        tyAutor.setText(Autor);
         int black = Color.BLACK; // if abfrage ob es haken gesetzt ist wenn ja dan grau machen     //ändern für jedes dokument
         int grey = Color.GRAY;
         if(boool) {
             tyName.setTextColor(grey);
+            tyAutor.setTextColor(grey);
             tyDone.setChecked(true);
         }
-        else
+        else {
             tyName.setTextColor(black);
-
+            tyAutor.setTextColor(black);
+        }
         //Aktion listener für den checkbox button                                     //ändern für jedes dokument
         tyDone.setOnClickListener(new View.OnClickListener() {
             @Override

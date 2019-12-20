@@ -20,7 +20,15 @@
         android:layout_height="wrap_content"
         android:background="#00A84444"
         android:text="Test"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
+    <TextView
+        android:id="@+id/literatur_autor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_weight="1"
+        android:text="Autor"
+        android:textSize="16sp" />
 
 
 </LinearLayout>
