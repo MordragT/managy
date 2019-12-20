@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Seichern"
+            android:text="Speichern"
             android:layout_gravity="bottom|end"/>
     </LinearLayout>
 
