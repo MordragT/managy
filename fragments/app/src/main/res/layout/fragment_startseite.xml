@@ -27,7 +27,7 @@
         />
 
     <TextView
-
+        android:id="@+id/FristStart"
         android:layout_width="325dp"
         android:layout_height="100dp"
         android:background="#708090"
@@ -48,6 +48,7 @@
         />
 
     <TextView
+        android:id="@+id/TerminStart"
         android:layout_width="325dp"
         android:layout_height="100dp"
         android:background="#708090"
@@ -69,6 +70,7 @@
         />
 
     <TextView
+        android:id="@+id/ToDoStart"
         android:layout_width="150dp"
         android:layout_height="75dp"
         android:background="#708090"
@@ -91,6 +93,7 @@
         />
 
     <TextView
+        android:id="@+id/LiteraturStart"
         android:layout_width="150dp"
         android:layout_height="75dp"
         android:background="#708090"
@@ -117,7 +120,7 @@
         android:background="#708090"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="475dp"
-        android:text="@string/TippStart"
+        android:text="Tipp"
         />
 
 </FrameLayout>

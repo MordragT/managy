@@ -8,7 +8,7 @@
     <string name="TerminStart">Termin</string>
     <string name="ToDoStart">ToDo</string>
     <string name="LiteraturStart">Literatur</string>
-    <string name="TippStart">@</string>
+    <string name="TippStart">Tipp 0</string>
 
     <!-- Tipps -->
     <string-array name="TippsArray">
