@@ -32,8 +32,12 @@ public class Startseite extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        //FristStartseite();
+        //TerminStartseite();
+        //ToDoStartseite();
+        //LiteraturStartseite();
         //TippsStartseite();
-
+//
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_startseite, container, false);
     }
@@ -58,13 +62,13 @@ public class Startseite extends Fragment {
     }
 
     public void TippsStartseite() {
-        TextView TippsStart = getActivity().findViewById(R.id.TippsStart);
-        //TippsStart.setText("klappt");
+        TextView TippsStartseite = getActivity().findViewById(R.id.TippsStart);
+        TippsStartseite.setText("klappt");
         //TippsStart.setText(getResources().getString(R.string.TippStart));
 
-        int randomIndex = new Random().nextInt((getResources().getStringArray(R.array.TippsArray)).length);
-        String randomTipp = (getResources().getStringArray(R.array.TippsArray))[randomIndex];
-        TippsStart.setText(randomTipp);
+        //int randomIndex = new Random().nextInt((getResources().getStringArray(R.array.TippsArray)).length);
+        //String randomTipp = (getResources().getStringArray(R.array.TippsArray))[randomIndex];
+        //TippsStart.setText(randomTipp);
 
         //Random r = new Random();
         //String myRandString = r.nextInt(R.array.TippsArray.);

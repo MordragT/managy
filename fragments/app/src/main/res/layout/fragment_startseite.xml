@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Startseite"
-    android:background="#bebebe"
+    android:background="#000000"
     android:orientation="horizontal"
     >
 
@@ -20,8 +20,9 @@
         android:layout_width="325dp"
         android:layout_height="25dp"
         android:layout_gravity="center_horizontal"
-        android:background="#696969"
+        android:background="#00b5ad"
         android:layout_marginTop="25dp"
+        android:textStyle="bold"
         android:text="Nächste Frist:"
         android:gravity="center_horizontal"
         />
@@ -30,9 +31,10 @@
         android:id="@+id/FristStart"
         android:layout_width="325dp"
         android:layout_height="100dp"
-        android:background="#708090"
+        android:background="#ffffff"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
+        android:gravity="center"
         android:text="@string/FristStart"
         />
 
@@ -41,8 +43,9 @@
         android:layout_width="325dp"
         android:layout_height="25dp"
         android:layout_gravity="center_horizontal"
-        android:background="#696969"
+        android:background="#00b5ad"
         android:layout_marginTop="175dp"
+        android:textStyle="bold"
         android:text="Nächster Termin:"
         android:gravity="center_horizontal"
         />
@@ -51,9 +54,10 @@
         android:id="@+id/TerminStart"
         android:layout_width="325dp"
         android:layout_height="100dp"
-        android:background="#708090"
+        android:background="#ffffff"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="200dp"
+        android:gravity="center"
         android:text="@string/TerminStart"
         />
 
@@ -62,8 +66,9 @@
         android:layout_width="150dp"
         android:layout_height="25dp"
         android:layout_gravity="center_horizontal"
-        android:background="#696969"
+        android:background="#00b5ad"
         android:layout_marginTop="325dp"
+        android:textStyle="bold"
         android:text="To-Do:"
         android:gravity="center_horizontal"
         android:layout_marginRight="88dp"
@@ -73,10 +78,11 @@
         android:id="@+id/ToDoStart"
         android:layout_width="150dp"
         android:layout_height="75dp"
-        android:background="#708090"
+        android:background="#ffffff"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="350dp"
         android:layout_marginRight="88dp"
+        android:gravity="center"
         android:text="@string/ToDoStart"
         />
 
@@ -85,8 +91,9 @@
         android:layout_width="150dp"
         android:layout_height="25dp"
         android:layout_gravity="center_horizontal"
-        android:background="#696969"
+        android:background="#00b5ad"
         android:layout_marginTop="325dp"
+        android:textStyle="bold"
         android:text="Literatur:"
         android:gravity="center_horizontal"
         android:layout_marginLeft="88dp"
@@ -96,10 +103,11 @@
         android:id="@+id/LiteraturStart"
         android:layout_width="150dp"
         android:layout_height="75dp"
-        android:background="#708090"
+        android:background="#ffffff"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="350dp"
         android:layout_marginLeft="88dp"
+        android:gravity="center"
         android:text="@string/LiteraturStart"
         />
     <!-- Tipp -->
@@ -107,8 +115,9 @@
         android:layout_width="325dp"
         android:layout_height="25dp"
         android:layout_gravity="center_horizontal"
-        android:background="#696969"
+        android:background="#00b5ad"
         android:layout_marginTop="450dp"
+        android:textStyle="bold"
         android:text="Tipp:"
         android:gravity="center_horizontal"
         />
@@ -117,9 +126,10 @@
         android:id="@+id/TippsStart"
         android:layout_width="325dp"
         android:layout_height="75dp"
-        android:background="#708090"
+        android:background="#ffffff"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="475dp"
+        android:gravity="center"
         android:text="Tipp"
         />
 
