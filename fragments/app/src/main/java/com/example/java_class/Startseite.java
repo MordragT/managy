@@ -31,6 +31,18 @@ public class Startseite extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Test 1
+        // siehe ... https://stackoverflow.com/questions/17076663/problems-with-settext-in-a-fragment-in-oncreateview
+
+        inflater = getActivity().getLayoutInflater();
+        View view =  inflater.inflate(R.layout.fragment_startseite, container, false); //pass the correct layout name for the fragment
+
+        TextView TippsStartseite = view.findViewById(R.id.TippsStart);
+        String test = "klappt";
+        TippsStartseite.setText(test);
+
+        // Test 1 Ende 
+
 
         //FristStartseite();
         //TerminStartseite();
