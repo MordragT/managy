@@ -94,7 +94,7 @@ public class KalenderGridAdapter extends ArrayAdapter {
 
         Schnittstelle loadTermine = new Schnittstelle();
         loadTermine.load();
-
+        /*
         Schnittstelle.TerminEintrag e1 = new Schnittstelle().new TerminEintrag();
         e1.name = "Test1";
         Datum start = new Datum(20, 12, 2019);
@@ -109,6 +109,7 @@ public class KalenderGridAdapter extends ArrayAdapter {
         e2.ende = ende2;
         loadTermine.terminListe.add(e1);
         loadTermine.terminListe.add(e2);
+         */
         int c = 0;
         for(int i = 0; i<loadTermine.terminListe.size() && c < 1; i++){
             if(loadTermine.terminListe.get(i).beginn.jahr <= displayYear
@@ -118,7 +119,11 @@ public class KalenderGridAdapter extends ArrayAdapter {
                 && loadTermine.terminListe.get(i).ende.monat >= displayMonth
                 && loadTermine.terminListe.get(i).ende.tag >= DayNo){
 
-                EventOne.setBackgroundColor(getContext().getResources().getColor(R.color.blue));
+                if(loadTermine.terminListe.get(i).farbe.equals("rot")) EventOne.setBackgroundColor(getContext().getResources().getColor(R.color.red));
+                else if(loadTermine.terminListe.get(i).farbe.equals("gelb")) EventOne.setBackgroundColor(getContext().getResources().getColor(R.color.yellow));
+                else if(loadTermine.terminListe.get(i).farbe.equals("blau")) EventOne.setBackgroundColor(getContext().getResources().getColor(R.color.blue));
+                else if(loadTermine.terminListe.get(i).farbe.equals("grün")) EventOne.setBackgroundColor(getContext().getResources().getColor(R.color.green));
+
                 EventOne.setText(loadTermine.terminListe.get(i).name);
 
             }

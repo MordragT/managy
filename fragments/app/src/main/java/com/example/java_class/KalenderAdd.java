@@ -1,19 +1,26 @@
 package com.example.java_class;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RadioButton;
+import android.widget.Switch;
+import android.widget.TimePicker;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.sql.Time;
 import java.util.Calendar;
 
 public class KalenderAdd extends Fragment {
@@ -21,40 +28,85 @@ public class KalenderAdd extends Fragment {
     class BeginnListener implements DatePickerDialog.OnDateSetListener {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            month++;
             String date = dayOfMonth + "." + month + "." + year;
             beginnButton.setText(date);
-            beginn = new Datum(dayOfMonth,month,year);
+            beginnButton.setBackgroundColor(getResources().getColor(R.color.green));
+            beginn = new Datum(dayOfMonth, month, year);
+            beginnBool = true;
+            validator();
+
         }
     }
-
     class EndeListener implements DatePickerDialog.OnDateSetListener {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            month++;
             String date = dayOfMonth + "." + month + "." + year;
             endeButton.setText(date);
-            ende = new Datum(dayOfMonth,month,year);
+            endeButton.setBackgroundColor(getResources().getColor(R.color.green));
+            ende = new Datum(dayOfMonth, month, year);
+            endeBool = true;
+            validator();
+        }
+    }
+    class BeginnHourListener implements TimePickerDialog.OnTimeSetListener {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            String time = hourOfDay + ":" + minute;
+            beginnHourButton.setText(time);
+            beginnHourButton.setBackgroundColor(getResources().getColor(R.color.green));
+            beginnHour = new Zeit(hourOfDay,minute);
+            beginnHourBool = true;
+            validator();
+        }
+    }
+    class EndeHourListener implements TimePickerDialog.OnTimeSetListener {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            String time = hourOfDay + ":" + minute;
+            endeHourButton.setText(time);
+            endeHourButton.setBackgroundColor(getResources().getColor(R.color.green));
+            endeHour = new Zeit(hourOfDay,minute);
+            endeHourBool = true;
+            validator();
         }
     }
 
-    BeginnListener beginnListener = new BeginnListener();
-    EndeListener endeListener = new EndeListener();
+    private BeginnListener beginnListener = new BeginnListener();
+    private EndeListener endeListener = new EndeListener();
+    private BeginnHourListener beginnHourListener = new BeginnHourListener();
+    private EndeHourListener endeHourListener = new EndeHourListener();
+
+    private boolean titelBool = false;
+    private boolean colorBool = false;
+    private boolean beginnBool = false;
+    private boolean endeBool = false;
+    private boolean beginnHourBool = false;
+    private boolean endeHourBool = false;
+    private boolean ganztagigBool = false;
 
     View v;
-    Button abbrechen;
-    Button speichern;
-    EditText titel;
-    EditText beschreibung;
-    RadioGroup colorGroup;
-    int checkedColor;
-    RadioButton colorButton;
-    Button beginnButton;
-    Button endeButton;
-    Datum beginn;
-    Datum ende;
+    private Button abbrechen;
+    private Button speichern;
+    private EditText titel;
+    private EditText beschreibung;
+    private RadioGroup colorGroup;
+    private RadioButton colorButton;
+    private Button beginnButton;
+    private Button endeButton;
+    private Button beginnHourButton;
+    private Button endeHourButton;
+    private Switch ganztagigSwitch;
+
+    private Datum beginn;
+    private Datum ende;
+    private Zeit beginnHour;
+    private Zeit endeHour;
 
     private void showDatePickerDialog(boolean beginn) {
         DatePickerDialog datePickerDialog;
-        if(beginn) {
+        if (beginn) {
             datePickerDialog = new DatePickerDialog(
                     getActivity(),
                     beginnListener,
@@ -73,21 +125,100 @@ public class KalenderAdd extends Fragment {
         }
         datePickerDialog.show();
     }
+    private void showTimePickerDialog(boolean beginn) {
+        TimePickerDialog timePickerDialog;
+        if(beginn) {
+            timePickerDialog = new TimePickerDialog(
+                    getActivity(),
+                    beginnHourListener,
+                    Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
+                    Calendar.getInstance().get(Calendar.MINUTE),
+                    true
+            );
+        } else {
+            timePickerDialog = new TimePickerDialog(
+                    getActivity(),
+                    endeHourListener,
+                    Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
+                    Calendar.getInstance().get(Calendar.MINUTE),
+                    true
+            );
+        }
+        timePickerDialog.show();
+    }
+    private boolean validator() {
+        if (titelBool && colorBool && beginnBool && endeBool && ((beginnHourBool && endeHourBool) || ganztagigBool)) {
+            speichern.setClickable(true);
+            speichern.setAlpha(1f);
+            return true;
+        }
+        speichern.setClickable(false);
+        speichern.setAlpha(.5f);
+        return false;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //Onklick listener
         v = inflater.inflate(R.layout.fragment_kalender_add, container, false);
         abbrechen = (Button) v.findViewById(R.id.abbrechen);
         speichern = (Button) v.findViewById(R.id.speichern);
         titel = (EditText) v.findViewById(R.id.titel);
         beschreibung = (EditText) v.findViewById(R.id.beschreibung);
         colorGroup = (RadioGroup) v.findViewById(R.id.color);
-        colorGroup.getCheckedRadioButtonId();
-        colorButton = (RadioButton) v.findViewById(checkedColor);
         beginnButton = (Button) v.findViewById(R.id.beginn);
         endeButton = (Button) v.findViewById(R.id.ende);
+        beginnHourButton = (Button) v.findViewById(R.id.beginnHour);
+        endeHourButton = (Button) v.findViewById(R.id.endeHour);
+        ganztagigSwitch = (Switch) v.findViewById(R.id.ganztagig);
 
+        speichern.setClickable(false);
+        speichern.setAlpha(.5f);
+
+        titel.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!titel.getText().toString().isEmpty()) {
+                    titelBool = true;
+                    titel.setBackgroundColor(getResources().getColor(R.color.green));
+                    validator();
+                } else {
+                    titelBool = false;
+                    titel.setBackgroundColor(getResources().getColor(R.color.red));
+                }
+            }
+        });
+        colorGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                colorButton = (RadioButton) v.findViewById(checkedId);
+                colorBool = true;
+                colorGroup.setBackgroundColor(getResources().getColor(R.color.green));
+                validator();
+            }
+        });
+        ganztagigSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ganztagigBool = isChecked;
+                if(isChecked) {
+                    beginnHourButton.setVisibility(View.GONE);
+                    endeHourButton.setVisibility(View.GONE);
+                } else {
+                    beginnHourButton.setVisibility(View.VISIBLE);
+                    endeHourButton.setVisibility(View.VISIBLE);
+                }
+                validator();
+            }
+        });
         beginnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +231,20 @@ public class KalenderAdd extends Fragment {
                 showDatePickerDialog(false);
             }
         });
+        beginnHourButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTimePickerDialog(true);
+            }
+        });
+        endeHourButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTimePickerDialog(false);
+            }
+        });
+
+
         abbrechen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,30 +257,55 @@ public class KalenderAdd extends Fragment {
         speichern.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //eingestelte werte auslesen
-                String sTitel = titel.getText().toString();
-                String sFarbe = colorButton.getText().toString();
-                String sBeschreibung = beschreibung.getText().toString();
+                if (validator()) {
+                    Schnittstelle.TerminEintrag t;
+                    if(ganztagigBool) {
+                        if (!beschreibung.getText().toString().isEmpty()) {
+                            t = new Schnittstelle().new TerminEintrag(
+                                    titel.getText().toString(),
+                                    colorButton.getText().toString(),
+                                    beginn,
+                                    ende,
+                                    beschreibung.getText().toString()
+                            );
+                        } else {
+                            t = new Schnittstelle().new TerminEintrag(
+                                    titel.getText().toString(),
+                                    colorButton.getText().toString(),
+                                    beginn,
+                                    ende
+                            );
+                        }
+                    } else {
+                        if (!beschreibung.getText().toString().isEmpty()) {
+                            t = new Schnittstelle().new TerminEintrag(
+                                    titel.getText().toString(),
+                                    colorButton.getText().toString(),
+                                    beginn,
+                                    ende,
+                                    beginnHour,
+                                    endeHour,
+                                    beschreibung.getText().toString()
+                            );
+                        } else {
+                            t = new Schnittstelle().new TerminEintrag(
+                                    titel.getText().toString(),
+                                    colorButton.getText().toString(),
+                                    beginn,
+                                    ende,
+                                    beginnHour,
+                                    endeHour
+                            );
+                        }
+                    }
 
-                if (sTitel.length() > 0) {
-                    //neuen eintrag schreiben
-                    Schnittstelle.TerminEintrag t = new Schnittstelle().new TerminEintrag();
-                    t.name = sTitel;
-                    t.farbe = sFarbe;
-                    t.beginn = beginn;
-                    t.ende = ende;
-                    t.beschreibung = sBeschreibung;
                     Schnittstelle.terminListe.add(t);
-                    //speichere änderungen
                     Schnittstelle.saveTermine();
-
-                    //seite neu laden
                     FragmentTransaction fr = getFragmentManager().beginTransaction();
                     fr.replace(R.id.nav_host_fragment, new Kalender());
                     fr.commit();
                 } else {
-                    int error = getResources().getColor(R.color.Error);
-                    titel.setBackgroundColor(error);
+                    titel.setBackgroundColor(getResources().getColor(R.color.Error));
                     titel.setHint("darf nicht leer sein");
                 }
             }

@@ -108,6 +108,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:text="Datum"/>
+            <Button
+                android:id="@+id/beginnHour"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="Uhrzeit"/>
         </LinearLayout>
 
         <LinearLayout
@@ -126,6 +131,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:text="Datum"/>
+            <Button
+                android:id="@+id/endeHour"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="Uhrzeit"/>
         </LinearLayout>
 
         <LinearLayout

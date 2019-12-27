@@ -194,16 +194,48 @@ public class Schnittstelle implements Serializable {
     class AbgabenEintrag implements Serializable {
         String name = "NAME_LEER";
         Boolean erinnern = false;
-        Datum termin = new Datum();
-        Datum erinnerungsTermin = new Datum();
+        Datum termin;
+        Datum erinnerungsTermin;
     }
 
-    class TerminEintrag implements Serializable {
-        String name = "NAME_LEER";
-        String farbe = "blue";
-        String beschreibung = "";
-        Datum beginn = new Datum();
-        Datum ende = new Datum();
+    class TerminEintrag {
+        String name;
+        String farbe;
+        String beschreibung;
+        Datum beginn;
+        Datum ende;
+        Zeit beginnZeit;
+        Zeit endeZeit;
+        TerminEintrag(String name, String farbe, Datum beginn, Datum ende, String Beschreibung) {
+            this.name = name;
+            this.farbe = farbe;
+            this.beginn = beginn;
+            this.ende = ende;
+            this.beschreibung = Beschreibung;
+        }
+        TerminEintrag(String name, String farbe, Datum beginn, Datum ende) {
+            this.name = name;
+            this.farbe = farbe;
+            this.beginn = beginn;
+            this.ende = ende;
+        }
+        TerminEintrag(String name, String farbe, Datum beginn, Datum ende, Zeit beginnZeit, Zeit endeZeit, String Beschreibung) {
+            this.name = name;
+            this.farbe = farbe;
+            this.beginn = beginn;
+            this.ende = ende;
+            this.beginnZeit = beginnZeit;
+            this.endeZeit = endeZeit;
+            this.beschreibung = Beschreibung;
+        }
+        TerminEintrag(String name, String farbe, Datum beginn, Datum ende, Zeit beginnZeit, Zeit endeZeit) {
+            this.name = name;
+            this.farbe = farbe;
+            this.beginn = beginn;
+            this.ende = ende;
+            this.beginnZeit = beginnZeit;
+            this.endeZeit = endeZeit;
+        }
     }
 
     class ToDoEintrag implements Serializable {
