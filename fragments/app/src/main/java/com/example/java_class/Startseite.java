@@ -3,6 +3,7 @@ package com.example.java_class;
 import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -33,6 +34,8 @@ public class Startseite extends Fragment {
                              Bundle savedInstanceState) {
         // Test 1
         // siehe ... https://stackoverflow.com/questions/17076663/problems-with-settext-in-a-fragment-in-oncreateview
+
+        super.onCreateView(inflater,container,savedInstanceState);
 
         inflater = getActivity().getLayoutInflater();
         View view =  inflater.inflate(R.layout.fragment_startseite, container, false); //pass the correct layout name for the fragment
