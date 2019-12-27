@@ -20,6 +20,8 @@ import android.widget.TimePicker;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.sql.Time;
 import java.util.Calendar;
 
@@ -257,7 +259,7 @@ public class KalenderAdd extends Fragment {
         speichern.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validator()) {
+                if (validator() && beginn.compareTo(ende) < 0 && (!ganztagigBool && beginnHour.compareTo(endeHour) < 0) || ganztagigBool) {
                     Schnittstelle.TerminEintrag t;
                     if(ganztagigBool) {
                         if (!beschreibung.getText().toString().isEmpty()) {
@@ -305,8 +307,8 @@ public class KalenderAdd extends Fragment {
                     fr.replace(R.id.nav_host_fragment, new Kalender());
                     fr.commit();
                 } else {
-                    titel.setBackgroundColor(getResources().getColor(R.color.Error));
-                    titel.setHint("darf nicht leer sein");
+                    Snackbar error = Snackbar.make(v, "Bitte überprüfe deine Eingaben", 1024);
+                    error.show();
                 }
             }
         });
