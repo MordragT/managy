@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
-import java.util.Random;
 
+import java.util.Random;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -18,13 +18,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
 
+    public BottomNavigationView bottomNav;
+    public int lastItem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav_bar);
+        bottomNav = findViewById(R.id.bottom_nav_bar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
         //einlesen der datein
         //Schnittstelle.load(this);
         Schnittstelle.load();
@@ -49,18 +51,23 @@ public class MainActivity extends AppCompatActivity {
 
                     switch (item.getItemId()) {
                         case R.id.navigation_home:
+                            lastItem = bottomNav.getSelectedItemId();
                             selectedFragment = new Startseite();
                             break;
                         case R.id.navigation_kalender:
+                            lastItem = bottomNav.getSelectedItemId();
                             selectedFragment = new Kalender();
                             break;
                         case R.id.navigation_to_do:
+                            lastItem = bottomNav.getSelectedItemId();
                             selectedFragment = new ToDo();
                             break;
                         case R.id.navigation_abgabe:
+                            lastItem = bottomNav.getSelectedItemId();
                             selectedFragment = new Fristen();
                             break;
                         case R.id.navigation_literatur:
+                            lastItem = bottomNav.getSelectedItemId();
                             selectedFragment = new Literatur();
                             break;
 
@@ -82,22 +89,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void ToDoStartseite() {
         TextView ToDoStart = findViewById(R.id.ToDoStart);
-        if(Schnittstelle.toDoListe.size()== 0){
+        if (Schnittstelle.toDoListe.size() == 0) {
             ToDoStart.setText("Es gibt nichts zu tun :D");
-        }
-        else{
+        } else {
             int ToDogröße = Schnittstelle.toDoListe.size();
             ToDoStart.setText(ToDogröße);
         }
 
     }
 
-    public void LiteraturStartseite(){
+    public void LiteraturStartseite() {
         TextView LiteraturStart = findViewById(R.id.LiteraturStart);
-        if(Schnittstelle.literaturListe.size() == 0){
+        if (Schnittstelle.literaturListe.size() == 0) {
             LiteraturStart.setText("Es gibt nichts zu lesen :D");
-        }
-        else{
+        } else {
             int Literaturgröße = Schnittstelle.literaturListe.size();
             LiteraturStart.setText(Schnittstelle.literaturListe.size());
         }

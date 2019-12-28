@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -105,6 +106,14 @@ public class ToDo extends Fragment {
 
         ToDoAdapter adapter = new ToDoAdapter(this.getContext(), R.layout.fragment_to_do_adapter, Schnittstelle.toDoListe);
         toDoItemList.setAdapter(adapter);
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                ((MainActivity)getActivity()).bottomNav.setSelectedItemId(((MainActivity) getActivity()).lastItem);
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
         return v;
     }

@@ -17,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TimePicker;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -40,6 +41,7 @@ public class KalenderAdd extends Fragment {
 
         }
     }
+
     class EndeListener implements DatePickerDialog.OnDateSetListener {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -52,24 +54,26 @@ public class KalenderAdd extends Fragment {
             validator();
         }
     }
+
     class BeginnHourListener implements TimePickerDialog.OnTimeSetListener {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             String time = hourOfDay + ":" + minute;
             beginnHourButton.setText(time);
             beginnHourButton.setBackgroundColor(getResources().getColor(R.color.green));
-            beginnHour = new Zeit(hourOfDay,minute);
+            beginnHour = new Zeit(hourOfDay, minute);
             beginnHourBool = true;
             validator();
         }
     }
+
     class EndeHourListener implements TimePickerDialog.OnTimeSetListener {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             String time = hourOfDay + ":" + minute;
             endeHourButton.setText(time);
             endeHourButton.setBackgroundColor(getResources().getColor(R.color.green));
-            endeHour = new Zeit(hourOfDay,minute);
+            endeHour = new Zeit(hourOfDay, minute);
             endeHourBool = true;
             validator();
         }
@@ -127,9 +131,10 @@ public class KalenderAdd extends Fragment {
         }
         datePickerDialog.show();
     }
+
     private void showTimePickerDialog(boolean beginn) {
         TimePickerDialog timePickerDialog;
-        if(beginn) {
+        if (beginn) {
             timePickerDialog = new TimePickerDialog(
                     getActivity(),
                     beginnHourListener,
@@ -148,6 +153,7 @@ public class KalenderAdd extends Fragment {
         }
         timePickerDialog.show();
     }
+
     private boolean validator() {
         if (titelBool && colorBool && beginnBool && endeBool && ((beginnHourBool && endeHourBool) || ganztagigBool)) {
             speichern.setClickable(true);
@@ -211,7 +217,7 @@ public class KalenderAdd extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 ganztagigBool = isChecked;
-                if(isChecked) {
+                if (isChecked) {
                     beginnHourButton.setVisibility(View.GONE);
                     endeHourButton.setVisibility(View.GONE);
                 } else {
@@ -261,44 +267,29 @@ public class KalenderAdd extends Fragment {
             public void onClick(View v) {
                 if (validator() && beginn.compareTo(ende) < 0 && (!ganztagigBool && beginnHour.compareTo(endeHour) < 0) || ganztagigBool) {
                     Schnittstelle.TerminEintrag t;
-                    if(ganztagigBool) {
-                        if (!beschreibung.getText().toString().isEmpty()) {
-                            t = new Schnittstelle().new TerminEintrag(
-                                    titel.getText().toString(),
-                                    colorButton.getText().toString(),
-                                    beginn,
-                                    ende,
-                                    beschreibung.getText().toString()
-                            );
-                        } else {
-                            t = new Schnittstelle().new TerminEintrag(
-                                    titel.getText().toString(),
-                                    colorButton.getText().toString(),
-                                    beginn,
-                                    ende
-                            );
-                        }
+                    if (ganztagigBool) {
+                        beginnHour = new Zeit(0, 0);
+                        endeHour = new Zeit(23, 59);
+                    }
+                    if (!beschreibung.getText().toString().isEmpty()) {
+                        t = new Schnittstelle().new TerminEintrag(
+                                titel.getText().toString(),
+                                colorButton.getText().toString(),
+                                beginn,
+                                ende,
+                                beginnHour,
+                                endeHour,
+                                beschreibung.getText().toString()
+                        );
                     } else {
-                        if (!beschreibung.getText().toString().isEmpty()) {
-                            t = new Schnittstelle().new TerminEintrag(
-                                    titel.getText().toString(),
-                                    colorButton.getText().toString(),
-                                    beginn,
-                                    ende,
-                                    beginnHour,
-                                    endeHour,
-                                    beschreibung.getText().toString()
-                            );
-                        } else {
-                            t = new Schnittstelle().new TerminEintrag(
-                                    titel.getText().toString(),
-                                    colorButton.getText().toString(),
-                                    beginn,
-                                    ende,
-                                    beginnHour,
-                                    endeHour
-                            );
-                        }
+                        t = new Schnittstelle().new TerminEintrag(
+                                titel.getText().toString(),
+                                colorButton.getText().toString(),
+                                beginn,
+                                ende,
+                                beginnHour,
+                                endeHour
+                        );
                     }
 
                     Schnittstelle.terminListe.add(t);
@@ -312,7 +303,15 @@ public class KalenderAdd extends Fragment {
                 }
             }
         });
-
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                FragmentTransaction fr = getFragmentManager().beginTransaction();
+                fr.replace(R.id.nav_host_fragment, new Kalender());
+                fr.commit();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
         return v;
     }
 }
