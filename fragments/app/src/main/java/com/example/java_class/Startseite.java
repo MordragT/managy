@@ -23,13 +23,6 @@ import android.widget.TextView;
 
 public class Startseite extends Fragment {
 
-    //TextView FristStart = getActivity().findViewById(R.id.FristStart);
-    //TextView TerminStart = getActivity().findViewById(R.id.TerminStart);
-    //TextView ToDoStart = getActivity().findViewById(R.id.ToDoStart);
-    //TextView LiteraturStart = getActivity().findViewById(R.id.LiteraturStart);
-    //TextView TippsStart = getActivity().findViewById(R.id.TippsStart);
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,19 +50,19 @@ public class Startseite extends Fragment {
     }
 
 
-    public void FristStartseite(View v) {
+    private void FristStartseite(View v) {
         TextView FristStart = v.findViewById(R.id.FristStart);
 
     }
 
-    public void TerminStartseite(View v) {
+    private void TerminStartseite(View v) {
         TextView TerminStart = v.findViewById(R.id.TerminStart);
 
         //int Termingröße = Schnittstelle.terminListe.size();
         //TerminStart.setText(Termingröße);
     }
 
-    public void ToDoStartseite(View v) {
+    private void ToDoStartseite(View v) {
         TextView ToDoStart = v.findViewById(R.id.ToDoStart);
         if (Schnittstelle.toDoListe.size() == 0) {
             //String ToDo = "Du hast aktuell keine Aufgaben :D";
@@ -95,7 +88,7 @@ public class Startseite extends Fragment {
         }
     }
 
-    public void LiteraturStartseite(View v) {
+    private void LiteraturStartseite(View v) {
         TextView LiteraturStart = v.findViewById(R.id.LiteraturStart);
         if (Schnittstelle.literaturListe.size() == 0) {
             //String Literatur = "Du hast aktuell keine Literatur :D";
@@ -121,7 +114,7 @@ public class Startseite extends Fragment {
         }
     }
 
-    public void TippsStartseite(View v) {
+    private void TippsStartseite(View v) {
         TextView TippsStartseite = v.findViewById(R.id.TippsStart);
 
         int randomIndex = new Random().nextInt((getResources().getStringArray(R.array.TippsArray)).length);

@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
         //TerminStart.setText(Termingröße);
     }
 
-
     public void ToDoStartseite() {
         TextView ToDoStart = findViewById(R.id.ToDoStart);
         if (Schnittstelle.toDoListe.size() == 0) {
