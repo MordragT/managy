@@ -84,6 +84,7 @@
             android:layout_marginTop="350dp"
             android:layout_marginRight="88dp"
             android:gravity="center"
+            android:textSize="30dp"
             android:text="@string/ToDoStart"
             />
 
@@ -110,6 +111,7 @@
             android:layout_marginTop="350dp"
             android:layout_marginLeft="88dp"
             android:gravity="center"
+            android:textSize="30dp"
             android:text="@string/LiteraturStart"
             />
         <!-- Tipp -->

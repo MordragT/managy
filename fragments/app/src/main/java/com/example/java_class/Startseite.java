@@ -72,50 +72,52 @@ public class Startseite extends Fragment {
     public void ToDoStartseite(View v) {
         TextView ToDoStart = v.findViewById(R.id.ToDoStart);
         if (Schnittstelle.toDoListe.size() == 0) {
-            String ToDo = "Du hast aktuell keine Aufgaben :D";
+            //String ToDo = "Du hast aktuell keine Aufgaben :D";
+            String ToDo = "0/0";
             ToDoStart.setText(ToDo);
 
         } else {
             int counter = 0;
-            for (int i=0; i <= Schnittstelle.toDoListe.size(); i++){
-                if(!Schnittstelle.toDoListe.get(i).erledigt){
+            for (int i=0; i < Schnittstelle.toDoListe.size(); i++){
+                if(Schnittstelle.toDoListe.get(i).erledigt){
                     counter++;
                 }
             }
 
-            if (counter == Schnittstelle.toDoListe.size()){
-                String ToDo = "Du hast alle Aufgaben erledigt :D";
-                ToDoStart.setText(ToDo);
-            }
-            else{
+            //if (counter == Schnittstelle.toDoListe.size()){
+                //String ToDo = "Du hast alle Aufgaben erledigt :D";
+                //ToDoStart.setText(ToDo);
+            //}
+            //else{
                 String ToDo = counter + "/" + Schnittstelle.toDoListe.size();
                 ToDoStart.setText(ToDo);
-            }
+            //}
         }
     }
 
     public void LiteraturStartseite(View v) {
         TextView LiteraturStart = v.findViewById(R.id.LiteraturStart);
         if (Schnittstelle.literaturListe.size() == 0) {
-            String Literatur = "Du hast aktuell keine Literatur :D";
+            //String Literatur = "Du hast aktuell keine Literatur :D";
+            String Literatur = "0/0";
             LiteraturStart.setText(Literatur);
 
         } else {
 
             int counter = 0;
-            for (int i = 0; i <= Schnittstelle.literaturListe.size(); i++) {
-                if (!Schnittstelle.literaturListe.get(i).gelesen) {
+            for (int i = 0; i < Schnittstelle.literaturListe.size(); i++) {
+                if (Schnittstelle.literaturListe.get(i).gelesen) {
                     counter++;
                 }
             }
 
-            if (counter == Schnittstelle.literaturListe.size()) {
-                String Literatur = "Du hast alles gelesen :D";
+            //if (counter == Schnittstelle.literaturListe.size()) {
+            //String Literatur = "Du hast alles gelesen :D";
+            //LiteraturStart.setText(Literatur);
+            //} else {
+                String Literatur = counter + "/" + Schnittstelle.literaturListe.size();
                 LiteraturStart.setText(Literatur);
-            } else {
-                String Literatur = counter + "/" + Schnittstelle.toDoListe.size();
-                LiteraturStart.setText(Literatur);
-            }
+            //}
         }
     }
 
