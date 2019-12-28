@@ -35,7 +35,7 @@ public class Startseite extends Fragment {
                              Bundle savedInstanceState) {
         // Test 1
         // siehe ... https://stackoverflow.com/questions/17076663/problems-with-settext-in-a-fragment-in-oncreateview
-
+        View v = inflater.inflate(R.layout.fragment_startseite, container, false);
         super.onCreateView(inflater,container,savedInstanceState);
 
         inflater = getActivity().getLayoutInflater();
@@ -62,7 +62,8 @@ public class Startseite extends Fragment {
         //TippsStartseite();
 //
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_startseite, container, false);
+        //return inflater.inflate(R.layout.fragment_startseite, container, false);
+        return v ;
     }
 
     public void FristStartseite() {
