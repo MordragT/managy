@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("einlesen", String.valueOf(Schnittstelle.toDoListe.size()));
 
         FristStartseite();
-        //TerminStartseite();
+        TerminStartseite();
         ToDoStartseite();
         LiteraturStartseite();
         TippsStartseite();
@@ -79,48 +79,73 @@ public class MainActivity extends AppCompatActivity {
 
     public void FristStartseite() {
         TextView FristStart = findViewById(R.id.FristStart);
+
     }
 
     public void TerminStartseite() {
         TextView TerminStart = findViewById(R.id.TerminStart);
-        int Termingröße = Schnittstelle.terminListe.size();
-        TerminStart.setText(Termingröße);
+
+        //int Termingröße = Schnittstelle.terminListe.size();
+        //TerminStart.setText(Termingröße);
     }
+
 
     public void ToDoStartseite() {
         TextView ToDoStart = findViewById(R.id.ToDoStart);
         if (Schnittstelle.toDoListe.size() == 0) {
-            ToDoStart.setText("Es gibt nichts zu tun :D");
-        } else {
-            int ToDogröße = Schnittstelle.toDoListe.size();
-            ToDoStart.setText(ToDogröße);
-        }
+            String ToDo = "Du hast aktuell keine Aufgaben :D";
+            ToDoStart.setText(ToDo);
 
+        } else {
+            int counter = 0;
+            for (int i=0; i <= Schnittstelle.toDoListe.size(); i++){
+                if(!Schnittstelle.toDoListe.get(i).erledigt){
+                    counter++;
+                }
+            }
+
+            if (counter == Schnittstelle.toDoListe.size()){
+                String ToDo = "Du hast alle Aufgaben erledigt :D";
+                ToDoStart.setText(ToDo);
+            }
+            else{
+                String ToDo = counter + "/" + Schnittstelle.toDoListe.size();
+                ToDoStart.setText(ToDo);
+            }
+        }
     }
 
     public void LiteraturStartseite() {
         TextView LiteraturStart = findViewById(R.id.LiteraturStart);
         if (Schnittstelle.literaturListe.size() == 0) {
-            LiteraturStart.setText("Es gibt nichts zu lesen :D");
-        } else {
-            int Literaturgröße = Schnittstelle.literaturListe.size();
-            LiteraturStart.setText(Schnittstelle.literaturListe.size());
-        }
+            String Literatur = "Du hast aktuell keine Literatur :D";
+            LiteraturStart.setText(Literatur);
 
+        } else {
+
+            int counter = 0;
+            for (int i = 0; i <= Schnittstelle.literaturListe.size(); i++) {
+                if (!Schnittstelle.literaturListe.get(i).gelesen) {
+                    counter++;
+                }
+            }
+
+            if (counter == Schnittstelle.literaturListe.size()) {
+                String Literatur = "Du hast alles gelesen :D";
+                LiteraturStart.setText(Literatur);
+            } else {
+                String Literatur = counter + "/" + Schnittstelle.toDoListe.size();
+                LiteraturStart.setText(Literatur);
+            }
+        }
     }
 
     public void TippsStartseite() {
         TextView TippsStartseite = findViewById(R.id.TippsStart);
-        //TippsStartseite.setText("klappt");
-        //TippsStartseite.setText(getResources().getString(R.string.TippStart));
 
         int randomIndex = new Random().nextInt((getResources().getStringArray(R.array.TippsArray)).length);
         String randomTipp = (getResources().getStringArray(R.array.TippsArray))[randomIndex];
         TippsStartseite.setText(randomTipp);
-
-        //Random r = new Random();
-        //String myRandString = r.nextInt(R.array.TippsArray.);
-
     }
 
 }
