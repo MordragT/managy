@@ -33,19 +33,6 @@ public class Startseite extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Test 1
-        // siehe ... https://stackoverflow.com/questions/17076663/problems-with-settext-in-a-fragment-in-oncreateview
-        View v = inflater.inflate(R.layout.fragment_startseite, container, false);
-        super.onCreateView(inflater,container,savedInstanceState);
-
-        inflater = getActivity().getLayoutInflater();
-        View view =  inflater.inflate(R.layout.fragment_startseite, container, false); //pass the correct layout name for the fragment
-
-        TextView TippsStartseite = view.findViewById(R.id.TippsStart);
-        String test = "klappt";
-        TippsStartseite.setText(test);
-
-        // Test 1 Ende 
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
@@ -55,48 +42,89 @@ public class Startseite extends Fragment {
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
-        //FristStartseite();
-        //TerminStartseite();
-        //ToDoStartseite();
-        //LiteraturStartseite();
-        //TippsStartseite();
+        View v = inflater.inflate(R.layout.fragment_startseite, container, false);
+
+        FristStartseite(v);
+        TerminStartseite(v);
+        ToDoStartseite(v);
+        LiteraturStartseite(v);
+        TippsStartseite(v);
+
 //
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_startseite, container, false);
         return v ;
     }
 
-    public void FristStartseite() {
-        TextView FristStart = getActivity().findViewById(R.id.FristStart);
+
+    public void FristStartseite(View v) {
+        TextView FristStart = v.findViewById(R.id.FristStart);
+
     }
 
-    public void TerminStartseite() {
-        TextView TerminStart = getActivity().findViewById(R.id.TerminStart);
-        TerminStart.setText(Schnittstelle.terminListe.size());
+    public void TerminStartseite(View v) {
+        TextView TerminStart = v.findViewById(R.id.TerminStart);
+
+        //int Termingröße = Schnittstelle.terminListe.size();
+        //TerminStart.setText(Termingröße);
     }
 
-    public void ToDoStartseite() {
-        TextView ToDoStart = getActivity().findViewById(R.id.ToDoStart);
-        ToDoStart.setText(Schnittstelle.toDoListe.size());
+    public void ToDoStartseite(View v) {
+        TextView ToDoStart = v.findViewById(R.id.ToDoStart);
+        if (Schnittstelle.toDoListe.size() == 0) {
+            String ToDo = "Du hast aktuell keine Aufgaben :D";
+            ToDoStart.setText(ToDo);
+
+        } else {
+            int counter = 0;
+            for (int i=0; i <= Schnittstelle.toDoListe.size(); i++){
+                if(!Schnittstelle.toDoListe.get(i).erledigt){
+                    counter++;
+                }
+            }
+
+            if (counter == Schnittstelle.toDoListe.size()){
+                String ToDo = "Du hast alle Aufgaben erledigt :D";
+                ToDoStart.setText(ToDo);
+            }
+            else{
+                String ToDo = counter + "/" + Schnittstelle.toDoListe.size();
+                ToDoStart.setText(ToDo);
+            }
+        }
     }
 
-    public void LiteraturStartseite(){
-        TextView LiteraturStart = getActivity().findViewById(R.id.LiteraturStart);
-        LiteraturStart.setText(Schnittstelle.literaturListe.size());
+    public void LiteraturStartseite(View v) {
+        TextView LiteraturStart = v.findViewById(R.id.LiteraturStart);
+        if (Schnittstelle.literaturListe.size() == 0) {
+            String Literatur = "Du hast aktuell keine Literatur :D";
+            LiteraturStart.setText(Literatur);
+
+        } else {
+
+            int counter = 0;
+            for (int i = 0; i <= Schnittstelle.literaturListe.size(); i++) {
+                if (!Schnittstelle.literaturListe.get(i).gelesen) {
+                    counter++;
+                }
+            }
+
+            if (counter == Schnittstelle.literaturListe.size()) {
+                String Literatur = "Du hast alles gelesen :D";
+                LiteraturStart.setText(Literatur);
+            } else {
+                String Literatur = counter + "/" + Schnittstelle.toDoListe.size();
+                LiteraturStart.setText(Literatur);
+            }
+        }
     }
 
-    public void TippsStartseite() {
-        TextView TippsStartseite = getActivity().findViewById(R.id.TippsStart);
-        TippsStartseite.setText("klappt");
-        //TippsStart.setText(getResources().getString(R.string.TippStart));
+    public void TippsStartseite(View v) {
+        TextView TippsStartseite = v.findViewById(R.id.TippsStart);
 
-        //int randomIndex = new Random().nextInt((getResources().getStringArray(R.array.TippsArray)).length);
-        //String randomTipp = (getResources().getStringArray(R.array.TippsArray))[randomIndex];
-        //TippsStart.setText(randomTipp);
-
-        //Random r = new Random();
-        //String myRandString = r.nextInt(R.array.TippsArray.);
-
+        int randomIndex = new Random().nextInt((getResources().getStringArray(R.array.TippsArray)).length);
+        String randomTipp = (getResources().getStringArray(R.array.TippsArray))[randomIndex];
+        TippsStartseite.setText(randomTipp);
     }
 
 
