@@ -211,26 +211,27 @@ public class Schnittstelle implements Serializable {
             this.endeZeit = endeZeit;
             this.beschreibung = Beschreibung;
         }
-        TerminEintrag(String name, String farbe, Datum beginn, Datum ende, Zeit beginnZeit, Zeit endeZeit) {
-            this.name = name;
-            this.farbe = farbe;
-            this.beginn = beginn;
-            this.ende = ende;
-            this.beginnZeit = beginnZeit;
-            this.endeZeit = endeZeit;
-        }
     }
 
     class ToDoEintrag implements Serializable {
-        String name = "NAME_LEER";
+        String name;
         boolean erledigt = false;
+        ToDoEintrag(String name) {
+            this.name = name;
+        }
     }
 
     class LiteraturEintrag implements Serializable {
-        String name = "NAME_LEER";
-        String autor = "NAME_LEER";
-        String url = "NAME_LEER";
-        String notizen = "NAME_LEER";
+        String name;
+        String autor;
+        String url;
+        String notizen;
         boolean gelesen = false;
+        LiteraturEintrag(String name, String autor, String url, String notizen) {
+            this.name = name;
+            this.autor = autor;
+            this.url = url;
+            this.notizen = notizen;
+        }
     }
 }

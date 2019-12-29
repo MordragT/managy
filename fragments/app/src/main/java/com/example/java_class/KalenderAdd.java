@@ -30,7 +30,7 @@ public class KalenderAdd extends Fragment {
             month++;
             String date = dayOfMonth + "." + month + "." + year;
             beginnButton.setText(date);
-            beginnButton.setBackgroundColor(getResources().getColor(R.color.green));
+            //beginnButton.setBackgroundColor(getResources().getColor(R.color.green));
             beginn = new Datum(dayOfMonth, month, year);
             beginnBool = true;
             validator();
@@ -44,7 +44,7 @@ public class KalenderAdd extends Fragment {
             month++;
             String date = dayOfMonth + "." + month + "." + year;
             endeButton.setText(date);
-            endeButton.setBackgroundColor(getResources().getColor(R.color.green));
+            //endeButton.setBackgroundColor(getResources().getColor(R.color.green));
             ende = new Datum(dayOfMonth, month, year);
             endeBool = true;
             validator();
@@ -56,7 +56,7 @@ public class KalenderAdd extends Fragment {
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             String time = hourOfDay + ":" + minute;
             beginnHourButton.setText(time);
-            beginnHourButton.setBackgroundColor(getResources().getColor(R.color.green));
+            //beginnHourButton.setBackgroundColor(getResources().getColor(R.color.green));
             beginnHour = new Zeit(hourOfDay, minute);
             beginnHourBool = true;
             validator();
@@ -68,7 +68,7 @@ public class KalenderAdd extends Fragment {
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             String time = hourOfDay + ":" + minute;
             endeHourButton.setText(time);
-            endeHourButton.setBackgroundColor(getResources().getColor(R.color.green));
+            //endeHourButton.setBackgroundColor(getResources().getColor(R.color.green));
             endeHour = new Zeit(hourOfDay, minute);
             endeHourBool = true;
             validator();
@@ -144,11 +144,11 @@ public class KalenderAdd extends Fragment {
 
     private boolean validator() {
         if (titelBool && colorBool && beginnBool && endeBool && ((beginnHourBool && endeHourBool) || ganztagigBool)) {
-            speichern.setClickable(true);
+            //speichern.setClickable(true);
             speichern.setAlpha(1f);
             return true;
         }
-        speichern.setClickable(false);
+        //speichern.setClickable(false);
         speichern.setAlpha(.5f);
         return false;
     }
@@ -168,7 +168,7 @@ public class KalenderAdd extends Fragment {
         endeHourButton = (Button) v.findViewById(R.id.endeHour);
         ganztagigSwitch = (Switch) v.findViewById(R.id.ganztagig);
 
-        speichern.setClickable(false);
+        //speichern.setClickable(false);
         speichern.setAlpha(.5f);
 
         titel.addTextChangedListener(new TextWatcher() {
@@ -184,12 +184,12 @@ public class KalenderAdd extends Fragment {
             public void afterTextChanged(Editable s) {
                 if (!titel.getText().toString().isEmpty()) {
                     titelBool = true;
-                    titel.setBackgroundColor(getResources().getColor(R.color.green));
-                    validator();
+                    //titel.setBackgroundColor(getResources().getColor(R.color.green));
                 } else {
                     titelBool = false;
-                    titel.setBackgroundColor(getResources().getColor(R.color.red));
+                    //titel.setBackgroundColor(getResources().getColor(R.color.red));
                 }
+                validator();
             }
         });
         colorGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -197,7 +197,7 @@ public class KalenderAdd extends Fragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 colorButton = (RadioButton) v.findViewById(checkedId);
                 colorBool = true;
-                colorGroup.setBackgroundColor(getResources().getColor(R.color.green));
+                //colorGroup.setBackgroundColor(getResources().getColor(R.color.green));
                 validator();
             }
         });
@@ -253,32 +253,21 @@ public class KalenderAdd extends Fragment {
             @Override
             public void onClick(View v) {
                 //Log.e("SPEICHERN",Boolean.toString(beginn.compareTo(ende) < 0));
-                if ((beginn.compareTo(ende) < 0) && (ganztagigBool || !ganztagigBool && beginnHour.compareTo(endeHour) < 0) && validator()) {
+                if (validator() && (beginn.compareTo(ende) < 0) && (ganztagigBool || !ganztagigBool && beginnHour.compareTo(endeHour) < 0)) {
                     Schnittstelle.TerminEintrag t;
                     if (ganztagigBool) {
                         beginnHour = new Zeit(0, 0);
                         endeHour = new Zeit(23, 59);
                     }
-                    if (!beschreibung.getText().toString().isEmpty()) {
-                        t = new Schnittstelle().new TerminEintrag(
-                                titel.getText().toString(),
-                                colorButton.getText().toString(),
-                                beginn,
-                                ende,
-                                beginnHour,
-                                endeHour,
-                                beschreibung.getText().toString()
-                        );
-                    } else {
-                        t = new Schnittstelle().new TerminEintrag(
-                                titel.getText().toString(),
-                                colorButton.getText().toString(),
-                                beginn,
-                                ende,
-                                beginnHour,
-                                endeHour
-                        );
-                    }
+                    t = new Schnittstelle().new TerminEintrag(
+                            titel.getText().toString(),
+                            colorButton.getText().toString(),
+                            beginn,
+                            ende,
+                            beginnHour,
+                            endeHour,
+                            beschreibung.getText().toString()
+                    );
 
                     Schnittstelle.terminListe.add(t);
                     Schnittstelle.saveTermine();

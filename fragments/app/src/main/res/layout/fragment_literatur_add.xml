@@ -17,18 +17,16 @@
 
             <TextView
                 android:id="@+id/Titel"
-                android:layout_width="wrap_content"
+                android:layout_width="148dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="1mm"
-                android:text="Titel:   "
+                android:text="Titel:"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/literatur_add_EditTitel"
-                android:layout_width="359dp"
+                android:id="@+id/titel"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="11dp"
                 android:ems="10"
                 android:hint="Titel eingeben"
                 android:inputType="textPersonName" />
@@ -41,17 +39,16 @@
 
             <TextView
                 android:id="@+id/Autor"
-                android:layout_width="wrap_content"
+                android:layout_width="148dp"
                 android:layout_height="wrap_content"
-                android:text="Autor:   "
+                android:text="Autor:"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/literatur_add_EditAutor"
-                android:layout_width="361dp"
+                android:id="@+id/autor"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:ems="10"
                 android:hint="Autor eingeben"
                 android:inputType="textPersonName" />
@@ -64,18 +61,16 @@
 
             <TextView
                 android:id="@+id/URL"
-                android:layout_width="55dp"
+                android:layout_width="148dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="1mm"
-                android:text="URL:          "
+                android:text="URL(optional):"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/literatur_add_EditURL"
-                android:layout_width="353dp"
+                android:id="@+id/url"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="11dp"
                 android:ems="10"
                 android:hint=" URL eingeben"
                 android:inputType="textPersonName"
@@ -89,19 +84,16 @@
 
             <TextView
                 android:id="@+id/Notizen"
-                android:layout_width="wrap_content"
+                android:layout_width="148dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="1mm"
-                android:text="Notizen:"
+                android:text="Notizen(optional):"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/literatur_add_EditNotizen"
-                android:layout_width="347dp"
+                android:id="@+id/notizen"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
                 android:ems="10"
                 android:hint="Notizen eingeben"
                 android:inputType="textPersonName" />
@@ -117,7 +109,7 @@
         >
 
         <Button
-            android:id="@+id/literatur_add_abbrechen"
+            android:id="@+id/abbrechen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
@@ -125,7 +117,7 @@
             android:text="Abbrechen" />
 
         <Button
-            android:id="@+id/literatur_add_speichern"
+            android:id="@+id/speichern"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"

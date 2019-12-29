@@ -1,15 +1,21 @@
 package com.example.java_class;
 
 import android.os.Bundle;
+
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.google.android.material.snackbar.Snackbar;
 
 
 public class ToDoBearbeiten extends Fragment {
@@ -19,50 +25,70 @@ public class ToDoBearbeiten extends Fragment {
         View v = inflater.inflate(R.layout.fragment_to_do_bearbeiten, container, false);
 
         //setzt den text ins fenster (titel)
-        final EditText et = (EditText) v.findViewById(R.id.editText_todo_bearbeiten);
+        final EditText titel = (EditText) v.findViewById(R.id.titel);
         String s = Schnittstelle.toDoListe.get(ToDoAdapter.aufgerufen).name;
-        Log.d("aufgerufen",s);
-        et.setText(s);
-
+        Log.d("aufgerufen", s);
+        titel.setText(s);
 
 
         //onklick listener löchen
-        Button loechen = (Button) v.findViewById(R.id.to_do_bearbeiten_loechen);
+        Button loechen = (Button) v.findViewById(R.id.löschen);
         loechen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ToDoSicherheitsabfrage n = new ToDoSicherheitsabfrage();
-                n.show(getFragmentManager(),"sicherheitsabfrage");
+                n.show(getFragmentManager(), "sicherheitsabfrage");
             }
         });
 
-
-        Button speichern = (Button) v.findViewById(R.id.to_do_bearbeiten_Speichern);//für onklicklistener
+        final Button speichern = (Button) v.findViewById(R.id.speichern);//für onklicklistener
         //final EditText titel = (EditText) v.findViewById(R.id.to_do_add_EditText);//um eingetragene werte zu bekommen
+
+        titel.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!titel.getText().toString().isEmpty()) {
+                    speichern.setAlpha(1f);
+                    //titel.setBackgroundColor(getResources().getColor(R.color.green));
+                } else {
+                    speichern.setAlpha(.5f);
+                    //titel.setBackgroundColor(getResources().getColor(R.color.red));
+                }
+            }
+        });
         speichern.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 //neuen eintrag schreiben
-                String s2 = et.getText().toString();
-                if(s2.length() >0){
-                Schnittstelle.toDoListe.get(ToDoAdapter.aufgerufen).name = s2 ;
+                if (titel.getText().toString().length() > 0) {
+                    Schnittstelle.toDoListe.get(ToDoAdapter.aufgerufen).name = titel.getText().toString();
 
 
-                //speichere änderungen
-                Schnittstelle.saveToDo();
+                    //speichere änderungen
+                    Schnittstelle.saveToDo();
 
-                //seite neu laden
-                FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.nav_host_fragment,new ToDo());
-                fr.commit();
-            }
-                else
-            {
+                    //seite neu laden
+                    FragmentTransaction fr = getFragmentManager().beginTransaction();
+                    fr.replace(R.id.nav_host_fragment, new ToDo());
+                    fr.commit();
+                } else {
+                /*
                 int error = getResources().getColor(R.color.Error);
-                et.setBackgroundColor(error);
-                et.setHint("darf nicht leer sein");
-            }
+                titel.setBackgroundColor(error);
+                titel.setHint("darf nicht leer sein");
+                 */
+                    Snackbar error = Snackbar.make(v, "Bitte überprüfe deine Eingaben", 1024);
+                    error.show();
+                }
             }
         });
 
