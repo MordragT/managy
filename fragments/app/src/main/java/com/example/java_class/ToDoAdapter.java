@@ -1,6 +1,5 @@
 package com.example.java_class;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -9,23 +8,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.ListView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentTransaction;
-
 import java.util.ArrayList;
 
 public class ToDoAdapter extends ArrayAdapter<Schnittstelle.ToDoEintrag> { //<____________________________________________________________________________________________________________________
 
-    private static final String TAG = "ToDoAdapter";
+    //private static final String TAG = "ToDoAdapter";
     private Context mContext;
-    int mResource;
+    private int mResource;
     static int aufgerufen = -1; //kann beim aufruf der bearbeiten seite dkeinen intwert übergeben darum hier als static speichern und darauf zugreifen
 
 
+    /*
     public void getOnClickedBox(View vv) {
         //checkbox klick event
         //bekomme raus welche box geklickt wurde
@@ -52,6 +48,7 @@ public class ToDoAdapter extends ArrayAdapter<Schnittstelle.ToDoEintrag> { //<__
         String t2 = String.valueOf(ToDo.toDoItems.get(position).getB());
         Log.d("checkbox", t2);
     }
+     */
 
 
     public ToDoAdapter(@NonNull Context context, int resource, ArrayList<Schnittstelle.ToDoEintrag> objects) { // Ändern für jedes dokument

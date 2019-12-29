@@ -1,14 +1,9 @@
 package com.example.java_class;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.XmlRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +15,7 @@ import android.widget.EditText;
 public class ToDoBearbeiten extends Fragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_to_do_bearbeiten, container, false);
 
         //setzt den text ins fenster (titel)
@@ -44,7 +38,7 @@ public class ToDoBearbeiten extends Fragment {
 
 
         Button speichern = (Button) v.findViewById(R.id.to_do_bearbeiten_Speichern);//für onklicklistener
-        final EditText titel = (EditText) v.findViewById(R.id.to_do_add_EditText);//um eingetragene werte zu bekommen
+        //final EditText titel = (EditText) v.findViewById(R.id.to_do_add_EditText);//um eingetragene werte zu bekommen
         speichern.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

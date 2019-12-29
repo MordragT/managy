@@ -1,24 +1,13 @@
 package com.example.java_class;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import java.util.ArrayList;
 
 
@@ -27,11 +16,13 @@ public class ToDo extends Fragment {
     static ListView toDoItemList;
     static ArrayList<Test> toDoItems = new ArrayList<>();
 
+    /*
     public void overrideAdapterLayout() {
         FragmentTransaction fr = getFragmentManager().beginTransaction();
         fr.replace(R.id.nav_host_fragment, new ToDo());
         fr.commit();
     }
+     */
 
     /*
      * bekomme raus welche box geklickt wurde
@@ -56,8 +47,7 @@ public class ToDo extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_to_do, container, false);
 
@@ -82,7 +72,7 @@ public class ToDo extends Fragment {
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                ((MainActivity)getActivity()).bottomNav.setSelectedItemId(((MainActivity) getActivity()).lastItem);
+                ((MainActivity) getActivity()).bottomNav.setSelectedItemId(((MainActivity) getActivity()).lastItem);
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);

@@ -5,7 +5,6 @@ import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +16,10 @@ import android.widget.RadioGroup;
 import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TimePicker;
-
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import com.google.android.material.snackbar.Snackbar;
-
-import java.sql.Time;
 import java.util.Calendar;
 
 public class KalenderAdd extends Fragment {
@@ -85,31 +80,23 @@ public class KalenderAdd extends Fragment {
     private BeginnHourListener beginnHourListener = new BeginnHourListener();
     private EndeHourListener endeHourListener = new EndeHourListener();
 
-    private boolean titelBool = false;
-    private boolean colorBool = false;
-    private boolean beginnBool = false;
-    private boolean endeBool = false;
-    private boolean beginnHourBool = false;
-    private boolean endeHourBool = false;
-    private boolean ganztagigBool = false;
+    private boolean titelBool = false,
+            colorBool = false,
+            beginnBool = false,
+            endeBool = false,
+            beginnHourBool = false,
+            endeHourBool = false,
+            ganztagigBool = false;
 
     View v;
-    private Button abbrechen;
-    private Button speichern;
-    private EditText titel;
-    private EditText beschreibung;
+    private Button abbrechen, speichern, beginnButton, endeButton, beginnHourButton, endeHourButton;
+    private EditText titel, beschreibung;
     private RadioGroup colorGroup;
     private RadioButton colorButton;
-    private Button beginnButton;
-    private Button endeButton;
-    private Button beginnHourButton;
-    private Button endeHourButton;
     private Switch ganztagigSwitch;
 
-    private Datum beginn;
-    private Datum ende;
-    private Zeit beginnHour;
-    private Zeit endeHour;
+    private Datum beginn, ende;
+    private Zeit beginnHour, endeHour;
 
     private void showDatePickerDialog(boolean beginn) {
         DatePickerDialog datePickerDialog;
@@ -257,7 +244,6 @@ public class KalenderAdd extends Fragment {
         abbrechen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //ToDo.to_to_onclick_titel(v , position);
                 FragmentTransaction fr = getFragmentManager().beginTransaction();
                 fr.replace(R.id.nav_host_fragment, new Kalender());
                 fr.commit();

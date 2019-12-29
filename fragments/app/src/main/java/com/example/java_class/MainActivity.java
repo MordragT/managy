@@ -3,15 +3,9 @@ package com.example.java_class;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.TextView;
-
-import java.util.Random;
-
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -29,15 +23,16 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         //einlesen der datein
         //Schnittstelle.load(this);
-        Schnittstelle.load();
+        //Schnittstelle.load();
         Log.d("einlesen", String.valueOf(Schnittstelle.toDoListe.size()));
 
+        /*
         FristStartseite();
         TerminStartseite();
         ToDoStartseite();
         LiteraturStartseite();
         TippsStartseite();
-
+        */
 
     }
 
@@ -76,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             };
-
+/*
     public void FristStartseite() {
         TextView FristStart = findViewById(R.id.FristStart);
 
@@ -98,8 +93,8 @@ public class MainActivity extends AppCompatActivity {
 
         } else {
             int counter = 0;
-            for (int i=0; i < Schnittstelle.toDoListe.size(); i++){
-                if(Schnittstelle.toDoListe.get(i).erledigt){
+            for (int i = 0; i < Schnittstelle.toDoListe.size(); i++) {
+                if (Schnittstelle.toDoListe.get(i).erledigt) {
                     counter++;
                 }
             }
@@ -148,6 +143,5 @@ public class MainActivity extends AppCompatActivity {
         String randomTipp = (getResources().getStringArray(R.array.TippsArray))[randomIndex];
         TippsStartseite.setText(randomTipp);
     }
-
+*/
 }
-

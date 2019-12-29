@@ -1,14 +1,9 @@
 package com.example.java_class;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.XmlRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,18 +21,18 @@ public class LiteraturBearbeiten extends Fragment {
 
         //setzt den text ins fenster
         final EditText titel = (EditText) v.findViewById(R.id.literatur_bearbeiten_EditTitel);//um eingetragene werte zu bekommen
-        final EditText autor =(EditText) v.findViewById(R.id.literatur_bearbeiten_EditAutor);
-        final EditText url=(EditText) v.findViewById(R.id.literatur_bearbeiten_EditURL);
-        final EditText notizen=(EditText) v.findViewById(R.id.literatur_bearbeiten_EditNotizen);
+        final EditText autor = (EditText) v.findViewById(R.id.literatur_bearbeiten_EditAutor);
+        final EditText url = (EditText) v.findViewById(R.id.literatur_bearbeiten_EditURL);
+        final EditText notizen = (EditText) v.findViewById(R.id.literatur_bearbeiten_EditNotizen);
 
         String s1 = Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).name;
         String s2 = Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).autor;
         String s3 = Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).url;
         String s4 = Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).notizen;
-       Log.d("aufgerufen",s1);
-       // Log.d("aufgerufen",s2);
+        Log.d("aufgerufen", s1);
+        // Log.d("aufgerufen",s2);
         //Log.d("aufgerufen",s3);
-       // Log.d("aufgerufen",s4);
+        // Log.d("aufgerufen",s4);
 
         titel.setText(s1);
         autor.setText(s2);
@@ -50,16 +45,16 @@ public class LiteraturBearbeiten extends Fragment {
             @Override
             public void onClick(View v) {
                 LiteraturSicherheitsabfrage n = new LiteraturSicherheitsabfrage();
-                n.show(getFragmentManager(),"sicherheitsabfrage");
+                n.show(getFragmentManager(), "sicherheitsabfrage");
             }
         });
 
 
         Button speichern = (Button) v.findViewById(R.id.literatur_bearbeiten_speichern);//für onklicklistener
         final EditText titel1 = (EditText) v.findViewById(R.id.literatur_bearbeiten_EditTitel);//um eingetragene werte zu bekommen
-        final EditText autor1 =(EditText) v.findViewById(R.id.literatur_bearbeiten_EditAutor);
-        final EditText url1=(EditText) v.findViewById(R.id.literatur_bearbeiten_EditURL);
-        final EditText notizen1=(EditText) v.findViewById(R.id.literatur_bearbeiten_EditNotizen);
+        final EditText autor1 = (EditText) v.findViewById(R.id.literatur_bearbeiten_EditAutor);
+        final EditText url1 = (EditText) v.findViewById(R.id.literatur_bearbeiten_EditURL);
+        final EditText notizen1 = (EditText) v.findViewById(R.id.literatur_bearbeiten_EditNotizen);
 
         speichern.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,11 +67,11 @@ public class LiteraturBearbeiten extends Fragment {
                 String s4 = notizen1.getText().toString();
 
 
-                if(s1.length() >0 && s2.length()>0){
-                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).name = s1 ;
-                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).autor = s2 ;
-                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).url = s3 ;
-                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).notizen = s4 ;
+                if (s1.length() > 0 && s2.length() > 0) {
+                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).name = s1;
+                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).autor = s2;
+                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).url = s3;
+                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).notizen = s4;
 
 
                     //speichere änderungen
@@ -84,11 +79,9 @@ public class LiteraturBearbeiten extends Fragment {
 
                     //seite neu laden
                     FragmentTransaction fr = getFragmentManager().beginTransaction();
-                    fr.replace(R.id.nav_host_fragment,new Literatur());
+                    fr.replace(R.id.nav_host_fragment, new Literatur());
                     fr.commit();
-                }
-                else
-                {
+                } else {
                     int error = getResources().getColor(R.color.Error);
                     titel1.setBackgroundColor(error);
                     titel1.setHint("Darf nicht leer sein!");

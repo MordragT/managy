@@ -1,41 +1,32 @@
 package com.example.java_class;
 
-import android.app.Activity;
 import android.os.Bundle;
-
 import androidx.activity.OnBackPressedCallback;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.lang.reflect.Array;
 import java.util.Random;
 import java.lang.String;
-import java.lang.reflect.Array;
-
-import android.view.View;
 import android.widget.TextView;
-
 
 
 public class Startseite extends Fragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                ((MainActivity)getActivity()).bottomNav.setSelectedItemId(((MainActivity) getActivity()).lastItem);
+                ((MainActivity) getActivity()).bottomNav.setSelectedItemId(((MainActivity) getActivity()).lastItem);
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
         View v = inflater.inflate(R.layout.fragment_startseite, container, false);
+
+        Schnittstelle.load();
 
         FristStartseite(v);
         TerminStartseite(v);
@@ -46,7 +37,7 @@ public class Startseite extends Fragment {
 //
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_startseite, container, false);
-        return v ;
+        return v;
     }
 
 
@@ -71,19 +62,19 @@ public class Startseite extends Fragment {
 
         } else {
             int counter = 0;
-            for (int i=0; i < Schnittstelle.toDoListe.size(); i++){
-                if(Schnittstelle.toDoListe.get(i).erledigt){
+            for (int i = 0; i < Schnittstelle.toDoListe.size(); i++) {
+                if (Schnittstelle.toDoListe.get(i).erledigt) {
                     counter++;
                 }
             }
 
             //if (counter == Schnittstelle.toDoListe.size()){
-                //String ToDo = "Du hast alle Aufgaben erledigt :D";
-                //ToDoStart.setText(ToDo);
+            //String ToDo = "Du hast alle Aufgaben erledigt :D";
+            //ToDoStart.setText(ToDo);
             //}
             //else{
-                String ToDo = counter + "/" + Schnittstelle.toDoListe.size();
-                ToDoStart.setText(ToDo);
+            String ToDo = counter + "/" + Schnittstelle.toDoListe.size();
+            ToDoStart.setText(ToDo);
             //}
         }
     }
@@ -108,8 +99,8 @@ public class Startseite extends Fragment {
             //String Literatur = "Du hast alles gelesen :D";
             //LiteraturStart.setText(Literatur);
             //} else {
-                String Literatur = counter + "/" + Schnittstelle.literaturListe.size();
-                LiteraturStart.setText(Literatur);
+            String Literatur = counter + "/" + Schnittstelle.literaturListe.size();
+            LiteraturStart.setText(Literatur);
             //}
         }
     }

@@ -4,11 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
-import androidx.appcompat.widget.AlertDialogLayout;
 import androidx.fragment.app.FragmentTransaction;
 
 public class ToDoSicherheitsabfrage extends AppCompatDialogFragment {

@@ -4,17 +4,13 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
-import androidx.appcompat.widget.AlertDialogLayout;
 import androidx.fragment.app.FragmentTransaction;
 
 public class LiteraturSicherheitsabfrage extends AppCompatDialogFragment {
 
     @Override
-    public Dialog onCreateDialog( Bundle savedInstanceState) {
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Löschen?")
                 .setMessage("Wirklich löschen?")
@@ -36,7 +32,7 @@ public class LiteraturSicherheitsabfrage extends AppCompatDialogFragment {
 
                         //neue seite laden
                         FragmentTransaction fr = getActivity().getSupportFragmentManager().beginTransaction();//getFragmentManager().beginTransaction();
-                        fr.replace(R.id.nav_host_fragment,new Literatur());
+                        fr.replace(R.id.nav_host_fragment, new Literatur());
                         fr.commit();
                     }
                 });
