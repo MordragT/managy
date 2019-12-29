@@ -3,20 +3,39 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!-- Strings der Startseite -->
-    <string name="FristStart">Frist</string>
-    <string name="TerminStart">Termin</string>
-    <string name="ToDoStart">ToDo</string>
-    <string name="LiteraturStart">Literatur</string>
-    <string name="TippStart">Tipp 0</string>
 
     <!-- Tipps -->
     <string-array name="TippsArray">
-        <item>Tipp 1</item>
-        <item>Tipp 2</item>
-        <item>Tipp 3</item>
-        <item>Tipp 4</item>
-        <item>Tipp 5</item>
+        <!-- Konzentration (10) -->
+        <item>Versuche wärend du arbeitest Ablenkung zu vermeiden</item>
+        <item>Leg dein Handy auch mal beiseite\n(solange du nicht Managy verwendest ;D)</item>
+        <item>Sozialer Kontakt ist wichtig, aber wärend der Arbeit nur in Gruppenarbeit</item>
+        <item>Pausen sind gut für die Konzentration</item>
+        <item>Überlege dir sinnvolle Zeiten für Pausen</item>
+        <item>In aufgeräumten Umgebungen arbeitet es sich einfacher</item>
+        <item>Die richtigen Hintergrundgeräusche können zu einer besseren Konzentration beitragen\nSchon mal ASMR probiert ?</item>
+        <item>Achte auf deine körperliche Fittnes:\ngenug Schlaf ist wichtig und Sport kann eine sinnvolle Ablenkung sein </item>
+        <item>Versuche Multitasking zu vermeiden</item>
+        <item>Beginne mit dem Schwierigsten/Anstrengensten</item>
+        <!-- wissenschaftliches Arbeiten (15) -->
+        <item>Zitate sind wichtig, aber übertreibe es nicht</item>
+        <item>Denke an die Quellen</item>
+        <item>Verfolgst du eine klare Fragestellung ?</item>
+        <item>Denke an einen roten Faden</item>
+        <item>Klare Absprachen mit deinem Dozenten sind unglaublich wichtig für eine gute Note</item>
+        <item>Grenze deine Recherche sinnvoll ein</item>
+        <item>Bearbeite unterschiedliche Kapitel nacheinander</item>
+        <item>Neben der Fachsprache darf es auch nicht an Verständlichkeit mangeln</item>
+        <item>Achte auf Objektivität\nWertungen nur wenn angebracht</item>
+        <item>Verschaffe dir eine Übersicht über deine Zwischenthemen\nz.B. mittels Mindmap</item>
+        <item>Achte auf das richtige Gendern\nIst dir dies zu lästig, mache am Anfang klar, dass du mit der männlichen Form alle Geschlechter meinst</item>
+        <item>Nimm dir genug Zeit für die Korrekturphase\nAuch das sprachliche Niveau ist neben dem fachlichen wichtig</item>
+        <item>Eine sinnvolle Einführung in das Thema ist angenehmer für den Leser</item>
+        <item>Vermeide zu lange und verschachtelte Sätze</item>
+        <item>Denke an deine Zielgruppe als Leser und überlege dir welchen Wissenstand du erwartn kannst</item>
+        <!-- Random -->
+        <item>Dies ist kein Tipp und das Lesen hat wertvolle Zeit gekostet\nhahahahaha</item>
+        <item>Schon mal darüber nachgedacht die wissenschaftliche Arbeit gar nicht selber zu schreiben ? ;)</item>
     </string-array>
 
 </resources>
