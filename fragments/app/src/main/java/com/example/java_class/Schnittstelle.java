@@ -1,14 +1,8 @@
 package com.example.java_class;
 
-import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
-
-import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
-import java.util.List;
-
 import java.io.*;
 
 public class Schnittstelle implements Serializable {
@@ -41,6 +35,7 @@ public class Schnittstelle implements Serializable {
     /**
      * Lade alle Listen aus den Dokumenten
      */
+    /*
     static void loadTodo(Context c) {
         try {
             File file = new File(Environment.getExternalStoragePublicDirectory(
@@ -64,6 +59,7 @@ public class Schnittstelle implements Serializable {
             e.printStackTrace();
         }
     }
+    */
 
 
     static void load() {
@@ -215,26 +211,27 @@ public class Schnittstelle implements Serializable {
             this.endeZeit = endeZeit;
             this.beschreibung = Beschreibung;
         }
-        TerminEintrag(String name, String farbe, Datum beginn, Datum ende, Zeit beginnZeit, Zeit endeZeit) {
-            this.name = name;
-            this.farbe = farbe;
-            this.beginn = beginn;
-            this.ende = ende;
-            this.beginnZeit = beginnZeit;
-            this.endeZeit = endeZeit;
-        }
     }
 
     class ToDoEintrag implements Serializable {
-        String name = "NAME_LEER";
+        String name;
         boolean erledigt = false;
+        ToDoEintrag(String name) {
+            this.name = name;
+        }
     }
 
     class LiteraturEintrag implements Serializable {
-        String name = "NAME_LEER";
-        String autor = "NAME_LEER";
-        String url = "NAME_LEER";
-        String notizen = "NAME_LEER";
+        String name;
+        String autor;
+        String url;
+        String notizen;
         boolean gelesen = false;
+        LiteraturEintrag(String name, String autor, String url, String notizen) {
+            this.name = name;
+            this.autor = autor;
+            this.url = url;
+            this.notizen = notizen;
+        }
     }
 }

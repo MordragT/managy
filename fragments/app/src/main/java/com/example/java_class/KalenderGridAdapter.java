@@ -6,20 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class KalenderGridAdapter extends ArrayAdapter {
-    List<Date> dates;
-    Calendar currentDate;
+    private List<Date> dates;
+    private Calendar currentDate;
     LayoutInflater inflater;
 
     @Override
@@ -35,140 +30,93 @@ public class KalenderGridAdapter extends ArrayAdapter {
         Calendar dateCalendar = Calendar.getInstance();
         dateCalendar.setTime(monthDate);
 
-        int DayNo = dateCalendar.get(Calendar.DAY_OF_MONTH);
-        int displayMonth = dateCalendar.get(Calendar.MONTH)+1;
+        int displayDay = dateCalendar.get(Calendar.DAY_OF_MONTH);
+        int displayMonth = dateCalendar.get(Calendar.MONTH) + 1;
         int displayYear = dateCalendar.get(Calendar.YEAR);
-        int currentMonth = currentDate.get(Calendar.MONTH) +1;
+        int currentMonth = currentDate.get(Calendar.MONTH) + 1;
         int currentYear = currentDate.get(Calendar.YEAR);
 
+        /*
         String dayNumberFill;
         String monthNumberFill;
         String yearNumberFill;
 
 
-        if(DayNo < 10){
-            dayNumberFill = "0"+DayNo;
-        }
-        else{
-            dayNumberFill = ""+DayNo;
-        }
-        if(displayMonth < 10){
-            monthNumberFill = "0"+displayMonth;
-        }
-        else{
-            monthNumberFill = ""+displayMonth;
-        }
-        if(displayYear < 10){
-            yearNumberFill = "000"+displayYear;
-        }
-        else if(displayYear < 100){
-            yearNumberFill = "00"+displayYear;
-        }
-        else if(displayYear < 1000){
-            yearNumberFill = "0"+displayYear;
-        }
-        else{
-            yearNumberFill = ""+displayYear;
-        }
+        if (displayDay < 10) dayNumberFill = "0" + displayDay;
+        else dayNumberFill = "" + displayDay;
 
+        if (displayMonth < 10) monthNumberFill = "0" + displayMonth;
+        else monthNumberFill = "" + displayMonth;
 
-        //SimpleDateFormat fullDate = new SimpleDateFormat("yyyy-MM-dd");
+        if (displayYear < 10) yearNumberFill = "000" + displayYear;
+        else if (displayYear < 100) yearNumberFill = "00" + displayYear;
+        else if (displayYear < 1000) yearNumberFill = "0" + displayYear;
+        else yearNumberFill = "" + displayYear;
+
+        SimpleDateFormat fullDate = new SimpleDateFormat("yyyy-MM-dd");
         Date fullDate;
-        String notConvertedDate = yearNumberFill+"-"+monthNumberFill+"-"+dayNumberFill;
-        fullDate = ConvertStringToDate(notConvertedDate);
+        String notConvertedDate = yearNumberFill + "-" + monthNumberFill + "-" + dayNumberFill;
+        fullDate = convertStringToDate(notConvertedDate);
+         */
 
         View view = convertView;
-        if(view == null){
-            view = inflater.inflate(R.layout.fragment_single_cell_layout,parent, false);
+        if (view == null) {
+            view = inflater.inflate(R.layout.fragment_single_cell_layout, parent, false);
         }
 
+        TextView dayCell = view.findViewById(R.id.calendar_day);
+        TextView eventOne = view.findViewById(R.id.events_id);
 
-
-        TextView Day_Number = view.findViewById(R.id.calendar_day);
-
-        TextView EventOne = view.findViewById(R.id.events_id);
-
-        if(displayMonth != currentMonth || displayYear != currentYear){
-            Day_Number.setTextColor(getContext().getResources().getColor(R.color.Gray));
+        if (displayMonth != currentMonth || displayYear != currentYear) {
+            dayCell.setTextColor(getContext().getResources().getColor(R.color.Gray));
         }
 
-        /*
-        Schnittstelle loadTermine = new Schnittstelle();
-        loadTermine.load();
-        Schnittstelle.TerminEintrag e1 = new Schnittstelle().new TerminEintrag();
-        e1.name = "Test1";
-        Datum start = new Datum(20, 12, 2019);
-        Datum ende = new Datum(21, 12, 2019);
-        e1.beginn = start;
-        e1.ende = ende;
-        Schnittstelle.TerminEintrag e2 = new Schnittstelle().new TerminEintrag();
-        e2.name = "Test2";
-        Datum start2 = new Datum(12, 12, 2019);
-        Datum ende2 = new Datum(12, 12, 2019);
-        e2.beginn = start2;
-        e2.ende = ende2;
-        loadTermine.terminListe.add(e1);
-        loadTermine.terminListe.add(e2);
-
-        int c = 0;
-        for(int i = 0; i<loadTermine.terminListe.size() && c < 1; i++){
-            if(loadTermine.terminListe.get(i).beginn.jahr <= displayYear
-                && loadTermine.terminListe.get(i).beginn.monat <= displayMonth
-                && loadTermine.terminListe.get(i).beginn.tag <= DayNo
-                && loadTermine.terminListe.get(i).ende.jahr >= displayYear
-                && loadTermine.terminListe.get(i).ende.monat >= displayMonth
-                && loadTermine.terminListe.get(i).ende.tag >= DayNo){
-
-                if(loadTermine.terminListe.get(i).farbe.equals("rot")) EventOne.setBackgroundColor(getContext().getResources().getColor(R.color.red));
-                else if(loadTermine.terminListe.get(i).farbe.equals("gelb")) EventOne.setBackgroundColor(getContext().getResources().getColor(R.color.yellow));
-                else if(loadTermine.terminListe.get(i).farbe.equals("blau")) EventOne.setBackgroundColor(getContext().getResources().getColor(R.color.blue));
-                else if(loadTermine.terminListe.get(i).farbe.equals("grün")) EventOne.setBackgroundColor(getContext().getResources().getColor(R.color.green));
-
-                EventOne.setText(loadTermine.terminListe.get(i).name);
-
-            }
-        }
-        */
-
-        for(Schnittstelle.TerminEintrag termin : Schnittstelle.terminListe) {
-            if(
+        for (Schnittstelle.TerminEintrag termin : Schnittstelle.terminListe) {
+            if (
                     termin.beginn.jahr <= displayYear
-                    && termin.beginn.monat <= displayMonth
-                    && termin.beginn.tag <= DayNo
-                    && termin.ende.jahr >= displayYear
-                    && termin.ende.monat >= displayMonth
-                    && termin.ende.tag >= DayNo
+                            && termin.beginn.monat <= displayMonth
+                            && termin.beginn.tag <= displayDay
+                            && termin.ende.jahr >= displayYear
+                            && termin.ende.monat >= displayMonth
+                            && termin.ende.tag >= displayDay
             ) {
-                if(termin.farbe.equals("rot")) EventOne.setBackgroundColor(getContext().getResources().getColor(R.color.red));
-                else if(termin.farbe.equals("gelb")) EventOne.setBackgroundColor(getContext().getResources().getColor(R.color.yellow));
-                else if(termin.farbe.equals("blau")) EventOne.setBackgroundColor(getContext().getResources().getColor(R.color.blue));
-                else if(termin.farbe.equals("grün")) EventOne.setBackgroundColor(getContext().getResources().getColor(R.color.green));
-
-                EventOne.setText(termin.name);
+                switch (termin.farbe) {
+                    case "rot":
+                        eventOne.setBackgroundColor(getContext().getResources().getColor(R.color.red));
+                        break;
+                    case "gelb":
+                        eventOne.setBackgroundColor(getContext().getResources().getColor(R.color.yellow));
+                        break;
+                    case "blau":
+                        eventOne.setBackgroundColor(getContext().getResources().getColor(R.color.blue));
+                        break;
+                    case "grün":
+                        eventOne.setBackgroundColor(getContext().getResources().getColor(R.color.green));
+                        break;
+                }
+                eventOne.setText(termin.name);
             }
         }
 
-        Day_Number.setText(String.valueOf(DayNo));
-        //EventOne.setText(notConvertedDate);
+        dayCell.setText(String.valueOf(displayDay));
 
-        //EventOne.setText(String.valueOf(monthDate));
-        //Day_Number.setText(notConvertedDate);
-
-
-
+        //eventOne.setText(notConvertedDate);
+        //eventOne.setText(String.valueOf(monthDate));
+        //dayCell.setText(notConvertedDate);
         return view;
     }
-
-    private Date ConvertStringToDate(String eventDate){
+    /*
+    private Date convertStringToDate(String eventDate) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.GERMAN);
         Date date = null;
-        try{
+        try {
             date = format.parse(eventDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return date;
     }
+     */
 
     @Override
     public int getPosition(@Nullable Object item) {
@@ -182,10 +130,10 @@ public class KalenderGridAdapter extends ArrayAdapter {
     }
 
 
-    public KalenderGridAdapter(@NonNull Context context, List<Date> dates, Calendar currentDate) {
+    KalenderGridAdapter(@NonNull Context context, List<Date> dates, Calendar currentDate) {
         super(context, R.layout.fragment_single_cell_layout);
 
-        this.dates=dates;
+        this.dates = dates;
         this.currentDate = currentDate;
         inflater = LayoutInflater.from(context);
     }

@@ -14,19 +14,18 @@
         >
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="148dp"
             android:layout_height="wrap_content"
             android:text="Titel:"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:layout_marginRight="1mm"/>
+            android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/editText_todo_bearbeiten"
+            android:id="@+id/titel"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text=""
+            android:hint="Was gibt es zu tun"
             android:inputType="textPersonName"/>
     </LinearLayout>
 
@@ -38,7 +37,7 @@
         >
 
         <Button
-            android:id="@+id/to_do_bearbeiten_loechen"
+            android:id="@+id/löschen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
@@ -46,7 +45,7 @@
             android:text="Löschen" />
 
         <Button
-            android:id="@+id/to_do_bearbeiten_Speichern"
+            android:id="@+id/speichern"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -13,15 +13,14 @@
         >
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="148dp"
             android:layout_height="wrap_content"
             android:text="Titel:"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:layout_marginRight="1mm"/>
+            android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/to_do_add_EditText"
+            android:id="@+id/titel"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -37,7 +36,7 @@
         >
 
         <Button
-            android:id="@+id/to_do_add_abbrechen"
+            android:id="@+id/abbrechen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
@@ -45,7 +44,7 @@
             android:text="Abbrechen" />
 
         <Button
-            android:id="@+id/to_do_add_speichern"
+            android:id="@+id/speichern"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"

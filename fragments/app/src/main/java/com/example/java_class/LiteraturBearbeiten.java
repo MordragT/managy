@@ -1,82 +1,113 @@
 package com.example.java_class;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.XmlRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.material.snackbar.Snackbar;
+
 
 public class LiteraturBearbeiten extends Fragment {
 
+    private Button speichern;
+    private EditText titel, autor, url, notizen;
+
+    private boolean titelBool = true, autorBool = true;
+
+    private boolean validator() {
+        if (titelBool && autorBool) {
+            speichern.setAlpha(1f);
+            return true;
+        }
+        speichern.setAlpha(.5f);
+        return false;
+    }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_literatur_bearbeiten, container, false);
 
-        //setzt den text ins fenster
-        final EditText titel = (EditText) v.findViewById(R.id.literatur_bearbeiten_EditTitel);//um eingetragene werte zu bekommen
-        final EditText autor =(EditText) v.findViewById(R.id.literatur_bearbeiten_EditAutor);
-        final EditText url=(EditText) v.findViewById(R.id.literatur_bearbeiten_EditURL);
-        final EditText notizen=(EditText) v.findViewById(R.id.literatur_bearbeiten_EditNotizen);
+        speichern = (Button) v.findViewById(R.id.speichern);
+        titel = (EditText) v.findViewById(R.id.titel);
+        autor = (EditText) v.findViewById(R.id.autor);
+        url = (EditText) v.findViewById(R.id.url);
+        notizen = (EditText) v.findViewById(R.id.notizen);
 
-        String s1 = Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).name;
-        String s2 = Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).autor;
-        String s3 = Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).url;
-        String s4 = Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).notizen;
-       Log.d("aufgerufen",s1);
-       // Log.d("aufgerufen",s2);
-        //Log.d("aufgerufen",s3);
-       // Log.d("aufgerufen",s4);
+        titel.setText(Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).name);
+        autor.setText(Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).autor);
+        url.setText(Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).url);
+        notizen.setText(Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).notizen);
 
-        titel.setText(s1);
-        autor.setText(s2);
-        url.setText(s3);
-        notizen.setText(s4);
 
+        titel.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!titel.getText().toString().isEmpty()) {
+                    titelBool = true;
+                    //titel.setBackgroundColor(getResources().getColor(R.color.green));
+                } else {
+                    titelBool = false;
+                    //titel.setBackgroundColor(getResources().getColor(R.color.red));
+                }
+                validator();
+            }
+        });
+        autor.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!autor.getText().toString().isEmpty()) {
+                    autorBool = true;
+                    //titel.setBackgroundColor(getResources().getColor(R.color.green));
+                } else {
+                    autorBool = false;
+                    //titel.setBackgroundColor(getResources().getColor(R.color.red));
+                }
+                validator();
+            }
+        });
         //onklick listener löschen
-        Button loeschen = (Button) v.findViewById(R.id.literatur_bearbeiten_loeschen);
+        Button loeschen = (Button) v.findViewById(R.id.löschen);
         loeschen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LiteraturSicherheitsabfrage n = new LiteraturSicherheitsabfrage();
-                n.show(getFragmentManager(),"sicherheitsabfrage");
+                n.show(getFragmentManager(), "sicherheitsabfrage");
             }
         });
-
-
-        Button speichern = (Button) v.findViewById(R.id.literatur_bearbeiten_speichern);//für onklicklistener
-        final EditText titel1 = (EditText) v.findViewById(R.id.literatur_bearbeiten_EditTitel);//um eingetragene werte zu bekommen
-        final EditText autor1 =(EditText) v.findViewById(R.id.literatur_bearbeiten_EditAutor);
-        final EditText url1=(EditText) v.findViewById(R.id.literatur_bearbeiten_EditURL);
-        final EditText notizen1=(EditText) v.findViewById(R.id.literatur_bearbeiten_EditNotizen);
-
         speichern.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (validator()) {
 
-                //neuen eintrag schreiben
-                String s1 = titel1.getText().toString();
-                String s2 = autor1.getText().toString();
-                String s3 = url1.getText().toString();
-                String s4 = notizen1.getText().toString();
-
-
-                if(s1.length() >0 && s2.length()>0){
-                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).name = s1 ;
-                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).autor = s2 ;
-                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).url = s3 ;
-                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).notizen = s4 ;
+                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).name = titel.getText().toString();
+                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).autor = autor.getText().toString();
+                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).url = url.getText().toString();
+                    Schnittstelle.literaturListe.get(LiteraturAdapter.aufgerufen).notizen = notizen.getText().toString();
 
 
                     //speichere änderungen
@@ -84,16 +115,18 @@ public class LiteraturBearbeiten extends Fragment {
 
                     //seite neu laden
                     FragmentTransaction fr = getFragmentManager().beginTransaction();
-                    fr.replace(R.id.nav_host_fragment,new Literatur());
+                    fr.replace(R.id.nav_host_fragment, new Literatur());
                     fr.commit();
-                }
-                else
-                {
+                } else {
+                    /*
                     int error = getResources().getColor(R.color.Error);
                     titel1.setBackgroundColor(error);
                     titel1.setHint("Darf nicht leer sein!");
                     autor1.setBackgroundColor(error);
                     autor1.setHint("Darf nicht leer sein!");
+                     */
+                    Snackbar error = Snackbar.make(v, "Bitte überprüfe deine Eingaben", 1024);
+                    error.show();
                 }
             }
         });
