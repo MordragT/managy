@@ -1,6 +1,8 @@
 package com.example.java_class;
 
-public class Zeit implements Comparable {
+import java.io.Serializable;
+
+public class Zeit implements Serializable,Comparable {
     int stunden;
     int minuten;
 

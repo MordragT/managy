@@ -76,34 +76,6 @@ public class ToDo extends Fragment {
 
         toDoItemList = v.findViewById(R.id.todo_items_list);
 
-        toDoItems.add(new Test(true, "todo1"));
-        toDoItems.add(new Test(false, "todo2"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-        toDoItems.add(new Test(true, "todo3"));
-
         ToDoAdapter adapter = new ToDoAdapter(this.getContext(), R.layout.fragment_to_do_adapter, Schnittstelle.toDoListe);
         toDoItemList.setAdapter(adapter);
 

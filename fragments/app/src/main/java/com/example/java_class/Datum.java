@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 //Hier -1 stat null ?
 //Wird von allen klassen mit zeiten benutzt
-public class Datum implements Comparable {
+public class Datum implements Serializable,Comparable {
     int tag;
     int monat;
     int jahr;

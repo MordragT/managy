@@ -28,10 +28,10 @@ public class Schnittstelle implements Serializable {
      * Lösche alle Daten
      */
     void deleteAllFiles() {
-        File fileAbgaben = new File("abgaben.s");
-        File fileTermine = new File("termine.s");
-        File fileToDo = new File("toDo.s");
-        File fileLiteratur = new File("literatur.s");
+        File fileAbgaben = new File("abgaben.tmp");
+        File fileTermine = new File("termine.tmp");
+        File fileToDo = new File("toDo.tmp");
+        File fileLiteratur = new File("literatur.tmp");
         fileAbgaben.delete();
         fileTermine.delete();
         fileToDo.delete();
@@ -198,7 +198,7 @@ public class Schnittstelle implements Serializable {
         Datum erinnerungsTermin;
     }
 
-    class TerminEintrag {
+    class TerminEintrag implements Serializable {
         String name;
         String farbe;
         String beschreibung;
@@ -206,19 +206,6 @@ public class Schnittstelle implements Serializable {
         Datum ende;
         Zeit beginnZeit;
         Zeit endeZeit;
-        TerminEintrag(String name, String farbe, Datum beginn, Datum ende, String Beschreibung) {
-            this.name = name;
-            this.farbe = farbe;
-            this.beginn = beginn;
-            this.ende = ende;
-            this.beschreibung = Beschreibung;
-        }
-        TerminEintrag(String name, String farbe, Datum beginn, Datum ende) {
-            this.name = name;
-            this.farbe = farbe;
-            this.beginn = beginn;
-            this.ende = ende;
-        }
         TerminEintrag(String name, String farbe, Datum beginn, Datum ende, Zeit beginnZeit, Zeit endeZeit, String Beschreibung) {
             this.name = name;
             this.farbe = farbe;
