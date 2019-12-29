@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -265,7 +266,8 @@ public class KalenderAdd extends Fragment {
         speichern.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validator() && beginn.compareTo(ende) < 0 && (!ganztagigBool && beginnHour.compareTo(endeHour) < 0) || ganztagigBool) {
+                //Log.e("SPEICHERN",Boolean.toString(beginn.compareTo(ende) < 0));
+                if ((beginn.compareTo(ende) < 0) && (ganztagigBool || !ganztagigBool && beginnHour.compareTo(endeHour) < 0) && validator()) {
                     Schnittstelle.TerminEintrag t;
                     if (ganztagigBool) {
                         beginnHour = new Zeit(0, 0);
