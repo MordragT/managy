@@ -20,7 +20,7 @@
     <item
         android:id="@+id/navigation_abgabe"
         android:icon="@drawable/img_abgaben"
-        android:title="Abgaben" />
+        android:title="Fristen" />
     <item
         android:id="@+id/navigation_literatur"
         android:icon="@drawable/img_literatur"

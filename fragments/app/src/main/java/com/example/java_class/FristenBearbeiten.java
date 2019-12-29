@@ -49,7 +49,7 @@ public class FristenBearbeiten extends Fragment {
 
     private Button speichern, terminButton, erinnerungsDatumButton;
     private EditText titel, beschreibung;
-    private boolean titelBool = false, terminBool = false, erinnerungsDatumBool = false;
+    private boolean titelBool = true, terminBool = true, erinnerungsDatumBool = true;
     private Datum termin, erinnerungsDatum;
 
     private boolean validator() {
@@ -86,13 +86,20 @@ public class FristenBearbeiten extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_fristen_add, container, false);
+        View v = inflater.inflate(R.layout.fragment_fristen_bearbeiten, container, false);
 
         speichern = (Button) v.findViewById(R.id.speichern);
         titel = (EditText) v.findViewById(R.id.titel);
         terminButton = (Button) v.findViewById(R.id.termin);
         erinnerungsDatumButton = (Button) v.findViewById(R.id.erinnerungs_datum);
         beschreibung = (EditText) v.findViewById(R.id.beschreibung);
+        termin = Schnittstelle.fristenListe.get(FristenAdapter.aufgerufen).termin;
+        erinnerungsDatum = Schnittstelle.fristenListe.get(FristenAdapter.aufgerufen).erinnerungsTermin;
+
+        titel.setText(Schnittstelle.fristenListe.get(FristenAdapter.aufgerufen).name);
+        terminButton.setText(Schnittstelle.fristenListe.get(FristenAdapter.aufgerufen).termin.toString());
+        erinnerungsDatumButton.setText(Schnittstelle.fristenListe.get(FristenAdapter.aufgerufen).erinnerungsTermin.toString());
+        beschreibung.setText(Schnittstelle.fristenListe.get(FristenAdapter.aufgerufen).beschreibung);
 
         titel.addTextChangedListener(new TextWatcher() {
             @Override
@@ -128,13 +135,12 @@ public class FristenBearbeiten extends Fragment {
             }
         });
         //onklick listener löschen
-        Button abbrechen = (Button) v.findViewById(R.id.abbrechen);
-        abbrechen.setOnClickListener(new View.OnClickListener() {
+        Button loeschen = (Button) v.findViewById(R.id.loeschen);
+        loeschen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.nav_host_fragment, new Fristen());
-                fr.commit();
+                FristenSicherheitsabfrage n = new FristenSicherheitsabfrage();
+                n.show(getFragmentManager(), "sicherheitsabfrage");
             }
         });
         speichern.setOnClickListener(new View.OnClickListener() {
@@ -142,13 +148,10 @@ public class FristenBearbeiten extends Fragment {
             public void onClick(View v) {
                 if (validator() && termin.compareTo(erinnerungsDatum) >= 0) {
 
-                    Schnittstelle.FristenEintrag e = new Schnittstelle().new FristenEintrag(
-                            titel.getText().toString(),
-                            termin,
-                            erinnerungsDatum,
-                            beschreibung.getText().toString()
-                    );
-                    Schnittstelle.fristenListe.add(e);
+                    Schnittstelle.fristenListe.get(FristenAdapter.aufgerufen).name = titel.getText().toString();
+                    Schnittstelle.fristenListe.get(FristenAdapter.aufgerufen).termin = termin;
+                    Schnittstelle.fristenListe.get(FristenAdapter.aufgerufen).erinnerungsTermin = erinnerungsDatum;
+                    Schnittstelle.fristenListe.get(FristenAdapter.aufgerufen).beschreibung = beschreibung.getText().toString();
                     //speichere änderungen
                     Schnittstelle.saveFristen();
 
