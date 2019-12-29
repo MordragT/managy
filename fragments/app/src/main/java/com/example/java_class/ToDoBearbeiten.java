@@ -32,8 +32,8 @@ public class ToDoBearbeiten extends Fragment {
 
 
         //onklick listener löchen
-        Button loechen = (Button) v.findViewById(R.id.löschen);
-        loechen.setOnClickListener(new View.OnClickListener() {
+        Button loeschen = (Button) v.findViewById(R.id.loeschen);
+        loeschen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ToDoSicherheitsabfrage n = new ToDoSicherheitsabfrage();

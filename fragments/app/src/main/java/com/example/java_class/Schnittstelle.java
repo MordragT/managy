@@ -13,7 +13,7 @@ public class Schnittstelle implements Serializable {
      */
 
     //Alle einträge als array
-    static ArrayList<AbgabenEintrag> abgabenListe = new ArrayList<>();
+    static ArrayList<FristenEintrag> fristenListe = new ArrayList<>();
     static ArrayList<TerminEintrag> terminListe = new ArrayList<>();
     static ArrayList<ToDoEintrag> toDoListe = new ArrayList<>();
     static ArrayList<LiteraturEintrag> literaturListe = new ArrayList<>();
@@ -22,11 +22,11 @@ public class Schnittstelle implements Serializable {
      * Lösche alle Daten
      */
     void deleteAllFiles() {
-        File fileAbgaben = new File("abgaben.tmp");
+        File fileFristen = new File("fristen.tmp");
         File fileTermine = new File("termine.tmp");
         File fileToDo = new File("toDo.tmp");
         File fileLiteratur = new File("literatur.tmp");
-        fileAbgaben.delete();
+        fileFristen.delete();
         fileTermine.delete();
         fileToDo.delete();
         fileLiteratur.delete();
@@ -67,8 +67,8 @@ public class Schnittstelle implements Serializable {
                 Environment.DIRECTORY_MOVIES), "/" + "termine.tmp");
         File fileToDo = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_MOVIES), "/" + "toDo.tmp");
-        File fileAbgaben = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_MOVIES), "/" + "abgaben.tmp");
+        File fileFristen = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_MOVIES), "/" + "fristen.tmp");
         File fileLiterarur = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_MOVIES), "/" + "literatur.tmp");
 
@@ -113,11 +113,11 @@ public class Schnittstelle implements Serializable {
             e.printStackTrace();
         }
         try {
-            FileInputStream fsAbgaben = new FileInputStream(fileAbgaben);
-            ObjectInputStream isAbgaben = new ObjectInputStream(fsAbgaben);
-            abgabenListe = (ArrayList<AbgabenEintrag>) isAbgaben.readObject();
-            isAbgaben.close();
-            fsAbgaben.close();
+            FileInputStream fsFristen = new FileInputStream(fileFristen);
+            ObjectInputStream isFristen = new ObjectInputStream(fsFristen);
+            fristenListe = (ArrayList<FristenEintrag>) isFristen.readObject();
+            isFristen.close();
+            fsFristen.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -127,15 +127,15 @@ public class Schnittstelle implements Serializable {
 
     }
 
-    static void saveAbgaben() {
+    static void saveFristen() {
         try {
             File file = new File(Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_MOVIES), "/" + "abgaben.tmp");
-            FileOutputStream fsAbgaben = new FileOutputStream(file);
-            ObjectOutputStream isAbgaben = new ObjectOutputStream(fsAbgaben);
-            isAbgaben.writeObject(abgabenListe);
-            isAbgaben.close();
-            fsAbgaben.close();
+                    Environment.DIRECTORY_MOVIES), "/" + "fristen.tmp");
+            FileOutputStream fsFristen = new FileOutputStream(file);
+            ObjectOutputStream isFristen = new ObjectOutputStream(fsFristen);
+            isFristen.writeObject(fristenListe);
+            isFristen.close();
+            fsFristen.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -187,11 +187,18 @@ public class Schnittstelle implements Serializable {
     /*
      * Einträge als class
      */
-    class AbgabenEintrag implements Serializable {
-        String name = "NAME_LEER";
+    class FristenEintrag implements Serializable {
+        String name;
         Boolean erinnern = false;
         Datum termin;
         Datum erinnerungsTermin;
+        String beschreibung;
+        FristenEintrag(String name, Datum termin, Datum erinnerungsTermin, String beschreibung) {
+            this.name = name;
+            this.termin = termin;
+            this.erinnerungsTermin = erinnerungsTermin;
+            this.beschreibung = beschreibung;
+        }
     }
 
     class TerminEintrag implements Serializable {
