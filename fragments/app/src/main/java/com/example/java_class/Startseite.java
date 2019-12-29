@@ -56,7 +56,6 @@ public class Startseite extends Fragment {
     private void ToDoStartseite(View v) {
         TextView ToDoStart = v.findViewById(R.id.ToDoStart);
         if (Schnittstelle.toDoListe.size() == 0) {
-            //String ToDo = "Du hast aktuell keine Aufgaben :D";
             String ToDo = "0/0";
             ToDoStart.setText(ToDo);
 
@@ -67,22 +66,14 @@ public class Startseite extends Fragment {
                     counter++;
                 }
             }
-
-            //if (counter == Schnittstelle.toDoListe.size()){
-            //String ToDo = "Du hast alle Aufgaben erledigt :D";
-            //ToDoStart.setText(ToDo);
-            //}
-            //else{
             String ToDo = counter + "/" + Schnittstelle.toDoListe.size();
             ToDoStart.setText(ToDo);
-            //}
         }
     }
 
     private void LiteraturStartseite(View v) {
         TextView LiteraturStart = v.findViewById(R.id.LiteraturStart);
         if (Schnittstelle.literaturListe.size() == 0) {
-            //String Literatur = "Du hast aktuell keine Literatur :D";
             String Literatur = "0/0";
             LiteraturStart.setText(Literatur);
 
@@ -94,14 +85,8 @@ public class Startseite extends Fragment {
                     counter++;
                 }
             }
-
-            //if (counter == Schnittstelle.literaturListe.size()) {
-            //String Literatur = "Du hast alles gelesen :D";
-            //LiteraturStart.setText(Literatur);
-            //} else {
             String Literatur = counter + "/" + Schnittstelle.literaturListe.size();
             LiteraturStart.setText(Literatur);
-            //}
         }
     }
 

@@ -34,7 +34,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="50dp"
             android:gravity="center"
-            android:text="@string/FristStart"
+            android:text="Frist"
             />
 
         <!-- Termin -->
@@ -58,7 +58,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="200dp"
             android:gravity="center"
-            android:text="@string/TerminStart"
+            android:text="Termin"
             />
 
         <!-- To-Do -->
@@ -84,8 +84,8 @@
             android:layout_marginTop="350dp"
             android:layout_marginRight="88dp"
             android:gravity="center"
-            android:textSize="30dp"
-            android:text="@string/ToDoStart"
+            android:textSize="30sp"
+            android:text="ToDo"
             />
 
         <!-- Literatur -->
@@ -111,8 +111,8 @@
             android:layout_marginTop="350dp"
             android:layout_marginLeft="88dp"
             android:gravity="center"
-            android:textSize="30dp"
-            android:text="@string/LiteraturStart"
+            android:textSize="30sp"
+            android:text="Literatur"
             />
         <!-- Tipp -->
         <TextView
