@@ -3,6 +3,8 @@ package com.example.java_class;
 import android.os.Bundle;
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +36,11 @@ public class Startseite extends Fragment {
         LiteraturStartseite(v);
         TippsStartseite(v);
 
-//
+        gotoFristen(v);
+        gotoTermine(v);
+        gotoToDo(v);
+        gotoLiteratur(v);
+
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_startseite, container, false);
         return v;
@@ -98,5 +104,55 @@ public class Startseite extends Fragment {
         TippsStartseite.setText(randomTipp);
     }
 
+    private void gotoFristen(View v){
+        TextView FristStart = v.findViewById(R.id.FristStart);
+        FristStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fr = getFragmentManager().beginTransaction();
+                fr.replace(R.id.nav_host_fragment, new Fristen());
+                fr.commit();
+            }
+        });
+    }
 
-}
+    private void gotoTermine(View v){
+        TextView TerminStart = v.findViewById(R.id.TerminStart);
+        TerminStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fr = getFragmentManager().beginTransaction();
+                fr.replace(R.id.nav_host_fragment, new Kalender());
+                fr.commit();
+            }
+        });
+    }
+
+    private void gotoToDo(View v){
+        TextView ToDoStart = v.findViewById(R.id.ToDoStart);
+        ToDoStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fr = getFragmentManager().beginTransaction();
+                fr.replace(R.id.nav_host_fragment, new ToDo());
+                fr.commit();
+            }
+        });
+    }
+
+    private void gotoLiteratur(View v){
+        TextView LiteraturStart = v.findViewById(R.id.LiteraturStart);
+        LiteraturStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fr = getFragmentManager().beginTransaction();
+                fr.replace(R.id.nav_host_fragment, new Literatur());
+                fr.commit();
+            }
+        });
+    }}
+
+
+
+
+

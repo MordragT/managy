@@ -27,6 +27,7 @@
 
         <TextView
             android:id="@+id/FristStart"
+            android:onClick="gotoFrist"
             android:clickable="true"
             android:layout_width="325dp"
             android:layout_height="100dp"
@@ -51,6 +52,7 @@
 
         <TextView
             android:id="@+id/TerminStart"
+            android:onClick="gotoTermin"
             android:clickable="true"
             android:layout_width="325dp"
             android:layout_height="100dp"
@@ -76,6 +78,7 @@
 
         <TextView
             android:id="@+id/ToDoStart"
+            android:onClick="gotoToDo"
             android:clickable="true"
             android:layout_width="150dp"
             android:layout_height="75dp"
@@ -103,6 +106,7 @@
 
         <TextView
             android:id="@+id/LiteraturStart"
+            android:onClick="gotoLiteratur"
             android:clickable="true"
             android:layout_width="150dp"
             android:layout_height="75dp"
