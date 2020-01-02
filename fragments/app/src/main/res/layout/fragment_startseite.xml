@@ -27,7 +27,7 @@
 
         <TextView
             android:id="@+id/FristStart"
-            android:onClick="gotoFrist"
+            android:onClick="gotoFristen"
             android:clickable="true"
             android:layout_width="325dp"
             android:layout_height="100dp"
@@ -35,6 +35,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="50dp"
             android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:text="Frist"
             />
 
@@ -52,7 +54,7 @@
 
         <TextView
             android:id="@+id/TerminStart"
-            android:onClick="gotoTermin"
+            android:onClick="gotoTermine"
             android:clickable="true"
             android:layout_width="325dp"
             android:layout_height="100dp"
@@ -60,6 +62,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="200dp"
             android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:text="Termin"
             />
 
@@ -88,6 +92,7 @@
             android:layout_marginRight="88dp"
             android:gravity="center"
             android:textSize="30sp"
+            android:textStyle="bold"
             android:text="ToDo"
             />
 
@@ -116,6 +121,7 @@
             android:layout_marginLeft="88dp"
             android:gravity="center"
             android:textSize="30sp"
+            android:textStyle="bold"
             android:text="Literatur"
             />
         <!-- Tipp -->
@@ -137,6 +143,7 @@
             android:background="#ffffff"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="475dp"
+            android:textStyle="bold"
             android:gravity="center"
 
             />
