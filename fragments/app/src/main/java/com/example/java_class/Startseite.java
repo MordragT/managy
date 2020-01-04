@@ -49,14 +49,24 @@ public class Startseite extends Fragment {
 
     private void FristStartseite(View v) {
         TextView FristStart = v.findViewById(R.id.FristStart);
-
+        if (Schnittstelle.fristenListe.size() == 0) {
+            String Frist = "Du hast keine Fristen :D";
+            FristStart.setText(Frist);
+        } else {
+            String Frist = Schnittstelle.fristenListe.get(0).name + "\n\n" + Schnittstelle.fristenListe.get(0).termin;
+            FristStart.setText(Frist);
+        }
     }
 
     private void TerminStartseite(View v) {
         TextView TerminStart = v.findViewById(R.id.TerminStart);
-
-        //int Termingröße = Schnittstelle.terminListe.size();
-        //TerminStart.setText(Termingröße);
+        if (Schnittstelle.terminListe.size() == 0) {
+            String Termin = "Du hast keine Termine :D";
+            TerminStart.setText(Termin);
+        } else {
+            String Termin = Schnittstelle.terminListe.get(0).name + "\n\n" + Schnittstelle.terminListe.get(0).beginn;
+            TerminStart.setText(Termin);
+        }
     }
 
     private void ToDoStartseite(View v) {
@@ -64,7 +74,6 @@ public class Startseite extends Fragment {
         if (Schnittstelle.toDoListe.size() == 0) {
             String ToDo = "0/0";
             ToDoStart.setText(ToDo);
-
         } else {
             int counter = 0;
             for (int i = 0; i < Schnittstelle.toDoListe.size(); i++) {
@@ -82,9 +91,7 @@ public class Startseite extends Fragment {
         if (Schnittstelle.literaturListe.size() == 0) {
             String Literatur = "0/0";
             LiteraturStart.setText(Literatur);
-
         } else {
-
             int counter = 0;
             for (int i = 0; i < Schnittstelle.literaturListe.size(); i++) {
                 if (Schnittstelle.literaturListe.get(i).gelesen) {
