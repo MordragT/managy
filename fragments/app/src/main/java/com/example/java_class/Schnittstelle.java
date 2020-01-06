@@ -143,6 +143,52 @@ public class Schnittstelle implements Serializable {
 
     static void saveTermine() {
         try {
+            //sortierung start
+            ArrayList<TerminEintrag> terminTmp = new ArrayList<>();
+
+            for(int i = 0; i<terminListe.size(); i++){
+                terminTmp.add(terminListe.get(i));
+
+                while(i-1>=0){
+
+                    if(terminTmp.get(i).beginn.jahr < terminTmp.get(i-1).beginn.jahr){
+                        TerminEintrag tmp = terminTmp.get(i-1);
+                        terminTmp.set(i-1, terminTmp.get(i));
+                        terminTmp.set(i, tmp);
+                    } else if(terminTmp.get(i).beginn.jahr == terminTmp.get(i-1).beginn.jahr
+                            && terminTmp.get(i).beginn.monat < terminTmp.get(i-1).beginn.monat){
+                        TerminEintrag tmp = terminTmp.get(i-1);
+                        terminTmp.set(i-1, terminTmp.get(i));
+                        terminTmp.set(i, tmp);
+                    } else if (terminTmp.get(i).beginn.jahr == terminTmp.get(i-1).beginn.jahr
+                            && terminTmp.get(i).beginn.monat == terminTmp.get(i-1).beginn.monat
+                            && terminTmp.get(i).beginn.tag < terminTmp.get(i-1).beginn.tag){
+                        TerminEintrag tmp = terminTmp.get(i-1);
+                        terminTmp.set(i-1, terminTmp.get(i));
+                        terminTmp.set(i, tmp);
+                    } else if (terminTmp.get(i).beginn.jahr == terminTmp.get(i-1).beginn.jahr
+                            && terminTmp.get(i).beginn.monat == terminTmp.get(i-1).beginn.monat
+                            && terminTmp.get(i).beginn.tag == terminTmp.get(i-1).beginn.tag
+                            && terminTmp.get(i).beginnZeit.stunden < terminTmp.get(i-1).beginnZeit.stunden){
+                        TerminEintrag tmp = terminTmp.get(i-1);
+                        terminTmp.set(i-1, terminTmp.get(i));
+                        terminTmp.set(i, tmp);
+                    } else if (terminTmp.get(i).beginn.jahr == terminTmp.get(i-1).beginn.jahr
+                            && terminTmp.get(i).beginn.monat == terminTmp.get(i-1).beginn.monat
+                            && terminTmp.get(i).beginn.tag == terminTmp.get(i-1).beginn.tag
+                            && terminTmp.get(i).beginnZeit.stunden == terminTmp.get(i-1).beginnZeit.stunden
+                            && terminTmp.get(i).beginnZeit.minuten < terminTmp.get(i-1).beginnZeit.minuten){
+                        TerminEintrag tmp = terminTmp.get(i-1);
+                        terminTmp.set(i-1, terminTmp.get(i));
+                        terminTmp.set(i, tmp);
+                    }
+                    break;
+                }
+            }
+
+            terminListe = terminTmp;
+            //sortierung ende
+
             File file = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_MOVIES), "/" + "termine.tmp");
             FileOutputStream fsTermine = new FileOutputStream(file);
