@@ -2,18 +2,34 @@ package com.example.java_class;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
+
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.MenuItem;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-
     public BottomNavigationView bottomNav;
     public int lastItem;
+    public static int notificationNummer = 0;
+    private String CHANNEL_ID = "channel_01";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         //Schnittstelle.load(this);
         //Schnittstelle.load();
         Log.d("einlesen", String.valueOf(Schnittstelle.toDoListe.size()));
+
+        createNotificationChannel(); //Channel für die notification erstellen
+        //CreateNotification();
     }
 
 
@@ -62,4 +81,64 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Fristen Notification", importance);
+            channel.setDescription("Channel für alle Fristen Notifications");
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    public boolean CreateNotification(String text, Datum erinnerungsDatum) {
+        scheduleNotification(getNotification(text), erinnerungsDatum);
+        return true;
+    }
+
+    public void scheduleNotification(android.app.Notification notification, Datum erinnerungsDatum) {
+
+        Intent notificationIntent = new Intent(this, NotificationPublisher.class);
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, notificationNummer);
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        
+        calendar.set(Calendar.YEAR, erinnerungsDatum.jahr);
+        calendar.set(Calendar.MONTH, (erinnerungsDatum.monat - 1));
+        calendar.set(Calendar.DAY_OF_MONTH, erinnerungsDatum.tag);
+        calendar.set(Calendar.HOUR_OF_DAY, 15);
+        calendar.set(Calendar.MINUTE, 18);
+        calendar.set(Calendar.SECOND, 10);
+
+
+        //long futureInMillis = SystemClock.elapsedRealtime() + delay;
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+
+    }
+
+
+    public Notification getNotification(String content) {
+
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setContentTitle("Errinerung!")
+                .setContentText("TEXT ZUR ERRINERUNG DER FRIST: " + content + "!")
+                .setSmallIcon(R.drawable.ic_announcement)
+                .setColor(Color.rgb(0, 181, 173))
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .setPriority(Notification.PRIORITY_DEFAULT);
+        return builder.build();
+
+    }
+
 }
