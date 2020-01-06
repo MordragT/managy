@@ -20,7 +20,9 @@
         android:layout_height="wrap_content"
         android:background="#00A84444"
         android:text="Test"
-        android:textSize="25sp" />
+        android:textSize="30sp"
+        android:maxEms="6"/>
+
     <TextView
         android:id="@+id/fristen_termin"
         android:layout_width="wrap_content"
