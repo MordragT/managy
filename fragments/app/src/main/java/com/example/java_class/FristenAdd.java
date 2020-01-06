@@ -152,6 +152,11 @@ public class FristenAdd extends Fragment {
                     //speichere änderungen
                     Schnittstelle.saveFristen();
 
+                    //Benachrichtigung für Frist
+                    ((MainActivity)getActivity()).CreateNotification(titel.getText().toString(), erinnerungsDatum);
+                    MainActivity.notificationNummer++;
+
+
                     //seite neu laden
                     FragmentTransaction fr = getFragmentManager().beginTransaction();
                     fr.replace(R.id.nav_host_fragment, new Fristen());

@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-
-
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Startseite"
-    android:background="#000000"
+    android:background="#FFFFFF"
     android:orientation="horizontal"
-    >
+    tools:context=".Startseite">
 
 
         <!-- Frist -->
@@ -18,133 +15,124 @@
             android:layout_width="325dp"
             android:layout_height="25dp"
             android:layout_gravity="center_horizontal"
-            android:background="#00b5ad"
             android:layout_marginTop="25dp"
-            android:textStyle="bold"
-            android:text="Nächste Frist:"
+            android:background="#00b5ad"
             android:gravity="center_horizontal"
-            />
+            android:text="Nächste Frist:"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/FristStart"
-            android:onClick="gotoFristen"
-            android:clickable="true"
             android:layout_width="325dp"
             android:layout_height="100dp"
-            android:background="#ffffff"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="50dp"
+            android:background="#409B9B9B"
+            android:clickable="true"
             android:gravity="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:onClick="gotoFristen"
             android:text="Frist"
-            />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <!-- Termin -->
         <TextView
             android:layout_width="325dp"
             android:layout_height="25dp"
             android:layout_gravity="center_horizontal"
-            android:background="#00b5ad"
             android:layout_marginTop="175dp"
-            android:textStyle="bold"
-            android:text="Nächster Termin:"
+            android:background="#00b5ad"
             android:gravity="center_horizontal"
-            />
+            android:text="Nächster Termin:"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/TerminStart"
-            android:onClick="gotoTermine"
-            android:clickable="true"
             android:layout_width="325dp"
             android:layout_height="100dp"
-            android:background="#ffffff"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="200dp"
+            android:background="#409B9B9B"
+            android:clickable="true"
             android:gravity="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:onClick="gotoTermine"
             android:text="Termin"
-            />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <!-- To-Do -->
         <TextView
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_gravity="center_horizontal"
-            android:background="#00b5ad"
             android:layout_marginTop="325dp"
-            android:textStyle="bold"
-            android:text="To-Do:"
-            android:gravity="center_horizontal"
             android:layout_marginRight="88dp"
-            />
+            android:background="#00b5ad"
+            android:gravity="center_horizontal"
+            android:text="To-Do:"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/ToDoStart"
-            android:onClick="gotoToDo"
-            android:clickable="true"
             android:layout_width="150dp"
             android:layout_height="75dp"
-            android:background="#ffffff"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="350dp"
             android:layout_marginRight="88dp"
+            android:background="#409B9B9B"
+            android:clickable="true"
             android:gravity="center"
-            android:textSize="30sp"
-            android:textStyle="bold"
+            android:onClick="gotoToDo"
             android:text="ToDo"
-            />
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <!-- Literatur -->
         <TextView
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_gravity="center_horizontal"
-            android:background="#00b5ad"
-            android:layout_marginTop="325dp"
-            android:textStyle="bold"
-            android:text="Literatur:"
-            android:gravity="center_horizontal"
             android:layout_marginLeft="88dp"
-            />
+            android:layout_marginTop="325dp"
+            android:background="#00b5ad"
+            android:gravity="center_horizontal"
+            android:text="Literatur:"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/LiteraturStart"
-            android:onClick="gotoLiteratur"
-            android:clickable="true"
             android:layout_width="150dp"
             android:layout_height="75dp"
-            android:background="#ffffff"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="350dp"
             android:layout_marginLeft="88dp"
+            android:layout_marginTop="350dp"
+            android:background="#409B9B9B"
+            android:clickable="true"
             android:gravity="center"
-            android:textSize="30sp"
-            android:textStyle="bold"
+            android:onClick="gotoLiteratur"
             android:text="Literatur"
-            />
+            android:textSize="30sp"
+            android:textStyle="bold" />
         <!-- Tipp -->
         <TextView
             android:layout_width="325dp"
             android:layout_height="25dp"
             android:layout_gravity="center_horizontal"
-            android:background="#00b5ad"
             android:layout_marginTop="450dp"
-            android:textStyle="bold"
-            android:text="Tipp:"
+            android:background="#00b5ad"
             android:gravity="center_horizontal"
-            />
+            android:text="Tipp:"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/TippsStart"
             android:layout_width="325dp"
             android:layout_height="75dp"
-            android:background="#ffffff"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="475dp"
-            android:textStyle="bold"
+            android:background="#409B9B9B"
             android:gravity="center"
+            android:textStyle="bold"
 
             />
 
