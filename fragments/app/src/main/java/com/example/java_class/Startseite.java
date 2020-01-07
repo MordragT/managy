@@ -116,9 +116,7 @@ public class Startseite extends Fragment {
         FristStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.nav_host_fragment, new Fristen());
-                fr.commit();
+                ((MainActivity) getActivity()).bottomNav.setSelectedItemId(R.id.navigation_abgabe);
             }
         });
     }
@@ -128,9 +126,7 @@ public class Startseite extends Fragment {
         TerminStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.nav_host_fragment, new Kalender());
-                fr.commit();
+                ((MainActivity) getActivity()).bottomNav.setSelectedItemId(R.id.navigation_kalender);
             }
         });
     }
@@ -140,9 +136,7 @@ public class Startseite extends Fragment {
         ToDoStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.nav_host_fragment, new ToDo());
-                fr.commit();
+                ((MainActivity) getActivity()).bottomNav.setSelectedItemId(R.id.navigation_to_do);
             }
         });
     }
@@ -152,9 +146,7 @@ public class Startseite extends Fragment {
         LiteraturStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.nav_host_fragment, new Literatur());
-                fr.commit();
+                ((MainActivity) getActivity()).bottomNav.setSelectedItemId(R.id.navigation_literatur);
             }
         });
     }}
