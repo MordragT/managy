@@ -129,6 +129,38 @@ public class Schnittstelle implements Serializable {
 
     static void saveFristen() {
         try {
+
+            //sortierung start: Insertion Sort verwendet
+            ArrayList<FristenEintrag> fristenTmp = new ArrayList<>();
+
+            for(int i = 0; i<fristenListe.size(); i++){
+                fristenTmp.add(fristenListe.get(i));
+
+                while(i-1>=0){
+
+                    if(fristenTmp.get(i).termin.jahr < fristenTmp.get(i-1).termin.jahr){
+                        FristenEintrag tmp = fristenTmp.get(i-1);
+                        fristenTmp.set(i-1, fristenTmp.get(i));
+                        fristenTmp.set(i, tmp);
+                    } else if(fristenTmp.get(i).termin.jahr == fristenTmp.get(i-1).termin.jahr
+                            && fristenTmp.get(i).termin.monat < fristenTmp.get(i-1).termin.monat){
+                        FristenEintrag tmp = fristenTmp.get(i-1);
+                        fristenTmp.set(i-1, fristenTmp.get(i));
+                        fristenTmp.set(i, tmp);
+                    } else if (fristenTmp.get(i).termin.jahr == fristenTmp.get(i-1).termin.jahr
+                            && fristenTmp.get(i).termin.monat == fristenTmp.get(i-1).termin.monat
+                            && fristenTmp.get(i).termin.tag < fristenTmp.get(i-1).termin.tag){
+                        FristenEintrag tmp = fristenTmp.get(i-1);
+                        fristenTmp.set(i-1, fristenTmp.get(i));
+                        fristenTmp.set(i, tmp);
+                    }
+                    break;
+                }
+            }
+
+            fristenListe = fristenTmp;
+            //sortierung ende
+
             File file = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_MOVIES), "/" + "fristen.tmp");
             FileOutputStream fsFristen = new FileOutputStream(file);
@@ -143,7 +175,7 @@ public class Schnittstelle implements Serializable {
 
     static void saveTermine() {
         try {
-            //sortierung start
+            //sortierung start: Insertion Sort verwendet
             ArrayList<TerminEintrag> terminTmp = new ArrayList<>();
 
             for(int i = 0; i<terminListe.size(); i++){
