@@ -68,6 +68,8 @@ public class Literatur extends Fragment {
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
+        ((MainActivity)getActivity()).setActionBarTitle("Literatur");
+
         return v;
     }
 

@@ -30,6 +30,8 @@ public class Kalender extends Fragment {
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
+        ((MainActivity)getActivity()).setActionBarTitle("Kalender");
+
         return v;
     }
 

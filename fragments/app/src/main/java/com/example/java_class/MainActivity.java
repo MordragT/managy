@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
+import android.app.ActionBar;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -15,7 +16,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -82,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
 
+    public void setActionBarTitle(String title) {
+        setTitle(title);
+    }
+
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
@@ -112,9 +116,9 @@ public class MainActivity extends AppCompatActivity {
         calendar.set(Calendar.YEAR, erinnerungsDatum.jahr);
         calendar.set(Calendar.MONTH, (erinnerungsDatum.monat - 1));
         calendar.set(Calendar.DAY_OF_MONTH, erinnerungsDatum.tag);
-        calendar.set(Calendar.HOUR_OF_DAY, 15);
-        calendar.set(Calendar.MINUTE, 18);
-        calendar.set(Calendar.SECOND, 10);
+        calendar.set(Calendar.HOUR_OF_DAY, 5);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
 
 
         //long futureInMillis = SystemClock.elapsedRealtime() + delay;
