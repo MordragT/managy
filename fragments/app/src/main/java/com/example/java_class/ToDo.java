@@ -77,6 +77,8 @@ public class ToDo extends Fragment {
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
+        ((MainActivity)getActivity()).setActionBarTitle("To-Do");
+
         return v;
     }
 

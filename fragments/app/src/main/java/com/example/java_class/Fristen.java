@@ -47,6 +47,8 @@ public class Fristen extends Fragment {
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
+        ((MainActivity)getActivity()).setActionBarTitle("Fristen");
+
         return v;
     }
 

@@ -44,6 +44,8 @@ public class Startseite extends Fragment {
         gotoToDo(v);
         gotoLiteratur(v);
 
+        ((MainActivity)getActivity()).setActionBarTitle("Managy");
+
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_startseite, container, false);
         return v;
