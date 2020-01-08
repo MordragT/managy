@@ -235,6 +235,25 @@ public class Schnittstelle implements Serializable {
 
     static void saveToDo() {
         try {
+            //sortierung start
+            ArrayList<ToDoEintrag> toDoTmp = new ArrayList<>();
+
+            for(int i = 0; i<toDoListe.size(); i++){
+                toDoTmp.add(toDoListe.get(i));
+
+                while(i-1>=0){
+
+                    if(toDoTmp.get(i).erledigt == false && toDoTmp.get(i-1).erledigt == true){
+                        ToDoEintrag tmp = toDoTmp.get(i-1);
+                        toDoTmp.set(i-1, toDoTmp.get(i));
+                        toDoTmp.set(i, tmp);
+                    }
+                    break;
+                }
+            }
+
+            toDoListe = toDoTmp;
+            //sortierung ende
             File file = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_MOVIES), "/" + "toDo.tmp");
             FileOutputStream fsToDo = new FileOutputStream(file);
