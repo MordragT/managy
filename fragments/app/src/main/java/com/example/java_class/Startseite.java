@@ -8,9 +8,12 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.Locale;
 import java.util.Random;
 import java.lang.String;
 import android.widget.TextView;
+import java.util.Calendar;
 
 
 public class Startseite extends Fragment {
@@ -64,8 +67,47 @@ public class Startseite extends Fragment {
             String Termin = "Du hast keine Termine :D";
             TerminStart.setText(Termin);
         } else {
-            String Termin = Schnittstelle.terminListe.get(0).name + "\n\n" + Schnittstelle.terminListe.get(0).beginn;
-            TerminStart.setText(Termin);
+            Calendar tmpCalendar = Calendar.getInstance(Locale.GERMAN);
+            int currentJahr = tmpCalendar.get(Calendar.YEAR);
+            int currentMonat = tmpCalendar.get(Calendar.MONTH+1)-1;
+            int currentTag = tmpCalendar.get(Calendar.DAY_OF_MONTH);
+            int currentStunde = tmpCalendar.get(Calendar.HOUR_OF_DAY);
+            int currentMinute = tmpCalendar.get(Calendar.MINUTE);
+
+            int i = 0;
+            boolean current = false;
+            for(; i < Schnittstelle.terminListe.size() && !current;){
+                if(Schnittstelle.terminListe.get(i).beginn.jahr > currentJahr){
+                    current = true;
+                } else if(Schnittstelle.terminListe.get(i).beginn.jahr == currentJahr
+                        && Schnittstelle.terminListe.get(i).beginn.monat > currentMonat){
+                    current = true;
+                } else if(Schnittstelle.terminListe.get(i).beginn.jahr == currentJahr
+                        && Schnittstelle.terminListe.get(i).beginn.monat == currentMonat
+                        && Schnittstelle.terminListe.get(i).beginn.tag > currentTag){
+                    current = true;
+                } else if(Schnittstelle.terminListe.get(i).beginn.jahr == currentJahr
+                        && Schnittstelle.terminListe.get(i).beginn.monat == currentMonat
+                        && Schnittstelle.terminListe.get(i).beginn.tag == currentTag
+                        && Schnittstelle.terminListe.get(i).beginnZeit.stunden > currentStunde){
+                    current = true;
+                } else if(Schnittstelle.terminListe.get(i).beginn.jahr == currentJahr
+                        && Schnittstelle.terminListe.get(i).beginn.monat == currentMonat
+                        && Schnittstelle.terminListe.get(i).beginn.tag == currentTag
+                        && Schnittstelle.terminListe.get(i).beginnZeit.stunden == currentStunde
+                        && Schnittstelle.terminListe.get(i).beginnZeit.minuten > currentMinute){
+                    current = true;
+                } else{
+                    i++;
+                }
+            }
+            if(i==Schnittstelle.terminListe.size()){
+                String Termin = "Du hast keine anstehende Termine :D";
+                TerminStart.setText(Termin);
+            }else{
+                String Termin = Schnittstelle.terminListe.get(i).name + "\n\n" + Schnittstelle.terminListe.get(i).beginn;
+                TerminStart.setText(Termin);
+            }
         }
     }
 
