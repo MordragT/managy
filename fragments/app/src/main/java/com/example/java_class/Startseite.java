@@ -56,8 +56,36 @@ public class Startseite extends Fragment {
             String Frist = "Du hast keine Fristen :D";
             FristStart.setText(Frist);
         } else {
-            String Frist = Schnittstelle.fristenListe.get(0).name + "\n\n" + Schnittstelle.fristenListe.get(0).termin;
-            FristStart.setText(Frist);
+            Calendar tmpCalendar = Calendar.getInstance(Locale.GERMAN);
+            int currentJahr = tmpCalendar.get(Calendar.YEAR);
+            int currentMonat = tmpCalendar.get(Calendar.MONTH+1)-1;
+            int currentTag = tmpCalendar.get(Calendar.DAY_OF_MONTH);
+
+            int i = 0;
+            boolean current = false;
+
+            for(; i < Schnittstelle.fristenListe.size() && !current;){
+                if(Schnittstelle.fristenListe.get(i).termin.jahr > currentJahr){
+                    current = true;
+                } else if(Schnittstelle.fristenListe.get(i).termin.jahr == currentJahr
+                        && Schnittstelle.fristenListe.get(i).termin.monat > currentMonat){
+                    current = true;
+                } else if(Schnittstelle.fristenListe.get(i).termin.jahr == currentJahr
+                        && Schnittstelle.fristenListe.get(i).termin.monat == currentMonat
+                        && Schnittstelle.fristenListe.get(i).termin.tag >= currentTag){
+                    current = true;
+                } else{
+                    i++;
+                }
+            }
+            if(i==Schnittstelle.fristenListe.size()){
+                String Frist = "Du hast keine anstehende Fristen :D";
+                FristStart.setText(Frist);
+            }else{
+                String Frist = Schnittstelle.fristenListe.get(i).name + "\n\n" + Schnittstelle.fristenListe.get(i).termin;
+                FristStart.setText(Frist);
+            }
+
         }
     }
 
