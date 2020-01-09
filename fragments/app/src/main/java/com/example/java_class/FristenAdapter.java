@@ -68,7 +68,6 @@ public class FristenAdapter extends ArrayAdapter<Schnittstelle.FristenEintrag> {
 
         TextView tyName = (TextView) convertView.findViewById(R.id.fristen_titel);
         TextView tyTermin = (TextView) convertView.findViewById(R.id.fristen_termin);
-        CheckBox tyDone = (CheckBox) convertView.findViewById(R.id.fristen_checkbox);
 
         tyName.setText(titel);
         tyTermin.setText(termin.toString());
@@ -76,17 +75,9 @@ public class FristenAdapter extends ArrayAdapter<Schnittstelle.FristenEintrag> {
         int grey = Color.GRAY;
         if (bool) {
             tyName.setTextColor(grey);
-            tyDone.setChecked(true);
         } else
             tyName.setTextColor(black);
 
-        //Aktion lisener für den checkbox buton                                     //ändern für jedes dokument
-        tyDone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fristen.getOnClickedBox(v, position);
-            }
-        });
         //Aktion listener für view
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -50,10 +50,10 @@ public class FristenAdd extends Fragment {
     private Button speichern, terminButton, erinnerungsDatumButton;
     private EditText titel, beschreibung;
     private boolean titelBool = false, terminBool = false, erinnerungsDatumBool = false;
-    private Datum termin, erinnerungsDatum;
+    private Datum termin, erinnerungsDatum = null;
 
     private boolean validator() {
-        if (titelBool && terminBool && erinnerungsDatumBool) {
+        if (titelBool && terminBool) {
             speichern.setAlpha(1f);
             return true;
         }
@@ -93,10 +93,12 @@ public class FristenAdd extends Fragment {
         terminButton = (Button) v.findViewById(R.id.termin);
         erinnerungsDatumButton = (Button) v.findViewById(R.id.erinnerungs_datum);
         beschreibung = (EditText) v.findViewById(R.id.beschreibung);
+        validator();
 
         titel.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
 
             @Override
@@ -140,7 +142,7 @@ public class FristenAdd extends Fragment {
         speichern.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validator() && termin.compareTo(erinnerungsDatum) >= 0) {
+                if (validator() && (erinnerungsDatum==null|| termin.compareTo(erinnerungsDatum) >= 0) ) {
 
                     Schnittstelle.FristenEintrag e = new Schnittstelle().new FristenEintrag(
                             titel.getText().toString(),
@@ -153,9 +155,10 @@ public class FristenAdd extends Fragment {
                     Schnittstelle.saveFristen();
 
                     //Benachrichtigung für Frist
-                    ((MainActivity)getActivity()).CreateNotification(titel.getText().toString(), erinnerungsDatum);
-                    MainActivity.notificationNummer++;
-
+                    if (erinnerungsDatumBool) {
+                        ((MainActivity) getActivity()).CreateNotification(titel.getText().toString(), erinnerungsDatum);
+                        MainActivity.notificationNummer++;
+                    }
 
                     //seite neu laden
                     FragmentTransaction fr = getFragmentManager().beginTransaction();
