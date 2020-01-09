@@ -129,6 +129,43 @@ public class Schnittstelle implements Serializable {
 
     static void saveFristen() {
         try {
+
+            //sortierung start: Insertion Sort verwendet
+            ArrayList<FristenEintrag> fristenTmp = new ArrayList<>();
+
+            for(int i = 0; i<fristenListe.size(); i++){
+                fristenTmp.add(fristenListe.get(i));
+                int cc = i;
+                while(cc-1>=0){
+
+                    if(fristenTmp.get(cc).termin.jahr < fristenTmp.get(cc-1).termin.jahr){
+                        FristenEintrag tmp = fristenTmp.get(cc-1);
+                        fristenTmp.set(cc-1, fristenTmp.get(cc));
+                        fristenTmp.set(cc, tmp);
+                        cc--;
+                    } else if(fristenTmp.get(cc).termin.jahr == fristenTmp.get(cc-1).termin.jahr
+                            && fristenTmp.get(cc).termin.monat < fristenTmp.get(cc-1).termin.monat){
+                        FristenEintrag tmp = fristenTmp.get(cc-1);
+                        fristenTmp.set(cc-1, fristenTmp.get(cc));
+                        fristenTmp.set(cc, tmp);
+                        cc--;
+                    } else if (fristenTmp.get(cc).termin.jahr == fristenTmp.get(cc-1).termin.jahr
+                            && fristenTmp.get(cc).termin.monat == fristenTmp.get(cc-1).termin.monat
+                            && fristenTmp.get(cc).termin.tag < fristenTmp.get(cc-1).termin.tag){
+                        FristenEintrag tmp = fristenTmp.get(cc-1);
+                        fristenTmp.set(cc-1, fristenTmp.get(cc));
+                        fristenTmp.set(cc, tmp);
+                        cc--;
+                    } else {
+                        break;
+                    }
+
+                }
+            }
+
+            fristenListe = fristenTmp;
+            //sortierung ende
+
             File file = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_MOVIES), "/" + "fristen.tmp");
             FileOutputStream fsFristen = new FileOutputStream(file);
@@ -143,46 +180,53 @@ public class Schnittstelle implements Serializable {
 
     static void saveTermine() {
         try {
-            //sortierung start
+            //sortierung start: Insertion Sort verwendet
             ArrayList<TerminEintrag> terminTmp = new ArrayList<>();
 
             for(int i = 0; i<terminListe.size(); i++){
                 terminTmp.add(terminListe.get(i));
+                int cc = i;
+                while(cc-1>=0){
 
-                while(i-1>=0){
-
-                    if(terminTmp.get(i).beginn.jahr < terminTmp.get(i-1).beginn.jahr){
-                        TerminEintrag tmp = terminTmp.get(i-1);
-                        terminTmp.set(i-1, terminTmp.get(i));
-                        terminTmp.set(i, tmp);
-                    } else if(terminTmp.get(i).beginn.jahr == terminTmp.get(i-1).beginn.jahr
-                            && terminTmp.get(i).beginn.monat < terminTmp.get(i-1).beginn.monat){
-                        TerminEintrag tmp = terminTmp.get(i-1);
-                        terminTmp.set(i-1, terminTmp.get(i));
-                        terminTmp.set(i, tmp);
-                    } else if (terminTmp.get(i).beginn.jahr == terminTmp.get(i-1).beginn.jahr
-                            && terminTmp.get(i).beginn.monat == terminTmp.get(i-1).beginn.monat
-                            && terminTmp.get(i).beginn.tag < terminTmp.get(i-1).beginn.tag){
-                        TerminEintrag tmp = terminTmp.get(i-1);
-                        terminTmp.set(i-1, terminTmp.get(i));
-                        terminTmp.set(i, tmp);
-                    } else if (terminTmp.get(i).beginn.jahr == terminTmp.get(i-1).beginn.jahr
-                            && terminTmp.get(i).beginn.monat == terminTmp.get(i-1).beginn.monat
-                            && terminTmp.get(i).beginn.tag == terminTmp.get(i-1).beginn.tag
-                            && terminTmp.get(i).beginnZeit.stunden < terminTmp.get(i-1).beginnZeit.stunden){
-                        TerminEintrag tmp = terminTmp.get(i-1);
-                        terminTmp.set(i-1, terminTmp.get(i));
-                        terminTmp.set(i, tmp);
-                    } else if (terminTmp.get(i).beginn.jahr == terminTmp.get(i-1).beginn.jahr
-                            && terminTmp.get(i).beginn.monat == terminTmp.get(i-1).beginn.monat
-                            && terminTmp.get(i).beginn.tag == terminTmp.get(i-1).beginn.tag
-                            && terminTmp.get(i).beginnZeit.stunden == terminTmp.get(i-1).beginnZeit.stunden
-                            && terminTmp.get(i).beginnZeit.minuten < terminTmp.get(i-1).beginnZeit.minuten){
-                        TerminEintrag tmp = terminTmp.get(i-1);
-                        terminTmp.set(i-1, terminTmp.get(i));
-                        terminTmp.set(i, tmp);
+                    if(terminTmp.get(cc).beginn.jahr < terminTmp.get(cc-1).beginn.jahr){
+                        TerminEintrag tmp = terminTmp.get(cc-1);
+                        terminTmp.set(cc-1, terminTmp.get(cc));
+                        terminTmp.set(cc, tmp);
+                        cc--;
+                    } else if(terminTmp.get(cc).beginn.jahr == terminTmp.get(cc-1).beginn.jahr
+                            && terminTmp.get(cc).beginn.monat < terminTmp.get(cc-1).beginn.monat){
+                        TerminEintrag tmp = terminTmp.get(cc-1);
+                        terminTmp.set(cc-1, terminTmp.get(cc));
+                        terminTmp.set(cc, tmp);
+                        cc--;
+                    } else if (terminTmp.get(cc).beginn.jahr == terminTmp.get(cc-1).beginn.jahr
+                            && terminTmp.get(cc).beginn.monat == terminTmp.get(cc-1).beginn.monat
+                            && terminTmp.get(cc).beginn.tag < terminTmp.get(cc-1).beginn.tag){
+                        TerminEintrag tmp = terminTmp.get(cc-1);
+                        terminTmp.set(cc-1, terminTmp.get(cc));
+                        terminTmp.set(cc, tmp);
+                        cc--;
+                    } else if (terminTmp.get(cc).beginn.jahr == terminTmp.get(cc-1).beginn.jahr
+                            && terminTmp.get(cc).beginn.monat == terminTmp.get(cc-1).beginn.monat
+                            && terminTmp.get(cc).beginn.tag == terminTmp.get(cc-1).beginn.tag
+                            && terminTmp.get(cc).beginnZeit.stunden < terminTmp.get(cc-1).beginnZeit.stunden){
+                        TerminEintrag tmp = terminTmp.get(cc-1);
+                        terminTmp.set(cc-1, terminTmp.get(cc));
+                        terminTmp.set(cc, tmp);
+                        cc--;
+                    } else if (terminTmp.get(cc).beginn.jahr == terminTmp.get(cc-1).beginn.jahr
+                            && terminTmp.get(cc).beginn.monat == terminTmp.get(cc-1).beginn.monat
+                            && terminTmp.get(cc).beginn.tag == terminTmp.get(cc-1).beginn.tag
+                            && terminTmp.get(cc).beginnZeit.stunden == terminTmp.get(cc-1).beginnZeit.stunden
+                            && terminTmp.get(cc).beginnZeit.minuten < terminTmp.get(cc-1).beginnZeit.minuten){
+                        TerminEintrag tmp = terminTmp.get(cc-1);
+                        terminTmp.set(cc-1, terminTmp.get(cc));
+                        terminTmp.set(cc, tmp);
+                        cc--;
+                    } else {
+                        break;
                     }
-                    break;
+
                 }
             }
 
@@ -203,6 +247,28 @@ public class Schnittstelle implements Serializable {
 
     static void saveToDo() {
         try {
+            //sortierung start
+            ArrayList<ToDoEintrag> toDoTmp = new ArrayList<>();
+
+            for(int i = 0; i<toDoListe.size(); i++){
+                toDoTmp.add(toDoListe.get(i));
+                int cc = i;
+                while(cc-1>=0){
+
+                    if(toDoTmp.get(cc).erledigt == false && toDoTmp.get(cc-1).erledigt == true){
+                        ToDoEintrag tmp = toDoTmp.get(cc-1);
+                        toDoTmp.set(cc-1, toDoTmp.get(cc));
+                        toDoTmp.set(cc, tmp);
+                        cc--;
+                    } else{
+                        break;
+                    }
+
+                }
+            }
+
+            toDoListe = toDoTmp;
+            //sortierung ende
             File file = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_MOVIES), "/" + "toDo.tmp");
             FileOutputStream fsToDo = new FileOutputStream(file);
@@ -218,6 +284,37 @@ public class Schnittstelle implements Serializable {
 
     static void saveLiteratur() {
         try {
+
+            //sortierung start
+            ArrayList<LiteraturEintrag> literaturTmp = new ArrayList<>();
+
+            for(int i = 0; i<literaturListe.size(); i++){
+                literaturTmp.add(literaturListe.get(i));
+                int cc = i;
+                while(cc-1>=0){
+                    boolean donthold = false;
+                    boolean advance = false;
+                    for(int j = 0; j < literaturTmp.get(cc).name.length() && j < literaturTmp.get(cc-1).name.length() && donthold == false; j++){
+                        if(literaturTmp.get(cc).name.charAt(j)<literaturTmp.get(cc-1).name.charAt(j)){
+                            LiteraturEintrag tmp = literaturTmp.get(cc-1);
+                            literaturTmp.set(cc-1, literaturTmp.get(cc));
+                            literaturTmp.set(cc, tmp);
+                            cc--;
+                            advance = true;
+                        } else{
+                            donthold = true;
+                        }
+                    }
+                    if(donthold && !advance){
+                        break;
+                    }
+
+                }
+            }
+
+            literaturListe = literaturTmp;
+            //sortierung ende
+
             File file = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_MOVIES), "/" + "literatur.tmp");
             FileOutputStream fsLiteratur = new FileOutputStream(file);
