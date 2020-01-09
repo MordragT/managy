@@ -53,7 +53,7 @@ public class FristenBearbeiten extends Fragment {
     private Datum termin, erinnerungsDatum;
 
     private boolean validator() {
-        if (titelBool && terminBool) {
+        if (titelBool && terminBool && erinnerungsDatumBool) {
             speichern.setAlpha(1f);
             return true;
         }
@@ -146,7 +146,7 @@ public class FristenBearbeiten extends Fragment {
         speichern.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validator() && (erinnerungsDatum==null|| termin.compareTo(erinnerungsDatum) >= 0)) {
+                if (validator() && termin.compareTo(erinnerungsDatum) >= 0) {
 
                     Schnittstelle.fristenListe.get(FristenAdapter.aufgerufen).name = titel.getText().toString();
                     Schnittstelle.fristenListe.get(FristenAdapter.aufgerufen).termin = termin;
