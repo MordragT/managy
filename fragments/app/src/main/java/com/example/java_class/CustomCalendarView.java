@@ -1,8 +1,10 @@
 package com.example.java_class;
 
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -28,11 +30,11 @@ public class CustomCalendarView extends LinearLayout {
     Context context;
     List<Date> dates = new ArrayList<>();
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM yyyy", Locale.GERMAN);
-    /*
-    SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM", Locale.GERMAN);
+
+    SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.GERMAN);
     SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.GERMAN);
-    SimpleDateFormat eventDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.GERMAN);
-    */
+    SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.GERMAN);
+
     KalenderGridAdapter kalenderGridAdapter;
 
 
@@ -67,20 +69,26 @@ public class CustomCalendarView extends LinearLayout {
                 setUpCalendar();
             }
         });
-        /*
+        //OnClick für den Tag
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String date = eventDateFormat.format(dates.get(position));
+                String day = dayFormat.format(dates.get(position));
                 String month = monthFormat.format(dates.get(position));
                 String year = yearFormat.format(dates.get(position));
-                String dateComplete = date;
+                int takeOverDay = Integer.parseInt(day);
+                int takeOverMonth = Integer.parseInt(month)-1;
+                int takeOverYear = Integer.parseInt(year);
 
-                currentDate.setText(dateComplete);
-                setUpCalendar();
+                // Intent benutzen um die Int-werte mit übertragen zu können
+                //Intent intent = new Intent(CustomCalendarView.this, TagesActivity.class); //TagesActivity hier nur filler
+                //intent.putExtra("takeOverDay", takeOverDay);
+                //intent.putExtra("takeOverMonth", takeOverMonth);
+                //intent.putExtra("takeOverYear", takeOverYear);
+                //startActivity(intent);
             }
         });
-         */
+
     }
 
     public void InitializeLayout() {
