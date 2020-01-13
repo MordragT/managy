@@ -59,9 +59,11 @@ public class Startseite extends Fragment {
             FristStart.setText(Frist);
         } else {
             Calendar tmpCalendar = Calendar.getInstance(Locale.GERMAN);
+
             int currentJahr = tmpCalendar.get(Calendar.YEAR);
-            int currentMonat = tmpCalendar.get(Calendar.MONTH+1)-1;
+            int currentMonat = tmpCalendar.get(Calendar.MONTH)+1;
             int currentTag = tmpCalendar.get(Calendar.DAY_OF_MONTH);
+
 
             int i = 0;
             boolean current = false;
@@ -99,7 +101,7 @@ public class Startseite extends Fragment {
         } else {
             Calendar tmpCalendar = Calendar.getInstance(Locale.GERMAN);
             int currentJahr = tmpCalendar.get(Calendar.YEAR);
-            int currentMonat = tmpCalendar.get(Calendar.MONTH+1)-1;
+            int currentMonat = tmpCalendar.get(Calendar.MONTH)+1;
             int currentTag = tmpCalendar.get(Calendar.DAY_OF_MONTH);
             int currentStunde = tmpCalendar.get(Calendar.HOUR_OF_DAY);
             int currentMinute = tmpCalendar.get(Calendar.MINUTE);
