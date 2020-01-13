@@ -1,6 +1,9 @@
 package com.example.java_class;
 
-import android.content.Intent;
+
+import androidx.fragment.app.FragmentTransaction;
+
+import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +14,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.content.Context;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+//import androidx.fragment.app.Fragment;
+
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -80,12 +88,20 @@ public class CustomCalendarView extends LinearLayout {
                 int takeOverMonth = Integer.parseInt(month)-1;
                 int takeOverYear = Integer.parseInt(year);
 
-                // Intent benutzen um die Int-werte mit übertragen zu können
-                //Intent intent = new Intent(CustomCalendarView.this, TagesActivity.class); //TagesActivity hier nur filler
-                //intent.putExtra("takeOverDay", takeOverDay);
-                //intent.putExtra("takeOverMonth", takeOverMonth);
-                //intent.putExtra("takeOverYear", takeOverYear);
-                //startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putInt("takeOverDay", takeOverDay);
+                bundle.putInt("takeOverMonth", takeOverMonth);
+                bundle.putInt("takeOverYear", takeOverYear);
+
+
+                AppCompatActivity activity = (AppCompatActivity) context;
+                FragmentTransaction fr = activity.getSupportFragmentManager().beginTransaction();
+                KalenderAdd kalenderAdd = new KalenderAdd();
+                kalenderAdd.setArguments(bundle);
+                fr.replace(R.id.nav_host_fragment, kalenderAdd);
+                fr.commit();
+
+
             }
         });
 
