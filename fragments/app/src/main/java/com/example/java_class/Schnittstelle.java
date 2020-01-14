@@ -2,6 +2,9 @@ package com.example.java_class;
 
 import android.os.Environment;
 import android.util.Log;
+
+import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.io.*;
 
@@ -17,7 +20,38 @@ public class Schnittstelle implements Serializable {
     static ArrayList<TerminEintrag> terminListe = new ArrayList<>();
     static ArrayList<ToDoEintrag> toDoListe = new ArrayList<>();
     static ArrayList<LiteraturEintrag> literaturListe = new ArrayList<>();
+    static Datum current;
+    static int lastDay;
+    static int currentDay;
 
+
+    static int dayToInt(String day) {
+        int ret = 0;
+        switch(day) {
+            case "Montag":
+                ret = 0;
+                break;
+            case "Dienstag":
+                ret = 1;
+                break;
+            case "Mittwoch":
+                ret = 2;
+                break;
+            case "Donnerstag":
+                ret = 3;
+                break;
+            case "Freitag":
+                ret = 4;
+                break;
+            case "Samstag":
+                ret = 5;
+                break;
+            case "Sonntag":
+                ret = 6;
+                break;
+        }
+        return ret;
+    }
     /*
      * Lösche alle Daten
      */
