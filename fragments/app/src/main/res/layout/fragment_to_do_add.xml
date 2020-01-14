@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Was gibt es zu tun"/>
+            android:hint="Titel"/>
     </LinearLayout>
 
     <LinearLayout
