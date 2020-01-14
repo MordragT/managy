@@ -17,12 +17,4 @@
 
     </ListView>
 
-    <View
-        android:id="@+id/colored_bar"
-        android:layout_marginStart="192dp"
-        android:layout_marginLeft="192dp"
-        android:layout_width="96dp"
-        android:layout_height="64dp"
-        android:background="@color/black" />
-
 </FrameLayout>

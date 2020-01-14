@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
     <TextView
         android:id="@+id/current_hour"
-        android:layout_width="96dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
         android:background="#00A84444"
