@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.ActionBar;
 import android.app.AlarmManager;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -20,6 +23,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.Calendar;
 
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     public int lastItem;
     public static int notificationNummer = 0;
     private String CHANNEL_ID = "channel_01";
+    public TabLayout tabLayout;
 
 
     @Override
@@ -42,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
         //Schnittstelle.load();
         Log.d("einlesen", String.valueOf(Schnittstelle.toDoListe.size()));
 
+        kalenderTab();
         createNotificationChannel(); //Channel für die notification erstellen
         //CreateNotification();
     }
-
 
     /*Nav bar onclick funktion*/
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -81,6 +86,53 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
+    private void kalenderTab() {
+        Schnittstelle.current = new Datum(0,0,0);
+        tabLayout = findViewById(R.id.tab_layout);
+
+        TabLayout.Tab monday = tabLayout.newTab();
+        monday.setText("M");
+        TabLayout.Tab tuesday = tabLayout.newTab();
+        tuesday.setText("D");
+        TabLayout.Tab wednesday = tabLayout.newTab();
+        wednesday.setText("M");
+        TabLayout.Tab thursday = tabLayout.newTab();
+        thursday.setText("D");
+        TabLayout.Tab friday = tabLayout.newTab();
+        friday.setText("F");
+        TabLayout.Tab saturday = tabLayout.newTab();
+        saturday.setText("S");
+        TabLayout.Tab sunday = tabLayout.newTab();
+        sunday.setText("S");
+
+        tabLayout.addTab(monday);
+        tabLayout.addTab(tuesday);
+        tabLayout.addTab(wednesday);
+        tabLayout.addTab(thursday);
+        tabLayout.addTab(friday);
+        tabLayout.addTab(saturday);
+        tabLayout.addTab(sunday);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                FragmentTransaction fr = getSupportFragmentManager().beginTransaction();
+                fr.replace(R.id.nav_host_fragment, new KalenderWeekDay(tab.getPosition()));
+                fr.commit();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
 
     public void setActionBarTitle(String title) {
         setTitle(title);
