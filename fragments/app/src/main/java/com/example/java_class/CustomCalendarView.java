@@ -96,9 +96,12 @@ public class CustomCalendarView extends LinearLayout {
 
                 AppCompatActivity activity = (AppCompatActivity) context;
                 FragmentTransaction fr = activity.getSupportFragmentManager().beginTransaction();
-                KalenderAdd kalenderAdd = new KalenderAdd();
-                kalenderAdd.setArguments(bundle);
-                fr.replace(R.id.nav_host_fragment, kalenderAdd);
+                //KalenderAdd kalenderAdd = new KalenderAdd();
+                //kalenderAdd.setArguments(bundle);
+                //fr.replace(R.id.nav_host_fragment, kalenderAdd);
+                Tag tag = new Tag();
+                tag.setArguments(bundle);
+                fr.replace(R.id.nav_host_fragment, tag);
                 fr.commit();
 
 
