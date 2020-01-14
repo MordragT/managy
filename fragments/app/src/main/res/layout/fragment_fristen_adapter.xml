@@ -3,8 +3,10 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.java_class.Literatur">
+    tools:context="com.example.java_class.Literatur"
+    android:focusable="true">
 
 
     <TextView
