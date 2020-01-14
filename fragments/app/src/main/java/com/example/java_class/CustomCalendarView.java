@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,6 +21,8 @@ import androidx.fragment.app.Fragment;
 
 
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Date;
@@ -84,6 +87,20 @@ public class CustomCalendarView extends LinearLayout {
                 String day = dayFormat.format(dates.get(position));
                 String month = monthFormat.format(dates.get(position));
                 String year = yearFormat.format(dates.get(position));
+
+                Schnittstelle.current = new Datum(Integer.parseInt(day), Integer.parseInt(month), Integer.parseInt(year));
+                Calendar cal = Calendar.getInstance();
+                cal.set(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day));
+                Date tmpDate = cal.getTime();
+                String tmp = new SimpleDateFormat("EEEE", Locale.GERMAN).format(tmpDate);
+                Schnittstelle.currentDay = Schnittstelle.dayToInt(tmp);
+                Schnittstelle.lastDay = Schnittstelle.currentDay;
+                AppCompatActivity activity = (AppCompatActivity) context;
+                ((MainActivity)activity).tabLayout.getTabAt(Schnittstelle.currentDay).select();
+                FragmentTransaction fr = activity.getSupportFragmentManager().beginTransaction();
+                fr.replace(R.id.nav_host_fragment, new KalenderWeekDay(Schnittstelle.currentDay));
+                fr.commit();
+                /*
                 int takeOverDay = Integer.parseInt(day);
                 int takeOverMonth = Integer.parseInt(month)-1;
                 int takeOverYear = Integer.parseInt(year);
@@ -93,15 +110,13 @@ public class CustomCalendarView extends LinearLayout {
                 bundle.putInt("takeOverMonth", takeOverMonth);
                 bundle.putInt("takeOverYear", takeOverYear);
 
-
                 AppCompatActivity activity = (AppCompatActivity) context;
                 FragmentTransaction fr = activity.getSupportFragmentManager().beginTransaction();
-                KalenderAdd kalenderAdd = new KalenderAdd();
-                kalenderAdd.setArguments(bundle);
-                fr.replace(R.id.nav_host_fragment, kalenderAdd);
+                KalenderWeekDay kalenderWeekDay = new KalenderWeekDay();
+                kalenderWeekDay.setArguments(bundle);
+                fr.replace(R.id.nav_host_fragment, kalenderWeekDay);
                 fr.commit();
-
-
+                 */
             }
         });
 
