@@ -5,24 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
+    android:id="@+id/frame_layout"
     tools:context=".KalenderDay">
-
-    <ListView
-        android:id="@+id/hour_list"
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/termine"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@color/black"
-        android:dividerHeight="1dp"
-        >
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/hour_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </FrameLayout>
 
-    </ListView>
-
-    <View
-        android:id="@+id/colored_bar"
-        android:layout_marginStart="192dp"
-        android:layout_marginLeft="192dp"
-        android:layout_width="96dp"
-        android:layout_height="64dp"
-        android:background="@color/black" />
+</ScrollView>
 
 </FrameLayout>

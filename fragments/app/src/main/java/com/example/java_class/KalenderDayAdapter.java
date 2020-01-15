@@ -19,12 +19,12 @@ import java.util.List;
 public class KalenderDayAdapter extends ArrayAdapter {
 
     LayoutInflater inflater;
-    ArrayList<Schnittstelle.TerminEintrag> terminArray;
+    //ArrayList<Schnittstelle.TerminEintrag> terminArray;
 
-    public KalenderDayAdapter(@NonNull Context context, ArrayList<Integer> objects, ArrayList<Schnittstelle.TerminEintrag> terminArray) {
+    public KalenderDayAdapter(@NonNull Context context, ArrayList<Integer> objects) {// ArrayList<Schnittstelle.TerminEintrag> terminArray) {
         super(context, R.layout.fragment_kalender_day, objects);
         inflater = LayoutInflater.from(context);
-        this.terminArray = terminArray;
+        //this.terminArray = terminArray;
     }
 
     @NonNull
@@ -38,9 +38,8 @@ public class KalenderDayAdapter extends ArrayAdapter {
         TextView terminName = v.findViewById(R.id.termin_name);
 
         currentHour.setText(getItem(position).toString() + ":00");
-
+/*
         Zeit itemHour = new Zeit(((int) getItem(position)), 0);
-
         for(Schnittstelle.TerminEintrag termin : terminArray) {
             Log.d("ZEIT", "Zeit: " + termin.beginnZeit);
             if(termin.beginnZeit.compareTo(itemHour) <= 0 && termin.endeZeit.compareTo(itemHour) >= 0) {
@@ -60,8 +59,7 @@ public class KalenderDayAdapter extends ArrayAdapter {
                 }
                 terminName.setText(termin.name);
             }
-        }
-
+         */
         return v;
     }
 }
