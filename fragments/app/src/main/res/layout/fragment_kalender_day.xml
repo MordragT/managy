@@ -7,21 +7,26 @@
     android:background="#FFFFFF"
     android:id="@+id/frame_layout"
     tools:context=".KalenderDay">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <FrameLayout
-        android:id="@+id/termine"
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:orientation="vertical"
-            android:id="@+id/hour_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-    </FrameLayout>
+        android:layout_height="match_parent">
+        <ScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <FrameLayout
+                android:id="@+id/termine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/hour_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </FrameLayout>
+        </ScrollView>
+    </HorizontalScrollView>
 
-</ScrollView>
 
 </FrameLayout>

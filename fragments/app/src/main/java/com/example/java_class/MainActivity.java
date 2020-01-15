@@ -21,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public static int notificationNummer = 0;
     private String CHANNEL_ID = "channel_01";
     public TabLayout tabLayout;
+    public TextView monat;
 
 
     @Override
@@ -90,21 +92,22 @@ public class MainActivity extends AppCompatActivity {
     private void kalenderTab() {
         Schnittstelle.current = new Datum(0,0,0);
         tabLayout = findViewById(R.id.tab_layout);
+        monat = findViewById(R.id.monat);
 
         TabLayout.Tab monday = tabLayout.newTab();
-        monday.setText("M");
+        monday.setText("Mo");
         TabLayout.Tab tuesday = tabLayout.newTab();
-        tuesday.setText("D");
+        tuesday.setText("Di");
         TabLayout.Tab wednesday = tabLayout.newTab();
-        wednesday.setText("M");
+        wednesday.setText("Mi");
         TabLayout.Tab thursday = tabLayout.newTab();
-        thursday.setText("D");
+        thursday.setText("Do");
         TabLayout.Tab friday = tabLayout.newTab();
-        friday.setText("F");
+        friday.setText("Fr");
         TabLayout.Tab saturday = tabLayout.newTab();
-        saturday.setText("S");
+        saturday.setText("Sa");
         TabLayout.Tab sunday = tabLayout.newTab();
-        sunday.setText("S");
+        sunday.setText("So");
 
         tabLayout.addTab(monday);
         tabLayout.addTab(tuesday);

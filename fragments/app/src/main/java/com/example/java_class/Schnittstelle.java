@@ -386,6 +386,7 @@ public class Schnittstelle implements Serializable {
         Datum ende;
         Zeit beginnZeit;
         Zeit endeZeit;
+        int offset = 0;
         TerminEintrag(String name, String farbe, Datum beginn, Datum ende, Zeit beginnZeit, Zeit endeZeit, String Beschreibung) {
             this.name = name;
             this.farbe = farbe;

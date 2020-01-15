@@ -5,7 +5,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -13,11 +15,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.tabs.TabLayout;
 
+import org.w3c.dom.Text;
+
 import java.util.Calendar;
 
 public class KalenderWeekDay extends Fragment {
 
     TabLayout tabLayout;
+    TextView monat;
 
     public KalenderWeekDay() {
         super();
@@ -46,6 +51,18 @@ public class KalenderWeekDay extends Fragment {
         tabLayout = ((MainActivity)getActivity()).tabLayout;
         tabLayout.setVisibility(View.VISIBLE);
 
+        monat = ((MainActivity) getActivity()).monat;
+        monat.setVisibility(View.VISIBLE);
+        monat.setText("  " + Schnittstelle.current.toString());
+        monat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fr = getFragmentManager().beginTransaction();
+                fr.replace(R.id.nav_host_fragment, new Kalender());
+                fr.commit();
+            }
+        });
+
         com.google.android.material.floatingactionbutton.FloatingActionButton fab = (com.google.android.material.floatingactionbutton.FloatingActionButton) v.findViewById(R.id.add);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +74,15 @@ public class KalenderWeekDay extends Fragment {
             }
         });
 
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                FragmentTransaction fr = getFragmentManager().beginTransaction();
+                fr.replace(R.id.nav_host_fragment, new Kalender());
+                fr.commit();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
         ((MainActivity)getActivity()).setActionBarTitle("Kalender Wochen-/Tagesansicht");
 
         return v;
@@ -66,5 +92,6 @@ public class KalenderWeekDay extends Fragment {
     public void onStop() {
         super.onStop();
         tabLayout.setVisibility(View.GONE);
+        monat.setVisibility(View.GONE);
     }
 }
