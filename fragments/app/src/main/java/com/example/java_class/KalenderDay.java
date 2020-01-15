@@ -98,18 +98,42 @@ public class KalenderDay extends LinearLayout {
                 case "rot":
                     textView.setBackgroundColor(getContext().getResources().getColor(R.color.red));
                     textView.setTextColor(getResources().getColor(R.color.white));
+                    textView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ((MainActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new KalenderBearbeiten()).commit();
+                        }
+                    });
                     break;
                 case "gelb":
                     textView.setBackgroundColor(getContext().getResources().getColor(R.color.yellow));
                     textView.setTextColor(getResources().getColor(R.color.black));
+                    textView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ((MainActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new KalenderBearbeiten()).commit();
+                        }
+                    });
                     break;
                 case "blau":
                     textView.setBackgroundColor(getContext().getResources().getColor(R.color.blue));
                     textView.setTextColor(getResources().getColor(R.color.white));
+                    textView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ((MainActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new KalenderBearbeiten()).commit();
+                        }
+                    });
                     break;
                 case "grün":
                     textView.setBackgroundColor(getContext().getResources().getColor(R.color.green));
                     textView.setTextColor(getResources().getColor(R.color.black));
+                    textView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ((MainActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new KalenderBearbeiten()).commit();
+                        }
+                    });
                     break;
             }
             frameLayout.addView(textView);

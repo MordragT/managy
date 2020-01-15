@@ -5,14 +5,14 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:background="#FFFFFF"
-    tools:context=".KalenderAdd"
+    tools:context=".KalenderBearbeiten"
     android:focusable="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <!-- TODO: Update blank fragment layout -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="64dp"
@@ -23,6 +23,7 @@
                 android:text="Titel:"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
+
             <EditText
                 android:id="@+id/titel"
                 android:layout_width="fill_parent"
@@ -155,12 +156,12 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <Button
-                android:id="@+id/abbrechen"
+                android:id="@+id/löschen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
                 android:layout_weight="1"
-                android:text="Abbrechen" />
+                android:text="Löschen" />
             <Button
                 android:id="@+id/speichern"
                 android:layout_width="wrap_content"
