@@ -188,13 +188,27 @@ public class KalenderBearbeiten extends Fragment {
 
         titel.setText(Schnittstelle.terminListe.get(position).name);
         beschreibung.setText(Schnittstelle.terminListe.get(position).beschreibung);
-        //colorButton.setText((CharSequence)Schnittstelle.terminListe.get(getTerminPos()).farbe);
         beginnButton.setText(Schnittstelle.terminListe.get(position).beginn.toString());
         endeButton.setText(Schnittstelle.terminListe.get(position).ende.toString());
         beginn = Schnittstelle.terminListe.get(position).beginn;
         ende = Schnittstelle.terminListe.get(position).ende;
         beginnHour = Schnittstelle.terminListe.get(position).beginnZeit;
         endeHour = Schnittstelle.terminListe.get(position).endeZeit;
+
+        switch (Schnittstelle.terminListe.get(getTerminPos()).farbe) {
+            case "rot":
+                colorGroup.check(R.id.red);
+                break;
+            case "gelb":
+                colorGroup.check(R.id.yellow);
+                break;
+            case "blau":
+                colorGroup.check(R.id.blue);
+                break;
+            case "grün":
+                colorGroup.check(R.id.green);
+                break;
+        }
 
 
         final Zeit tmpBegin = new Zeit(0, 0);
