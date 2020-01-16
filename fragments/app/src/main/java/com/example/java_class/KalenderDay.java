@@ -89,12 +89,13 @@ public class KalenderDay extends LinearLayout {
                 }
             }
             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(getPx(106), getHeight(termin.beginnZeit, termin.endeZeit, height));
-            layoutParams.setMarginStart(getPx(80 + termin.offset * 106));
-            layoutParams.setMargins(getPx(80 + termin.offset * 106), getMarginTop(termin.beginnZeit, height), 0, 0);
+            layoutParams.setMarginStart(getPx(80 + termin.offset * 110));
+            layoutParams.setMargins(getPx(80 + termin.offset * 110), getMarginTop(termin.beginnZeit, height), 0, 0);
             TextView textView = new TextView(context);
             textView.setLayoutParams(layoutParams);
             textView.setText(termin.name);
-            textView.setTextSize(24);
+            textView.setTextSize(20);
+            textView.setPadding(32,32,32,32);
             switch (termin.farbe) {
                 case "rot":
                     textView.setBackgroundColor(getContext().getResources().getColor(R.color.red));
