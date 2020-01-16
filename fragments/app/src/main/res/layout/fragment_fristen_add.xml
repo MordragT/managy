@@ -27,7 +27,7 @@
                 android:id="@+id/titel"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="Was gibt es zu tun"
+                android:hint="Titel"
                 android:inputType="textPersonName"/>
                 <!-- android:maxLength="25"/> -->
         </LinearLayout>
