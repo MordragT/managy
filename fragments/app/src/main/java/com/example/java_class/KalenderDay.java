@@ -50,7 +50,7 @@ public class KalenderDay extends LinearLayout {
         FrameLayout frameLayout = v.findViewById(R.id.termine);
         ScrollView scrollView = v.findViewById(R.id.scroll_view);
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        int width = displayMetrics.widthPixels;
+        int width = displayMetrics.widthPixels - getPx(16);
         scrollView.setMinimumWidth(width);
 
         //for(int i = 0; i < 24; i++) hourArray.add(i);
@@ -74,6 +74,7 @@ public class KalenderDay extends LinearLayout {
 
         for (Schnittstelle.TerminEintrag termin : Schnittstelle.terminListe) {
             if (termin.beginn.compareTo(Schnittstelle.current) <= 0 && termin.ende.compareTo(Schnittstelle.current) >= 0) {
+                termin.offset = 0;
                 terminArray.add(termin);
             }
         }
