@@ -202,15 +202,18 @@ public class KalenderBearbeiten extends Fragment {
         switch (Schnittstelle.terminListe.get(position).farbe) {
             case "rot":
                 colorGroup.check(R.id.red);
-                break;
+                colorButton = (RadioButton) v.findViewById(R.id.red);
             case "gelb":
                 colorGroup.check(R.id.yellow);
+                colorButton = (RadioButton) v.findViewById(R.id.yellow);
                 break;
             case "blau":
                 colorGroup.check(R.id.blue);
+                colorButton = (RadioButton) v.findViewById(R.id.blue);
                 break;
             case "grün":
                 colorGroup.check(R.id.green);
+                colorButton = (RadioButton) v.findViewById(R.id.green);
                 break;
         }
 
@@ -268,6 +271,8 @@ public class KalenderBearbeiten extends Fragment {
                 } else {
                     beginnHourButton.setVisibility(View.VISIBLE);
                     endeHourButton.setVisibility(View.VISIBLE);
+                    beginnHourBool = false;
+                    endeHourBool = false;
                 }
                 validator();
             }
@@ -316,11 +321,15 @@ public class KalenderBearbeiten extends Fragment {
                         Schnittstelle.terminListe.get(position).beginnZeit = tmpBegin;
                         Schnittstelle.terminListe.get(position).endeZeit = tmpEnde;
                     }
+                    else {
+                        Schnittstelle.terminListe.get(position).beginnZeit = beginnHour;
+                        Schnittstelle.terminListe.get(position).endeZeit = endeHour;
+                    }
                     Schnittstelle.terminListe.get(position).name = titel.getText().toString();
                     Schnittstelle.terminListe.get(position).beschreibung = beschreibung.getText().toString();
                     Schnittstelle.terminListe.get(position).beginn = beginn;
                     Schnittstelle.terminListe.get(position).ende = ende;
-                    if(colorButton != null) Schnittstelle.terminListe.get(position).farbe = colorButton.getText().toString();
+                    Schnittstelle.terminListe.get(position).farbe = colorButton.getText().toString();
                     Schnittstelle.terminListe.get(position).ganztagig = ganztagigBool;
 
                     Schnittstelle.saveTermine();
