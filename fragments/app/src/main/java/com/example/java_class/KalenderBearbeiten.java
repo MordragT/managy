@@ -339,7 +339,7 @@ public class KalenderBearbeiten extends Fragment {
             @Override
             public void handleOnBackPressed() {
                 FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.nav_host_fragment, new Kalender());
+                fr.replace(R.id.nav_host_fragment, new KalenderWeekDay(Schnittstelle.currentDay));
                 fr.commit();
             }
         };

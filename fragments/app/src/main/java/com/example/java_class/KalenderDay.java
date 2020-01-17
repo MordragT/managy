@@ -105,6 +105,7 @@ public class KalenderDay extends LinearLayout {
                 termin.height = getHeight(new Zeit(0, 0), termin.endeZeit);
             else termin.height = getHeight(new Zeit(0, 0), new Zeit(23, 59));
             termin.offset = zeitSlot.setTerminOffset(termin);
+            Log.d("TERMIN","termin: " + termin.name + " termin-height: " + termin.height + " termin-margin: " + termin.margin + " termin-offset: " + termin.offset);
 
             int height = 0;
             int margin = 0;
@@ -153,8 +154,22 @@ public class KalenderDay extends LinearLayout {
                     ((MainActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new KalenderBearbeiten(Schnittstelle.terminListe.indexOf(termin))).commit();
                 }
             });
-            //Log.d("OFFSET", "Offset: " + termin.offset);
+            //Log.d("OFFSET", "Termin: " + termin.name + " Offset: " + termin.offset);
         }
+
+        int i = 0;
+        for(boolean[] row : zeitSlot.rowList) {
+            int k = 0;
+            for(boolean hour: row){
+                String ret = "";
+                if(hour) ret = "ausgefüllt";
+                else ret = "leer";
+                Log.d("ZEITSLOT", "Zeitslot" + i + ": Stunde " + k + ": ist" + ret);
+                k++;
+            }
+            i++;
+        }
+
         //Log.d("TERMINARRAY",terminArray.toString());
     }
 
@@ -169,18 +184,17 @@ public class KalenderDay extends LinearLayout {
 
         int setTerminOffset(Schnittstelle.TerminEintrag termin) {
             int offset = 0;
-            Log.d("TERMIN","termin: " + termin.name + " termin-height: " + termin.height + " termin-margin: " + termin.margin);
             for(boolean[] hours : rowList) {
-                for(int i = termin.margin.stunden; i < (termin.height.stunden + termin.margin.stunden) && i < 24; i++) {
-                    if(hours[i]) {
-                        offset++;
-                        break;
+                boolean failed = false;
+                for(int i = termin.margin.stunden; i < (termin.height.stunden + termin.margin.stunden + 1) && i < 24; i++) {
+                    if(hours[i]) failed = true;
+                }
+                if(!failed) {
+                    for(int i = termin.margin.stunden; i < (termin.height.stunden + termin.margin.stunden + 1) && i < 24; i++) {
+                        hours[i] = true;
                     }
-                }
-                for(int i = termin.margin.stunden; i < (termin.height.stunden + termin.margin.stunden) && i < 24; i++) {
-                    hours[i] = true;
-                }
-                return offset;
+                    return offset;
+                } else offset++;
             }
             return -1;
         }
