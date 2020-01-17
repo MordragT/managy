@@ -253,7 +253,7 @@ public class KalenderAdd extends Fragment {
             @Override
             public void onClick(View v) {
                 //Log.e("SPEICHERN",Boolean.toString(beginn.compareTo(ende) < 0));
-                if (validator() && (beginn.compareTo(ende) <= 0)) {
+                if (validator() && (beginn.compareTo(ende) <= 0) && ((beginn.equals(ende) && beginnHour.compareTo(endeHour) < 0)) || !beginn.equals(ende)) {
                     Schnittstelle.TerminEintrag t;
                     if (ganztagigBool) {
                         beginnHour = new Zeit(0, 0);
