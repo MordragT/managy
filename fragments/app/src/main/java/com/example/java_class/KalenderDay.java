@@ -27,6 +27,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Queue;
 
 public class KalenderDay extends LinearLayout {
@@ -68,94 +71,142 @@ public class KalenderDay extends LinearLayout {
             hourList.addView(textView);
             hourList.addView(view);
         }
-        int height = 128;
-
-        Log.d("HEIGHT", "height: " + height);
 
         for (Schnittstelle.TerminEintrag termin : Schnittstelle.terminListe) {
             if (termin.beginn.compareTo(Schnittstelle.current) <= 0 && termin.ende.compareTo(Schnittstelle.current) >= 0) {
-                termin.offset = 0;
                 terminArray.add(termin);
             }
         }
-        for (Schnittstelle.TerminEintrag termin : terminArray) {
-            for (Schnittstelle.TerminEintrag vergleich : terminArray) {
-                if (
-                        termin != vergleich && termin.offset == vergleich.offset
-                                && ((termin.beginnZeit.compareTo(vergleich.beginnZeit) <= 0 && termin.endeZeit.compareTo(vergleich.beginnZeit) >= 0)
-                                || (termin.beginnZeit.compareTo(vergleich.endeZeit) <= 0 && termin.endeZeit.compareTo(vergleich.endeZeit) >= 0))
-                ) {
-                    termin.offset++;
-                }
+
+        ZeitSlot zeitSlot = new ZeitSlot(terminArray.size());
+
+
+        Collections.sort(terminArray, new Comparator<Schnittstelle.TerminEintrag>() {
+            @Override
+            public int compare(Schnittstelle.TerminEintrag obj01, Schnittstelle.TerminEintrag obj02)
+            {
+                Integer height01 = getHeight2(obj01.height,100);
+                Integer height02 = getHeight2(obj02.height,100);
+                return height01.compareTo(height02);
             }
-            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(getPx(106), getHeight(termin.beginnZeit, termin.endeZeit, height));
+        });
+
+
+        for (final Schnittstelle.TerminEintrag termin : terminArray) {
+
+            if (termin.ganztagig) termin.height = getHeight(new Zeit(0, 0), new Zeit(23, 59));
+            else if (termin.beginn.equals(termin.ende)) {
+                termin.height = getHeight(termin.beginnZeit, termin.endeZeit);
+                termin.margin = termin.beginnZeit;
+            } else if (Schnittstelle.current.equals(termin.beginn)) {
+                termin.height = getHeight(termin.beginnZeit, new Zeit(23, 59));
+                termin.margin = termin.beginnZeit;
+            } else if (Schnittstelle.current.equals(termin.ende))
+                termin.height = getHeight(new Zeit(0, 0), termin.endeZeit);
+            else termin.height = getHeight(new Zeit(0, 0), new Zeit(23, 59));
+            termin.offset = zeitSlot.setTerminOffset(termin);
+
+            int height = 0;
+            int margin = 0;
+            if (termin.ganztagig) height = getHeight2(termin.height, 128);
+            else if (termin.beginn.equals(termin.ende)) {
+                height = getHeight2(termin.height, 128);
+                margin = getMarginTop(termin.beginnZeit, 128);
+            } else if (Schnittstelle.current.equals(termin.beginn)) {
+                height = getHeight2(termin.height, 128);
+                margin = getMarginTop(termin.beginnZeit, 128);
+            } else if (Schnittstelle.current.equals(termin.ende))
+                height = getHeight2(termin.height, 128);
+            else height = getHeight2(termin.height, 128);
+
+            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(getPx(106), height);
             layoutParams.setMarginStart(getPx(80 + termin.offset * 110));
-            layoutParams.setMargins(getPx(80 + termin.offset * 110), getMarginTop(termin.beginnZeit, height), 0, 0);
+
+            layoutParams.setMargins(getPx(80 + termin.offset * 110), margin, 0, 0);
             TextView textView = new TextView(context);
             textView.setLayoutParams(layoutParams);
             textView.setText(termin.name);
             textView.setTextSize(20);
-            textView.setPadding(32,32,32,32);
+            textView.setPadding(32, 32, 32, 32);
             switch (termin.farbe) {
                 case "rot":
                     textView.setBackgroundColor(getContext().getResources().getColor(R.color.red));
                     textView.setTextColor(getResources().getColor(R.color.white));
-                    textView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            ((MainActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new KalenderBearbeiten()).commit();
-                        }
-                    });
                     break;
                 case "gelb":
                     textView.setBackgroundColor(getContext().getResources().getColor(R.color.yellow));
                     textView.setTextColor(getResources().getColor(R.color.black));
-                    textView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            ((MainActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new KalenderBearbeiten()).commit();
-                        }
-                    });
                     break;
                 case "blau":
                     textView.setBackgroundColor(getContext().getResources().getColor(R.color.blue));
                     textView.setTextColor(getResources().getColor(R.color.white));
-                    textView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            ((MainActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new KalenderBearbeiten()).commit();
-                        }
-                    });
                     break;
                 case "grün":
                     textView.setBackgroundColor(getContext().getResources().getColor(R.color.green));
                     textView.setTextColor(getResources().getColor(R.color.black));
-                    textView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            ((MainActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new KalenderBearbeiten()).commit();
-                        }
-                    });
                     break;
             }
             frameLayout.addView(textView);
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((MainActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new KalenderBearbeiten(Schnittstelle.terminListe.indexOf(termin))).commit();
+                }
+            });
             //Log.d("OFFSET", "Offset: " + termin.offset);
         }
         //Log.d("TERMINARRAY",terminArray.toString());
     }
 
+    class ZeitSlot {
+        List<boolean[]> rowList = new ArrayList<boolean[]>();
+        ZeitSlot(int maxOffset) {
+            for(int i = 0; i < maxOffset; i++) {
+                rowList.add(new boolean[24]);
+            }
 
-    public int getHeight(Zeit beginn, Zeit ende, int height) {
-        return (height * (ende.stunden - beginn.stunden)) + ((ende.minuten - beginn.minuten) * height / 60);
+        }
+
+        int setTerminOffset(Schnittstelle.TerminEintrag termin) {
+            int offset = 0;
+            Log.d("TERMIN","termin: " + termin.name + " termin-height: " + termin.height + " termin-margin: " + termin.margin);
+            for(boolean[] hours : rowList) {
+                for(int i = termin.margin.stunden; i < (termin.height.stunden + termin.margin.stunden) && i < 24; i++) {
+                    if(hours[i]) {
+                        offset++;
+                        break;
+                    }
+                }
+                for(int i = termin.margin.stunden; i < (termin.height.stunden + termin.margin.stunden) && i < 24; i++) {
+                    hours[i] = true;
+                }
+                return offset;
+            }
+            return -1;
+        }
     }
 
-    public int getMarginTop(Zeit beginn, int height) {
+    int getHeight2(Zeit heightTime, int height) {
+        return (height * heightTime.stunden + heightTime.minuten * height/60);
+    }
+
+    Zeit getHeight(Zeit beginn, Zeit ende) {
+        int stunden = 0;
+        int minuten = 0;
+        if(beginn.stunden > ende.stunden) stunden = beginn.stunden - ende.stunden;
+        else stunden = ende.stunden - beginn.stunden;
+        if(beginn.minuten > ende.minuten) minuten = beginn.minuten - ende.minuten;
+        else minuten = ende.minuten - beginn.minuten;
+        return new Zeit(stunden,minuten);
+    }
+
+    int getMarginTop(Zeit beginn, int height) {
         return (beginn.stunden * height) + (beginn.minuten * height / 60);
     }
 
-    public int getPx(int dp) {
+    int getPx(int dp) {
         Resources r = getResources();
-        return  (int) TypedValue.applyDimension(
+        return (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 dp,
                 r.getDisplayMetrics()

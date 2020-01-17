@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,9 @@ public class KalenderBearbeiten extends Fragment {
 
     private int position;
 
+    KalenderBearbeiten (int position) {
+        this.position = position;
+    }
     class BeginnListener implements DatePickerDialog.OnDateSetListener {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -184,7 +188,7 @@ public class KalenderBearbeiten extends Fragment {
         ganztagigSwitch = (Switch) v.findViewById(R.id.ganztagig);
         speichern.setAlpha(1f);
 
-        position = getTerminPos();
+        //position = getTerminPos();
 
         titel.setText(Schnittstelle.terminListe.get(position).name);
         beschreibung.setText(Schnittstelle.terminListe.get(position).beschreibung);
@@ -195,7 +199,7 @@ public class KalenderBearbeiten extends Fragment {
         beginnHour = Schnittstelle.terminListe.get(position).beginnZeit;
         endeHour = Schnittstelle.terminListe.get(position).endeZeit;
 
-        switch (Schnittstelle.terminListe.get(getTerminPos()).farbe) {
+        switch (Schnittstelle.terminListe.get(position).farbe) {
             case "rot":
                 colorGroup.check(R.id.red);
                 break;
@@ -213,7 +217,7 @@ public class KalenderBearbeiten extends Fragment {
 
         final Zeit tmpBegin = new Zeit(0, 0);
         final Zeit tmpEnde = new Zeit(23, 59);
-        if(tmpBegin.equals(Schnittstelle.terminListe.get(position).beginnZeit) && tmpEnde.equals(Schnittstelle.terminListe.get(getTerminPos()).endeZeit)) {
+        if(Schnittstelle.terminListe.get(position).ganztagig) {
             ganztagigSwitch.setChecked(true);
             ganztagigBool = true;
             beginnHourButton.setVisibility(View.GONE);
@@ -316,7 +320,8 @@ public class KalenderBearbeiten extends Fragment {
                     Schnittstelle.terminListe.get(position).beschreibung = beschreibung.getText().toString();
                     Schnittstelle.terminListe.get(position).beginn = beginn;
                     Schnittstelle.terminListe.get(position).ende = ende;
-                    Schnittstelle.terminListe.get(position).farbe = colorButton.getText().toString();
+                    if(colorButton != null) Schnittstelle.terminListe.get(position).farbe = colorButton.getText().toString();
+                    Schnittstelle.terminListe.get(position).ganztagig = ganztagigBool;
 
                     Schnittstelle.saveTermine();
                     FragmentTransaction fr = getFragmentManager().beginTransaction();

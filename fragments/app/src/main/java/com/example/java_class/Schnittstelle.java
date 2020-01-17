@@ -387,7 +387,10 @@ public class Schnittstelle implements Serializable {
         Zeit beginnZeit;
         Zeit endeZeit;
         int offset = 0;
-        TerminEintrag(String name, String farbe, Datum beginn, Datum ende, Zeit beginnZeit, Zeit endeZeit, String Beschreibung) {
+        Zeit height = new Zeit(0,0);
+        Zeit margin = new Zeit(0,0);
+        boolean ganztagig;
+        TerminEintrag(String name, String farbe, Datum beginn, Datum ende, Zeit beginnZeit, Zeit endeZeit, String Beschreibung, boolean ganztagig) {
             this.name = name;
             this.farbe = farbe;
             this.beginn = beginn;
@@ -395,6 +398,7 @@ public class Schnittstelle implements Serializable {
             this.beginnZeit = beginnZeit;
             this.endeZeit = endeZeit;
             this.beschreibung = Beschreibung;
+            this.ganztagig = ganztagig;
         }
     }
 

@@ -266,7 +266,8 @@ public class KalenderAdd extends Fragment {
                             ende,
                             beginnHour,
                             endeHour,
-                            beschreibung.getText().toString()
+                            beschreibung.getText().toString(),
+                            ganztagigBool
                     );
 
                     Schnittstelle.terminListe.add(t);
