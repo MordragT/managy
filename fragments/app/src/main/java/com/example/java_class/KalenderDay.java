@@ -105,7 +105,7 @@ public class KalenderDay extends LinearLayout {
                 termin.height = getHeight(new Zeit(0, 0), termin.endeZeit);
             else termin.height = getHeight(new Zeit(0, 0), new Zeit(23, 59));
             termin.offset = zeitSlot.setTerminOffset(termin);
-            Log.d("TERMIN","termin: " + termin.name + " termin-height: " + termin.height + " termin-margin: " + termin.margin + " termin-offset: " + termin.offset);
+            //Log.d("TERMIN","termin: " + termin.name + " termin-height: " + termin.height + " termin-margin: " + termin.margin + " termin-offset: " + termin.offset);
 
             int height = 0;
             int margin = 0;
@@ -157,6 +157,7 @@ public class KalenderDay extends LinearLayout {
             //Log.d("OFFSET", "Termin: " + termin.name + " Offset: " + termin.offset);
         }
 
+        /*
         int i = 0;
         for(boolean[] row : zeitSlot.rowList) {
             int k = 0;
@@ -169,6 +170,8 @@ public class KalenderDay extends LinearLayout {
             }
             i++;
         }
+        
+         */
 
         //Log.d("TERMINARRAY",terminArray.toString());
     }
