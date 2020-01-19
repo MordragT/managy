@@ -153,6 +153,21 @@ public class FristenAdd extends Fragment {
                     //speichere änderungen
                     Schnittstelle.saveFristen();
 
+                    Schnittstelle.TerminEintrag t = new Schnittstelle(). new TerminEintrag(
+                            titel.getText().toString(),
+                            "rot",
+                            termin,
+                            termin,
+                            new Zeit(0,0),
+                            new Zeit(23,59),
+                            beschreibung.getText().toString(),
+                            true
+                    );
+
+                    Schnittstelle.terminListe.add(t);
+
+                    Schnittstelle.saveTermine();
+
                     //Benachrichtigung für Frist
                     ((MainActivity)getActivity()).CreateNotification(titel.getText().toString(), erinnerungsDatum);
                     MainActivity.notificationNummer++;
