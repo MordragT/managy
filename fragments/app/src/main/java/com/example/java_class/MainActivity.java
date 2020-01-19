@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Errinerung!")
-                .setContentText("TEXT ZUR ERRINERUNG DER FRIST: " + content + "!")
+                .setContentText("Errinerung für die Frist: " + content + "!")
                 .setSmallIcon(R.drawable.ic_announcement)
                 .setColor(Color.rgb(0, 181, 173))
                 .setContentIntent(pendingIntent)
