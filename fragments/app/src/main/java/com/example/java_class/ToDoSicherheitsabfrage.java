@@ -12,7 +12,7 @@ public class ToDoSicherheitsabfrage extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog( Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Löchen?")
+        builder.setTitle("Löschen?")
                 .setMessage("Wirklich löschen?")
                 .setNegativeButton("abbrechen", new DialogInterface.OnClickListener() {
                     @Override
