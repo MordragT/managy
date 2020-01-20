@@ -81,7 +81,7 @@
             <TextView
                 android:layout_width="114dp"
                 android:layout_height="wrap_content"
-                android:text="Ganztagig:"
+                android:text="Ganztägig:"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
             <Switch
