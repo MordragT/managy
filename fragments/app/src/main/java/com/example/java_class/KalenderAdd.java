@@ -276,8 +276,41 @@ public class KalenderAdd extends Fragment {
                     fr.replace(R.id.nav_host_fragment, new Kalender());
                     fr.commit();
                 } else {
-                    Snackbar error = Snackbar.make(v, "Bitte überprüfe deine Eingaben", 1024);
+
+
+
+                    String error_text = "Es fehlen:";
+                    if(!titelBool){
+                        error_text += " Titel ";
+                        //Snackbar error = Snackbar.make(v, "Bitte titel eingeben", 1024);
+                        //error.show();
+                    }
+                    if(!colorBool){
+                        error_text += " Farbe ";
+                        //Snackbar error = Snackbar.make(v, "Bitte titel eingeben", 1024);
+                        //error.show();
+                    }
+                    if(!beginnBool){
+                        error_text += " Begin ";
+                        //Snackbar error = Snackbar.make(v, "Bitte titel eingeben", 1024);
+                        //error.show();
+                    }
+                    if(!endeBool){
+                        error_text += " Ende ";
+                        //Snackbar error = Snackbar.make(v, "Bitte titel eingeben", 1024);
+                        //error.show();
+                    }
+                    if(!((beginnHourBool && endeHourBool) || ganztagigBool)){
+                        error_text += " Uhrzeiten ";
+                        //Snackbar error = Snackbar.make(v, "Bitte titel eingeben", 1024);
+                        //error.show();
+                    }
+
+                    Snackbar error = Snackbar.make(v,error_text , 2024);
                     error.show();
+
+                    //Snackbar error = Snackbar.make(v, "Bitte überprüfe deine Eingaben", 1024);
+                    //error.show();
                 }
             }
         });

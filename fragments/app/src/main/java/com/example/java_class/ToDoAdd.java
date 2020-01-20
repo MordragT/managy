@@ -84,7 +84,9 @@ public class ToDoAdd extends Fragment {
                     titel.setBackgroundColor(error);
                     titel.setHint("darf nicht leer sein");
                      */
-                    Snackbar error = Snackbar.make(v, "Bitte überprüfe deine Eingaben", 1024);
+
+                    Snackbar error = Snackbar.make(v, "Es fehlen: Titel ", 1024);
+                    //Snackbar error = Snackbar.make(v, "Bitte überprüfe deine Eingaben", 1024);
                     error.show();
                 }
             }

@@ -185,8 +185,26 @@ public class FristenAdd extends Fragment {
                     autor1.setBackgroundColor(error);
                     autor1.setHint("Darf nicht leer sein!");
                      */
-                    Snackbar error = Snackbar.make(v, "Bitte überprüfe deine Eingaben", 1024);
+                    String error_text = "Es fehlen:";
+                    if(!titelBool){
+                        error_text += " Titel ";
+                        //Snackbar error = Snackbar.make(v, "Bitte titel eingeben", 1024);
+                        //error.show();
+                    }
+                    if(!terminBool){
+                        error_text += " Termin ";
+                        //Snackbar error = Snackbar.make(v, "Bitte termin festlegen", 1024);
+                        //error.show();
+                    }
+                    if(!erinnerungsDatumBool){
+                        error_text += " Erinnerung ";
+                        //Snackbar error = Snackbar.make(v, "Bitte erinnerung festlegen", 1024);
+                        //error.show();
+                    }
+                    Snackbar error = Snackbar.make(v,error_text , 2024);
                     error.show();
+                    //Snackbar error = Snackbar.make(v, "Bitte überprüfe deine Eingaben", 1024);
+                   // error.show();
                 }
             }
         });

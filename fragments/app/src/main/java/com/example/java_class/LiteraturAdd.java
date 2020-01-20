@@ -128,8 +128,22 @@ public class LiteraturAdd extends Fragment {
                     autor.setBackgroundColor(error);
                     autor.setHint("Darf nicht leer sein!");
                      */
-                    Snackbar error = Snackbar.make(v, "Bitte überprüfe deine Eingaben", 1024);
+                    String error_text = "Es fehlen:";
+                    if(!titelBool){
+                        error_text += " Titel ";
+                        //Snackbar error = Snackbar.make(v, "Bitte titel eingeben", 1024);
+                        //error.show();
+                    }
+                    if(!autorBool){
+                        error_text += " Autor ";
+                        //Snackbar error = Snackbar.make(v, "Bitte termin festlegen", 1024);
+                        //error.show();
+                    }
+                    Snackbar error = Snackbar.make(v,error_text , 2024);
                     error.show();
+
+                    //Snackbar error = Snackbar.make(v, "Bitte überprüfe deine Eingaben", 1024);
+                    //error.show();
                 }
             }
         });
