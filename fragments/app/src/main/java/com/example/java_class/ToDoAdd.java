@@ -59,6 +59,8 @@ public class ToDoAdd extends Fragment {
             }
         });
 
+        
+
         speichern.setAlpha(.5f);
 
         speichern.setOnClickListener(new View.OnClickListener() {
