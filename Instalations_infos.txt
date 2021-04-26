@@ -1,6 +1,0 @@
-1.	Kopieren sie die APK auf belibigem Wege auf ein Android Gerät.
-2.	Füren sie durch das ausführen der APK die Instalation durch.
-	-Im zuge der instalation kann es vorkommen das sie Apps aus unbekanten Quellen erlauben müssen.
-3.	Nach der Instalation muss der App der Zugrif auf die Dokumente genemigt werden.
-	Möglichkeit 1: Einstellungen -> Apps -> Managy -> Berechtigungen -> Speicher -> Zulassen
-	Möglichkeit 2: App-Icon gedrückt halten -> App-Info -> Berechtigungen -> Speicher -> Zulassen
