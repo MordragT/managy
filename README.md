@@ -5,21 +5,20 @@
 
 ### Startseite
 
-![Startseitebild](img/startseite.png)
+<img src="img/startseite.png" alt="Startseitebild" height="720"/>
 
 ### Kalender
 
-[![Kalendervideo](img/kalender.jpg)]({https://youtu.be/LP9ZgjTxXwo} "Kalender Präsentation")
+[![Kalender Präsentation](https://res.cloudinary.com/marcomontalbano/image/upload/v1619466955/video_to_markdown/images/youtube--LP9ZgjTxXwo-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://youtu.be/LP9ZgjTxXwo "Kalender Präsentation")
 
 ### Todo
 
-[![Todovideo](img/todo.jpg)]({https://youtu.be/T4rube2cMS8} "Todo Präsentation")
+[![Todo Präsentation](https://res.cloudinary.com/marcomontalbano/image/upload/v1619467017/video_to_markdown/images/youtube--T4rube2cMS8-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://youtu.be/T4rube2cMS8 "Todo Präsentation")
 
 ### Fristen
 
-[![Fristenvideo](img/fristen.jpg)]({https://youtu.be/zd-X-ug26MA} "Fristen Präsentation")
+[![Fristen Präsentation](https://res.cloudinary.com/marcomontalbano/image/upload/v1619467067/video_to_markdown/images/youtube--zd-X-ug26MA-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://youtu.be/zd-X-ug26MA "Fristen Präsentation")
 
 ### Literatur
 
-[![Literaturvideo](img/literatur.jpg)]({https://youtu.be/ArNI4K1JYS8} "Literatur Präsentation")
-
+[![Literatur Präsentation](https://res.cloudinary.com/marcomontalbano/image/upload/v1619467089/video_to_markdown/images/youtube--ArNI4K1JYS8-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://youtu.be/ArNI4K1JYS8 "Literatur Präsentation")
